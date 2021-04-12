@@ -29,9 +29,9 @@ public class MypageControllerImpl implements MypageController{
 
 	@Override
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
-	public ModelAndView modifyAddress(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("redirect:main/mainPage.do");
+		ModelAndView mav = new ModelAndView("redirect:roomlist/*.do");
 		int result =0;
 		result = mypageService.modifyMypage(memberVO);
 		return mav;

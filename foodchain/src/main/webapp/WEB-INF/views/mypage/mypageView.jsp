@@ -48,11 +48,12 @@
 			alert("패스워드확인을 입력해주세요.");
 			pwdchk.focus();
 		}else if(pwd.value!=pwdchk.value){
-			alert("패스워드가 일치하지 않습니다.")
+			alert("패스워드가 일치하지 않습니다.");
 			pwd.focus();
 		}else{
+			alert("수정되었습니다.");
 			frm.action="${contextPath}/mypage/modifyMypage.do";
-			frm.method="POST"
+			frm.method="POST";
 			frm.submit();
 		}
 	}
@@ -65,7 +66,7 @@
 	<h1 class="text_center">먹이사슬 게임</h1>
 	</div>
 	</header>
-	<form name="view">
+	<form name="view" method="post"  action="${contextPath}/mypage/mypageView.do">
 	<h1 class="text_center">마이페이지</h1>
 	<table class="table" align="center" display="block">
 	   <tr>
@@ -87,7 +88,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/main/mainPage.do'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/roomlist/*.do'"></td>
 	    </a>
 	
 	</form>
