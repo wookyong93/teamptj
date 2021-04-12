@@ -17,7 +17,7 @@
 	<!-- 로그인 sql문 -->
 	<select id="loginCheck" parameterType="memberVO">
 		<![CDATA[
-			SELECT DECODE(COUNT(*),1,'ture','false') AS result FROM f_member WHERE id=#{id} AND pwd=#{pwd}
+			SELECT DECODE(COUNT(*),1,'true','false') AS result FROM f_member WHERE id=#{id} AND pwd=#{pwd} 
 		]]>
 	</select>
 	
