@@ -39,7 +39,7 @@
 <body>
 	<table id="title">
       <tr>
-         <td><img src="../image/logo.jpg" width="100px">
+         <td><img src="${contextPath}/resources/image/logo.jpg" width="100px">
          <td ><h1><br>먹이사슬 게임</h1></td>
       </tr>
     </table>
@@ -57,8 +57,8 @@
 		 	</td>
 		 </tr>
 		 <tr align="center">
-		 	<td><a href="main1.jsp">[1]</a>
-		 	<a href="main2.jsp">[2]</a></td>
+		 	<td><a href="${contextPath}/frontpage/main1.do">[1]</a>
+		 	<a href="${contextPath}/frontpage/main2.do">[2]</a></td>
 		 </tr>
 		 <tr align="center">
 		 	<td>
