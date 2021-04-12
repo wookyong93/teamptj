@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.foodchain.member.VO.MemberVO;
 import com.spring.foodchain.mypage.DAO.MypageDAO;
-import com.spring.foodchain.mypage.VO.MypageVO;
 
 @Service("mypageService")
 @Transactional
@@ -17,14 +17,14 @@ public class MypageServiceImpl implements MypageService{
 	private MypageDAO mypageDAO;
 	
 	@Override
-	public List<MypageVO> mypageView(String id) throws Exception {
-		List<MypageVO> mypageView = mypageDAO.mypageView(id);
+	public List<MemberVO> mypageView(String id) throws Exception {
+		List<MemberVO> mypageView = mypageDAO.mypageView(id);
 		return mypageView;
 	}
 
 	@Override
-	public int modifyMypage(MypageVO mypageVO) {
-		int result = mypageDAO.modifyMypage(mypageVO);	
+	public int modifyMypage(MemberVO memberVO) {
+		int result = mypageDAO.modifyMypage(memberVO);	
 		return result;
 	}
 

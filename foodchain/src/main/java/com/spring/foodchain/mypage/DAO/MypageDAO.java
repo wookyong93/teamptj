@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.spring.foodchain.mypage.VO.MypageVO;
+import com.spring.foodchain.member.VO.MemberVO;
 
 public interface MypageDAO {
-	public List<MypageVO> mypageView(String id) throws DataAccessException;
+	public List<MemberVO> mypageView(String id) throws DataAccessException;
 	
-	public int modifyMypage(MypageVO mypageVO)throws DataAccessException;
+	public int modifyMypage(MemberVO memberVO)throws DataAccessException;
 }

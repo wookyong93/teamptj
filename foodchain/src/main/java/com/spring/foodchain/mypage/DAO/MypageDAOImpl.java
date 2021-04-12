@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.spring.foodchain.mypage.VO.MypageVO;
+import com.spring.foodchain.member.VO.MemberVO;
 
 @Repository("mypageDAO")
 public class MypageDAOImpl implements MypageDAO {
@@ -15,16 +15,16 @@ public class MypageDAOImpl implements MypageDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<MypageVO> mypageView(String id) throws DataAccessException {
+	public List<MemberVO> mypageView(String id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		List<MypageVO> mypageView = sqlSession.selectList("mapper.member.mypageView",id);
+		List<MemberVO> mypageView = sqlSession.selectList("mapper.member.mypageView",id);
 		return mypageView;
 	}
 
 	@Override
-	public int modifyMypage(MypageVO mypageVO) throws DataAccessException {
+	public int modifyMypage(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
-		int result = sqlSession.update("mapper.member.modifyMypage",mypageVO);
+		int result = sqlSession.update("mapper.member.modifyMypage",memberVO);
 		return result;
 	}
 	

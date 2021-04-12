@@ -2,12 +2,12 @@ package com.spring.foodchain.mypage.service;
 
 import java.util.List;
 
-import com.spring.foodchain.mypage.VO.MypageVO;
+import com.spring.foodchain.member.VO.MemberVO;
 
 public interface MypageService {
 
-	public List<MypageVO> mypageView(String id) throws Exception;
+	public List<MemberVO> mypageView(String id) throws Exception;
 
-	int modifyMypage(MypageVO mypageVO) throws Exception;
+	int modifyMypage(MemberVO memberVO) throws Exception;
 
 }

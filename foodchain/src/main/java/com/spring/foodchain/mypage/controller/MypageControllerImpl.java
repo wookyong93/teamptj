@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.foodchain.mypage.VO.MypageVO;
+import com.spring.foodchain.member.VO.MemberVO;
 import com.spring.foodchain.mypage.service.MypageService;
 
 public class MypageControllerImpl implements MypageController{
@@ -22,18 +22,18 @@ public class MypageControllerImpl implements MypageController{
 			throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		List<MypageVO> mypageView = mypageService.mypageView(id);
+		List<MemberVO> mypageView = mypageService.mypageView(id);
 		mav.addObject("mypageView",mypageView);
 		return mav;
 	}
 
 	@Override
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
-	public ModelAndView modifyAddress(MypageVO mypageVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView modifyAddress(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("redirect:main/mainPage.do");
 		int result =0;
-		result = mypageService.modifyMypage(mypageVO);
+		result = mypageService.modifyMypage(memberVO);
 		return mav;
 	}
 
