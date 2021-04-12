@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.foodchain.member.VO.MemberVO;
@@ -13,5 +14,7 @@ public interface MemberController {
 	public ModelAndView loginForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
 	public ResponseEntity loginCheck(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView joinForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ModelAndView idCheck(@RequestParam("id") String id,HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ResponseEntity addMember(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

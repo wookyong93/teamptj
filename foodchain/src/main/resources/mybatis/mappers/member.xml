@@ -32,7 +32,7 @@
 	
 	
 	<!-- 회원 추가 sql문 -->
-	<insert id="addMember" parameterType="MemberVO">
+	<insert id="addMember" parameterType="memberVO">
 		<![CDATA[
 			insert into f_member values
 			(#{id}, #{pwd}, sysdate)
@@ -49,7 +49,7 @@
 	
 	<!-- 21/04/12 강민경 작성 -->
 	<!-- 회원 수정 sql문 -->
-	<update id="modMember" parameterType="MemberVO">
+	<update id="modMember" parameterType="memberVO">
 		<![CDATA[
 			update f_member set
 			pwd=#{pwd} 
@@ -64,6 +64,12 @@
 			where id=#{id}
 		]]>
 	</select>
-	
+	<!-- 21/04/12 권우경 작성 -->
+	<!--ID 중복체크 Sql문  -->
+		<select id="idCheck" parameterType="String" resultType="String">
+	         <![CDATA[
+	            SELECT COUNT(*) AS result FROM f_member WHERE id =#{id}
+	         ]]>
+     	 </select>
 	
 </mapper>

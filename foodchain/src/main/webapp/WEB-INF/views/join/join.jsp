@@ -34,6 +34,48 @@
    padding: 25px; display: block;
    }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+<%--id 중복체크 확인중입니다. /권우경 작성--%>
+	function fn_idCheck(){
+		var frm = document.frm;
+		var id = document.getElementById("id");
+		if(id.value==""){
+			alert('아이디를 입력해주세요');
+			id.focus();
+		}else{
+			frm.method="post";
+			frm.action="${contextPath}/member/idCheck.do";
+			frm.submit();
+		}
+	}
+	<%--회원가입 진행 /권우경 작성--%>
+	function fn_insert(){
+		var frm = document.frm;
+		var id = frm.id;
+		var pwd = frm.pwd;
+		var pwdchk = frm.pwdchk;
+		if(id.value == ""){
+			alert('아이디를 입력하세요');
+			id.focus();
+		}else if(pwd.value==""){
+			alert('비밀번호를 입력하세요');
+			pwd.focus();
+		}else if(pwdchk.value==""){
+			alert('비밀번호 확인을 입력하세요');
+			pwdchk.focus();
+		}else if(pwdchk.value != pwd.value){
+			alert('비밀번호가 서로 다릅니다.');
+			pwd.value="";
+			pwdchk.value="";
+			pwd.focus();
+		}else{
+			frm.method="post";
+			frm.action="${contextPath}/member/addMember.do";
+			frm.submit();
+		}
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -42,13 +84,15 @@
 	<h1 class="text_center">먹이사슬 게임</h1>
 	</div>
 	</header>
-	<form method="post" action="${contextPath}/member/addMember.do">
+	<form method="post" name ="frm">
 	<h1 class="text_center">회원 가입</h1>
 	<table class="table" align="center" display="block">
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
-	      <td width="300"><input type="text" name="id"></td>
+	      <td width="300"><input type="text" name="id" id="id" value="${okId}"></td>
+	      <td><input type="button" value="중복체크" onclick="fn_idCheck()" />
 	   </tr>
+
 	   <tr>
 	      <td width="200"><p align="left">패스워드</td>
 	      <td width="300"><input type="password" name="pwd"></td>
@@ -60,8 +104,8 @@
 	</table>
 		
 		<a class="btn2" align="center">
-		<input type="submit" value="가입" class="btn1">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'"></td>
+		<input type="submit" value="가입" class="btn1" onclick="fn_insert()">
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'">
 	    </a>
 	
 	</form>

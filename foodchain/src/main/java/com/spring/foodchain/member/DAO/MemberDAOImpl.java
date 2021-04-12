@@ -19,5 +19,20 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println(result);
 		return result;
 	}
+	@Override
+	public String idCheck(String id) throws DataAccessException {
+		String result = sqlSession.selectOne("mapper.member.idCheck",id);
+		return result;
+	}
+	@Override
+	public boolean addMember(MemberVO memberVO) throws DataAccessException {
+		boolean result =false;
+		int num = sqlSession.insert("mapper.member.addMember",memberVO);
+		if(num == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
 
 }
