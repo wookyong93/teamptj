@@ -62,8 +62,8 @@
 		 </tr>
 		 <tr align="center">
 		 	<td>
-				 <input type="button" value="로그인" onclick="${contextPath}/login/login.do">
-				 <input type="button" value="회원가입" onclick="${contextPath}/join/join.do">
+				 <input type="button" value="로그인" onclick="location.href='${contextPath}/login/login.do'">
+                <input type="button" value="회원가입" onclick="location.href='${contextPath}/join/join.do'">
 		 	</td>
 		 </tr>
 	 </table>
