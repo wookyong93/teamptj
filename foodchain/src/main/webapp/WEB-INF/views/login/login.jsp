@@ -24,7 +24,8 @@
 			alert('비밀번호를 입력해주세요');
 			pwd.focus();
 		}else{
-			frm.action="#";
+			frm.action="/login/loginCheck.do";
+			frm.method="post"
 			frm.submit();
 		}
 	}
@@ -123,7 +124,7 @@
 	         	<br>
 	            <input type="button" value="로그인" onclick="fn_login()" >  
 	            <input type="button"  value="회원가입" onclick="#" > 
-	            <input type="button" value="나가기" onclick="#">  
+	            <input type="button" value="나가기" onclick="${contextPath}/front/main1.do">  
 	         </td>
 	      </tr>
 	   	</table>
