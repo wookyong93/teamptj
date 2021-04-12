@@ -63,7 +63,7 @@ public class MemberControllerImpl implements MemberController{
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
-
+	//현제 확인중입니다. 권우경 작성
 	@Override
 	@RequestMapping(value="/member/idCheck.do" ,method=RequestMethod.POST)
 	public ModelAndView idCheck(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
