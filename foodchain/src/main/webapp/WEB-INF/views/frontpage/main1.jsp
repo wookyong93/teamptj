@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>메인 화면1</title>
 <!-- 이소정 (2021/04/10) -->
+<!-- main 두개 합쳐보기 -->
 <style>
    body{
       background-color:d3d3d3;
@@ -20,16 +21,13 @@
    #main {
       margin:0 auto ;
    }
-   a{
-      color:black;
-   }
-   a:link {
-      color:black;
-   }
-   a:visited {
-      color:black;
-      font-weight:bold;
-   }
+   a{ color:black; }
+   a:link { color:black; text-decoration:none; }
+   a:visited { 
+	   color:black; 
+	   text-decoration:none;
+	   font-weight:bold;
+    }
    input[type=button]{
    	background-color:#CCFFCC;
    	width:100px;

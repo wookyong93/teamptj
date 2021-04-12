@@ -23,7 +23,7 @@ public class AdminControllerImpl implements AdminController {
 	private AdminServiceImpl aservice;
 	
 	@Override
-	@RequestMapping(value="/listMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/listMember.do", method=RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		List memList = aservice.listMembers();
@@ -34,7 +34,7 @@ public class AdminControllerImpl implements AdminController {
 	}
 
 	@Override
-	@RequestMapping(value="/addMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public ModelAndView addMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		int result = aservice.addMembers(memberVO);
@@ -43,7 +43,7 @@ public class AdminControllerImpl implements AdminController {
 	}
 
 	@Override
-	@RequestMapping(value="/delMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/delMember.do", method=RequestMethod.GET)
 	public ModelAndView delMembers(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		int result = aservice.delMembers(id);
@@ -55,9 +55,8 @@ public class AdminControllerImpl implements AdminController {
 	@RequestMapping(value="/modMember.do", method=RequestMethod.POST)
 	public ModelAndView modMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		int result = aservice.modMembers(memberVO);
+		aservice.modMembers(memberVO);
 		ModelAndView mav = new ModelAndView("redirect:/listMembers.do");
-		mav.addObject("message","수정이 완료되었습니다.");
 		return mav;
 	}
 

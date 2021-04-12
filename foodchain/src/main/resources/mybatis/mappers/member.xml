@@ -34,8 +34,8 @@
 	<!-- 회원 추가 sql문 -->
 	<insert id="addMember" parameterType="MemberVO">
 		<![CDATA[
-			insert into f_member values
-			(#{id}, #{pwd}, sysdate)
+			insert into f_member(id,pwd) values
+			(#{id}, #{pwd})
 		]]>
 	</insert>
 	
