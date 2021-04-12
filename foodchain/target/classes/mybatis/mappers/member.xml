@@ -30,13 +30,6 @@
 		]]>
 	</select>
 	
-	<!-- 지정ID 정보 불러오는 sql문 -->
-	<select id="viewMember" parameterType="String" resultMap="memResult">
-		<![CDATA[
-			select * from f_member
-			where id=#{id}
-		]]>
-	</select>
 	
 	<!-- 회원 추가 sql문 -->
 	<insert id="addMember" parameterType="MemberVO">
@@ -46,6 +39,15 @@
 		]]>
 	</insert>
 	
+	<!-- 회원 삭제 sql문 -->
+	<delete id="delMember" parameterType="String">
+		<![CDATA[
+			delete from f_member
+			where id=#{id} 
+		]]>
+	</delete>
+	
+	<!-- 21/04/12 강민경 작성 -->
 	<!-- 회원 수정 sql문 -->
 	<update id="modMember" parameterType="MemberVO">
 		<![CDATA[
@@ -55,11 +57,13 @@
 		]]>
 	</update>
 	
-	<!-- 회원 삭제 sql문 -->
-	<delete id="delMember" parameterType="String">
+	<!-- 지정ID 정보 불러오는 sql문 -->
+	<select id="viewMember" parameterType="String" resultMap="memResult">
 		<![CDATA[
-			delete from f_member
-			where id=#{id} 
+			select * from f_member
+			where id=#{id}
 		]]>
-	</delete>
+	</select>
+	
+	
 </mapper>
