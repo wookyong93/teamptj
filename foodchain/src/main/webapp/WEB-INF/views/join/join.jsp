@@ -61,7 +61,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="가입" class="btn1">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/member/Front1_page.do'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'"></td>
 	    </a>
 	
 	</form>

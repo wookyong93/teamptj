@@ -17,6 +17,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean loginCheck(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
+		System.out.println(memberDAO.loginCheck(memberVO));
+		System.out.println(memberVO.getId());
+		System.out.println(memberVO.getPwd());
 		return memberDAO.loginCheck(memberVO);
 	}
 
