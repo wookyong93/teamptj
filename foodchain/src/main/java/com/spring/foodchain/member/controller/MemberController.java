@@ -10,5 +10,5 @@ import com.spring.foodchain.member.VO.MemberVO;
 
 public interface MemberController {
 	public ModelAndView loginForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
-	public ModelAndView loginCheck(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView loginCheck(@ModelAttribute("mypage") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
