@@ -20,4 +20,17 @@
 			SELECT DECODE(COUNT(*),1,'true','false') AS result FROM f_member WHERE id=#{id} AND pwd=#{pwd}
 		]]>
 	</select>
+<!-- 21/04/12 강민경 작성 -->
+	<!-- 마이페이지 sql문 -->
+	<select id="mypageView" resultMap="memResult" parameterType="String">
+		<![CDATA[
+			SELECT * FROM f_member WHERE id=#{id}
+		]]>
+	</select>
+	<!-- 마이페이지 수정 sql문 -->
+	<update id="modifyMypage" parameterType="memberVO">	
+		<![CDATA[
+			UPDATE f_member SET pwd=#{pwd} WHERE id=#{id}
+		]]>
+	</update>
 </mapper>

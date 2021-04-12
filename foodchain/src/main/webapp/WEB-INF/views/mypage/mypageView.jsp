@@ -66,9 +66,10 @@
 	<h1 class="text_center">먹이사슬 게임</h1>
 	</div>
 	</header>
-	<form name="view" method="post"  action="${contextPath}/mypage/mypageView.do">
+	<form name="view">
 	<h1 class="text_center">마이페이지</h1>
 	<table class="table" align="center" display="block">
+	<c:forEach var = "mypageView" items="${mypageView}">   
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
@@ -84,6 +85,7 @@
 	       <td width="200"><p align="left">패스워드확인</td>
 	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
 	    </tr>
+	    </c:forEach>
 	</table>
 		
 		<a class="btn2" align="center">
