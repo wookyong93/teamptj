@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 화면</title>
+<title>메인 화면1</title>
+<!-- 이소정 (2021/04/10) -->
 <style>
    body{
       background-color:d3d3d3;
@@ -39,7 +40,7 @@
 <body>
 	<table id="title">
       <tr>
-         <td><img src="../image/logo.jpg" width="100px">
+         <td><img src="${contextPath}/resources/image/logo.jpg" width="100px">
          <td ><h1><br>먹이사슬 게임</h1></td>
       </tr>
     </table>
@@ -57,13 +58,13 @@
 		 	</td>
 		 </tr>
 		 <tr align="center">
-		 	<td><a href="main1.jsp">[1]</a>
-		 	<a href="main2.jsp">[2]</a></td>
+		 	<td><a href="${contextPath}/frontpage/main1.do">[1]</a>
+		 	<a href="${contextPath}/frontpage/main2.do">[2]</a></td>
 		 </tr>
 		 <tr align="center">
 		 	<td>
-				 <input type="button" value="로그인" onclick="${contextPath}/login/login.do">
-				 <input type="button" value="회원가입" onclick="${contextPath}/join/join.do">
+				 <input type="button" value="로그인" onclick="location.href='${contextPath}/login/login.do'">
+                <input type="button" value="회원가입" onclick="location.href='${contextPath}/join/join.do'">
 		 	</td>
 		 </tr>
 	 </table>

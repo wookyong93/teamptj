@@ -21,8 +21,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 인어셉터 모든 파일 적용  -->
+	<!-- 21/04/12 권우경 작성 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*/*.do"/>
+			<beans:bean class="com.spring.foodchain.common.interceptor.ViewNameInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.spring.foodchain" />
-	
-	
-	
+
 </beans:beans>
