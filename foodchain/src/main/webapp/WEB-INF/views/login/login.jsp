@@ -24,7 +24,8 @@
 			alert('비밀번호를 입력해주세요');
 			pwd.focus();
 		}else{
-			frm.action="#";
+			frm.action="/login/loginCheck.do";
+			frm.method="post"
 			frm.submit();
 		}
 	}
