@@ -39,7 +39,7 @@
 <body>
 	<table id="title">
       <tr>
-         <td><img src="${contextPath}/resource/image/logo.jpg" width="100px">
+         <td><img src="${contextPath}/resources/image/logo.jpg" width="100px">
          <td ><h1><br>먹이사슬 게임</h1></td>
       </tr>
     </table>
