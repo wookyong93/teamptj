@@ -17,7 +17,8 @@
 	</resultMap>
 	
 	<!-- 로그인 sql문 -->
-	<select id="loginCheck" parameterType="memberVO">
+	<!-- 4/13 권우경 resultType 수정 -->
+	<select id="loginCheck" parameterType="memberVO" resultType="String">
 		<![CDATA[
 			SELECT DECODE(COUNT(*),1,'true','false') AS result FROM f_member WHERE id=#{id} AND pwd=#{pwd} 
 		]]>
@@ -38,16 +39,16 @@
 		<![CDATA[
 			insert into f_member
 		]]>
-		<where>
-			<if test="birth != '' and birth != null">
+		<choose>
+			<when test="birth != 'null'">
 				(id,pwd,nickname,birth) values
 				(#{id}, #{pwd}, #{nickname}, #{birth})
-			</if>
-			<if test="birth =='' and birth == null">
+			</when>
+			<otherwise>
 				(id,pwd,nickname) values
 				(#{id}, #{pwd}, #{nickname})
-			</if>
-		</where>
+			</otherwise>
+		</choose>
 	</insert>
 	
 	<!-- 회원 삭제 sql문 -->
@@ -59,7 +60,8 @@
 	</delete>
 	
 	<!-- 닉네임 중복확인 sql문 -->
-	<select id="nicknameCheck" parameterType="String" resultType="String">
+	<!-- result type= String => Integer 로 수정 21/04/13권우경 -->
+	<select id="nicknameCheck" parameterType="String" resultType="Integer">
 	         <![CDATA[
 	            SELECT COUNT(*) AS result FROM f_member WHERE nickname =#{nickname}
 	         ]]>

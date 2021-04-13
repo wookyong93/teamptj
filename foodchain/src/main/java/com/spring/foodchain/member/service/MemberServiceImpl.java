@@ -35,4 +35,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.addMember(memberVO);
 	}
 
+	@Override
+	public int nicknameCheck(String nickName) throws DataAccessException {
+		// TODO Auto-generated method stub
+		int result =memberDAO.nicknameCheck(nickName);
+		return result;
+	}
+
 }
