@@ -34,7 +34,7 @@ body{
 	<h1 class="text_center">먹이사슬 게임</h1>
 	</div>
 	</header>
-<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="#CCFFCC">
       <td ><b>상태</b></td>
