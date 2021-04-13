@@ -11,7 +11,6 @@ import com.spring.foodchain.roomlist.vo.RoomListVO;
 public interface RoomListController {
 
 	ModelAndView roomlist(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-	ModelAndView addRoom(@ModelAttribute("info") RoomListVO room, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView addRoom(@ModelAttribute("info") RoomListVO roomlistVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
