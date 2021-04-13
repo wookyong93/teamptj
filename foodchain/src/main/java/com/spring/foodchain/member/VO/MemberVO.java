@@ -5,7 +5,10 @@ import java.sql.Date;
 public class MemberVO {
 	private String id;
 	private String pwd;
+	private String nickname;
+	private Date birth;
 	private Date joinDate;
+	
 	public String getId() {
 		return id;
 	}
@@ -17,6 +20,18 @@ public class MemberVO {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 	public Date getJoinDate() {
 		return joinDate;
