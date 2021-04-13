@@ -71,7 +71,7 @@
 			frm.submit();
 		}
 	}
-	//우경님 작성 copy
+	//우경님 작성 copy / 수정해야함
 	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
@@ -101,7 +101,7 @@
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
-	      <input type="text" name="id" value="${mypageView.id}" readonly="readonly"/>
+	      <input type="text" name="id" value="${mypageView.id}" disabled="disabled"/>
 	      </td>
 	   </tr>
 	    <tr>
