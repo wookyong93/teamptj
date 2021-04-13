@@ -36,7 +36,7 @@ body{
 	
 	   <tr>
 	      <td width="200"><p align="right">아이디</td>
-	      <td width="400"><input type="text" name="chief_id" disabled="disabled"></td>
+	      <td width="400"><input type="text" name="chief_id" disabled="disabled" value="${loginID}"></td>
 	   </tr>
 	   <tr>
 	      <td width="200"><p align="right">방 번호</td>

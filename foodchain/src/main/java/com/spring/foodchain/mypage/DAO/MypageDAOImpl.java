@@ -17,7 +17,7 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public List<MemberVO> mypageView(String id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		List<MemberVO> mypageView = sqlSession.selectList("mapper.member.mypageView",id);
+		List<MemberVO> mypageView = sqlSession.selectList("mapper.member.viewMember",id);
 		return mypageView;
 	}
 
