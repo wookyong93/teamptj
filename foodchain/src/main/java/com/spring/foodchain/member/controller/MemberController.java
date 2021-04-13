@@ -19,5 +19,6 @@ public interface MemberController {
 	public ModelAndView joinForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
 	public ResponseEntity idCheck(@RequestParam("id") String id,HttpServletRequest request,HttpServletResponse response) throws Exception;
 	public ResponseEntity addMember(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity nameCheck(@RequestParam("nickname") String nickName,HttpServletRequest request,HttpServletResponse response) throws Exception;
 	
 }

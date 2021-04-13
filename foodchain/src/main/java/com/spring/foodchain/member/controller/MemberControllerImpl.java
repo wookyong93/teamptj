@@ -50,7 +50,7 @@ public class MemberControllerImpl implements MemberController{
 		
 			boolean result = memberService.loginCheck(memberVO);
 			if(result) {
-				message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/frontpage/main1.do';</script>";
+				message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/room/roomlistmain.do';</script>";
 				session.setAttribute("loginID", memberVO.getId());
 			}else {
 				message="<script>alert('로그인 실패');location.href='"+request.getContextPath()+"/login/login.do';</script>";
@@ -67,7 +67,7 @@ public class MemberControllerImpl implements MemberController{
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
-	//현제 확인중입니다. 권우경 작성
+	//작성완료 test 정상 / 21/04/13 권우경
 	@Override
 	@RequestMapping(value="/member/idCheck.do" ,method= {RequestMethod.GET,RequestMethod.POST})
 	public ResponseEntity idCheck(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
@@ -101,7 +101,6 @@ public class MemberControllerImpl implements MemberController{
 		String message;
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		request.getSession();
-		
 			boolean result = memberService.addMember(memberVO);
 			if(result) {
 				message="<script>alert('가입성공');location.href='"+request.getContextPath()+"/login/login.do';</script>";
@@ -110,6 +109,31 @@ public class MemberControllerImpl implements MemberController{
 			}
 			resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 			return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/member/nameCheck.do" ,method= {RequestMethod.GET,RequestMethod.POST})
+	public ResponseEntity nameCheck(@RequestParam("nickname")String nickName, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		ResponseEntity resEnt;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;
+		responseHeaders.add("Content-Type","text/html; charset=utf-8");
+		String id = request.getParameter("id");
+		try {
+			int result = memberService.nicknameCheck(nickName);
+			if(result==0) {
+				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/join/join.do?nickname="+nickName+"&id="+id+"';</script>";
+			}else {
+				message = "<script>alert('중복된 닉네임이 있습니다');location.href='"+request.getContextPath()+"/join/join.do?id="+id+"';</script>";
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEnt;
 	}
 
 }
