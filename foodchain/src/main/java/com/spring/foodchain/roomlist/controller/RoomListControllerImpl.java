@@ -38,14 +38,13 @@ public class RoomListControllerImpl implements RoomListController{
 	}
 	
 	@Override
-	@Override
 	@RequestMapping(value="/room/addroom.do" ,method = RequestMethod.POST)
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = RoomListService.addroom(room);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/room/room.do");
 		return mav;
 	}
 	
