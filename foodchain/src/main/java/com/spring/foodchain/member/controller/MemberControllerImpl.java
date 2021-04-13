@@ -1,6 +1,8 @@
 package com.spring.foodchain.member.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,9 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.foodchain.member.VO.MemberVO;
@@ -56,7 +60,7 @@ public class MemberControllerImpl implements MemberController{
 	}
 
 	@Override
-	@RequestMapping(value="/join/join.do", method=RequestMethod.GET)
+	@RequestMapping(value="/join/join.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView joinForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String viewName = (String)request.getAttribute("viewName");
@@ -65,23 +69,27 @@ public class MemberControllerImpl implements MemberController{
 	}
 	//현제 확인중입니다. 권우경 작성
 	@Override
-	@RequestMapping(value="/member/idCheck.do" ,method=RequestMethod.POST)
-	public ModelAndView idCheck(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/member/idCheck.do" ,method= {RequestMethod.GET,RequestMethod.POST})
+	public ResponseEntity idCheck(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String result = memberService.idCheck(id);
-		String okId=null;
-		ModelAndView mav = new ModelAndView("redirect:/join/join.do");
-		if(result.equals("0")) {
-			String message="사용가능 아이디입니다.";
-			mav.addObject("okid",id);
-			mav.addObject("message",message);
-			return mav;
-		}else {
-			String message="중복된 아이디입니다.";
-			mav.addObject("message",message);
-			return mav;
-		}
 		
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		try {
+			request.setCharacterEncoding("utf-8");
+			int result = memberService.idCheck(id);
+			if(result == 0) {
+				message = "<script>alert('사용가능한 아이디 입니다');location.href='"+request.getContextPath()+"/join/join.do?id="+id+"';</script>";
+			} else {
+				message = "<script>alert('사용이 불가능한 아이디 입니다');location.href='"+request.getContextPath()+"/join/join.do';</script>";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEnt;
 	}
 
 	@Override
@@ -92,7 +100,7 @@ public class MemberControllerImpl implements MemberController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message;
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		HttpSession session = request.getSession();
+		request.getSession();
 		
 			boolean result = memberService.addMember(memberVO);
 			if(result) {

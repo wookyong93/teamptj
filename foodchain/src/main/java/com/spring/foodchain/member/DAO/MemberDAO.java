@@ -7,7 +7,7 @@ import com.spring.foodchain.member.VO.MemberVO;
 public interface MemberDAO {
 	public boolean loginCheck(MemberVO memberVO) throws DataAccessException;
 
-	public String idCheck(String id) throws DataAccessException;
+	public int idCheck(String id) throws DataAccessException;
 
 	public boolean addMember(MemberVO memberVO)throws DataAccessException;
 }
