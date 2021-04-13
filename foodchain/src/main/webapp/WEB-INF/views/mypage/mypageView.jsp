@@ -51,29 +51,31 @@
 		var pwd = frm.pwd;
 		var pwdchk = frm.pwdchk;
 		
-		if(pwd.value==""||pwd.length==0){
-			alert("비밀번호를 입력해주세요.");
-			pwd.focus();
-		}else if(pwdchk.value==""||pwdchk.length==0){
-			alert("비밀번호 확인을 입력해주세요.");
-			pwdchk.focus();
-		}else if(pwd.value!=pwdchk.value){
-			alert("비밀번호가 일치하지 않습니다.");
-			pwd.focus();
-		}else if(nickname.value==""||nickname.length==0){
+		
+		if(nickname.value==""||nickname.length==0){
 			alert("닉네임을 입력해주세요.");
 			nickname.focus();
-		else{
+		}else if(pwd.value==""||pwd.length==0){
+				alert("비밀번호를 입력해주세요.");
+				pwd.focus();
+		}else if(pwdchk.value==""||pwdchk.length==0){
+				alert("비밀번호 확인을 입력해주세요.");
+				pwdchk.focus();
+		}else if(pwd.value!=pwdchk.value){
+				alert("비밀번호가 일치하지 않습니다.");
+				pwd.focus();
+		}else{
 			alert("수정되었습니다.");
 			frm.action="${contextPath}/mypage/modifyMypage.do";
 			frm.method="POST";
 			frm.submit();
 		}
 	}
-	//만들어야 함
+	//우경님 작성 copy
 	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
-		location.href="${contextPath}/mypage/nicknameCheck.do?id="+nickname;
+		var id = document.getElementById("id").value;
+		location.href="${contextPath}/mypage/nicknameCheck.do?nickname="+nickname+"&id="+id;
 	}
 	
 	function logout(){
@@ -102,14 +104,6 @@
 	      <input type="text" name="id" value="${mypageView.id}" readonly="readonly"/>
 	      </td>
 	   </tr>
-	   <tr>
-	      <td width="200"><p align="left">비밀번호</td>
-	      <td width="300"><input type="password" name="pwd" value="${mypageView.pwd}"></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="left">비밀번호 확인</td>
-	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
-	    </tr>
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
 			<td width="300"><p><input type="text" name='nickname' value="${mypageView.nickname}"></td>
@@ -123,6 +117,14 @@
 				<select name="day" id='day' title="일" class="select"></select>
 			</td>
 		</tr>
+		 <tr>
+	      <td width="200"><p align="left">비밀번호</td>
+	      <td width="300"><input type="password" name="pwd" value="${mypageView.pwd}"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="left">비밀번호 확인</td>
+	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
+	    </tr>
 	    </c:forEach>
 	</table>
 		
