@@ -4,9 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <%
-   request.setCharacterEncoding("UTF-8");
+  	request.setCharacterEncoding("UTF-8");
+	String loginID = (String)session.getAttribute("loginID");
 %> 
+<!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +36,13 @@
    .btn2{
    padding: 25px; display: block;
    }
+   .select {
+		border-radius: 0.5em;
+	}
+	.logout{
+		float:right;
+		background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
+	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -42,21 +52,36 @@
 		var pwdchk = frm.pwdchk;
 		
 		if(pwd.value==""||pwd.length==0){
-			alert("패스워드를 입력해주세요.");
+			alert("비밀번호를 입력해주세요.");
 			pwd.focus();
 		}else if(pwdchk.value==""||pwdchk.length==0){
-			alert("패스워드확인을 입력해주세요.");
+			alert("비밀번호 확인을 입력해주세요.");
 			pwdchk.focus();
 		}else if(pwd.value!=pwdchk.value){
-			alert("패스워드가 일치하지 않습니다.");
+			alert("비밀번호가 일치하지 않습니다.");
 			pwd.focus();
-		}else{
+		}else if(nickname.value==""||nickname.length==0){
+			alert("닉네임을 입력해주세요.");
+			nickname.focus();
+		else{
 			alert("수정되었습니다.");
 			frm.action="${contextPath}/mypage/modifyMypage.do";
 			frm.method="POST";
 			frm.submit();
 		}
 	}
+	//만들어야 함
+	function nicknameCheck() {
+		var nickname = document.getElementById("nickname").value;
+		location.href="${contextPath}/mypage/nicknameCheck.do?id="+nickname;
+	}
+	
+	function logout(){
+		alert("로그아웃 되었습니다.");
+		<% session.invalidate(); %>
+		location.href='${contextPath}/frontpage/main1.do';
+	}
+	
 </script>
 </head>
 <body>
@@ -64,6 +89,7 @@
 	<div>
 	<img class="logo" src="${contextPath}/resources/image/logo.jpg" width="100" height="100" >
 	<h1 class="text_center">먹이사슬 게임</h1>
+	<input type="button" class="logout" value="로그아웃" onclick="logout()">
 	</div>
 	</header>
 	<form name="view">
@@ -74,23 +100,35 @@
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
 	      <input type="text" name="id" value="${mypageView.id}" readonly="readonly"/>
-	      <input type="hidden" name="_id" value="${mypageView.id}" />
 	      </td>
 	   </tr>
 	   <tr>
-	      <td width="200"><p align="left">패스워드</td>
+	      <td width="200"><p align="left">비밀번호</td>
 	      <td width="300"><input type="password" name="pwd" value="${mypageView.pwd}"></td>
 	    </tr>
 	    <tr>
-	       <td width="200"><p align="left">패스워드확인</td>
+	       <td width="200"><p align="left">비밀번호 확인</td>
 	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
 	    </tr>
+	    <tr>
+			<td width="200"><p align="left">닉네임</td>
+			<td width="300"><p><input type="text" name='nickname' value="${mypageView.nickname}"></td>
+			<td><input class="btn1" type="button" value="중복확인" onclick="nicknameCheck()"></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td>
+				<select name="year" id='year' title="년도" class="select"></select>
+				<select name="month" id='month' title="월" class="select"></select>
+				<select name="day" id='day' title="일" class="select"></select>
+			</td>
+		</tr>
 	    </c:forEach>
 	</table>
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/roomlist/*.do'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/roomlist/roomlistmain.do'"></td>
 	    </a>
 	
 	</form>
