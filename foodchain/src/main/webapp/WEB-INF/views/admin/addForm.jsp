@@ -39,8 +39,9 @@
 		$("#year").append("<option value=''>년도</option>");
 		
 		// 올해 기준으로 -50년부터 +1년씩 보여줌
+		<%--오타수정 21/04/13 권우경 작성--%>
 		for(var y=(com_year - 50); y <= (com_year + 1); y++){
-			$("#year").append("<option value='"+y+" 년"+"</option>");
+			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
 		}
 		
 		// 1월 ~ 12월

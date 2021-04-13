@@ -10,4 +10,6 @@ public interface MemberService {
 	public int idCheck(String id) throws DataAccessException;
 
 	public boolean addMember(MemberVO memberVO)throws DataAccessException;
+
+	public int nicknameCheck(String nickName)throws DataAccessException;
 }

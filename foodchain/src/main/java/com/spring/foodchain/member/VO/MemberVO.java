@@ -6,7 +6,7 @@ public class MemberVO {
 	private String id;
 	private String pwd;
 	private String nickname;
-	private Date birth;
+	private String[] birth;
 	private Date joinDate;
 	
 	public String getId() {
@@ -27,10 +27,11 @@ public class MemberVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public Date getBirth() {
+	
+	public String[] getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String[] birth) {
 		this.birth = birth;
 	}
 	public Date getJoinDate() {
