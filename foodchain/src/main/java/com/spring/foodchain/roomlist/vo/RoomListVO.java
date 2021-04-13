@@ -2,23 +2,23 @@ package com.spring.foodchain.roomlist.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("roomListVO")
 public class RoomListVO {
 	private String state;
 	private int num;
 	private String title;
-	private String size;
+	private String rsize;
 	private String master;
 
 	public RoomListVO() {
 		
 	}
 
-	public RoomListVO(String state, int num, String title, String size, String master) {
+	public RoomListVO(String state, int num, String title, String rsize, String master) {
 		this.state = state;
 		this.num = num;
 		this.title = title;
-		this.size = size;
+		this.rsize = rsize;
 		this.master = master;
 	}
 
@@ -46,12 +46,12 @@ public class RoomListVO {
 		this.title = title;
 	}
 
-	public String getSize() {
-		return size;
+	public String getRsize() {
+		return rsize;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setRsize(String rsize) {
+		this.rsize = rsize;
 	}
 
 	public String getMaster() {
@@ -61,7 +61,7 @@ public class RoomListVO {
 	public void setMaster(String master) {
 		this.master = master;
 	}
-	
-	
+
+
 	
 }

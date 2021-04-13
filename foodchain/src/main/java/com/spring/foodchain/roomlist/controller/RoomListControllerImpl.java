@@ -18,21 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.foodchain.member.VO.MemberVO;
 import com.spring.foodchain.roomlist.service.RoomListService;
+import com.spring.foodchain.roomlist.vo.RoomListVO;
 
 @Controller("roomlistController")
 public class RoomListControllerImpl implements RoomListController{
 	@Autowired
 	private RoomListService roomlistSrv;
-	
+	@Autowired
+	private RoomListVO roomlistVO;
 	
 	@Override
-	@RequestMapping(value="/roomlist/roomlistmain.do",method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/room/roomlistmain.do",method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView roomlist(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName = getViewName(request);
-		List roomsList = roomlistSrv.roomsList();
+		List roomList = roomlistSrv.roomsList();
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("roomList",roomsList);
+		mav.addObject("roomList",roomList);
 		return mav;
 	}
 	
