@@ -17,6 +17,7 @@
 	</resultMap>
 	
 	<!-- 로그인 sql문 -->
+	<!-- 4/13 권우경 resultType 수정 -->
 	<select id="loginCheck" parameterType="memberVO" resultType="String">
 		<![CDATA[
 			SELECT DECODE(COUNT(*),1,'true','false') AS result FROM f_member WHERE id=#{id} AND pwd=#{pwd} 
