@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.foodchain.member.VO.MemberVO;
 import com.spring.foodchain.roomlist.service.RoomListService;
 import com.spring.foodchain.roomlist.vo.RoomListVO;
 
@@ -35,6 +34,31 @@ public class RoomListControllerImpl implements RoomListController{
 		List roomList = roomlistSrv.roomsList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("roomList",roomList);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/room/addroom.do" ,method = RequestMethod.POST)
+	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		System.out.println("add ½ÇÇà");
+		System.out.println(room.getTitle());
+		int result = 0;
+		result = roomlistSrv.addRoom(room);
+		System.out.println(room.getChief_id()+room.getRoomNum()+room.getTitle());
+		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/room/createroom.do", method =  RequestMethod.GET)
+	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
+						       HttpServletRequest request, 
+						       HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result",result);
+		mav.setViewName(viewName);
 		return mav;
 	}
 	

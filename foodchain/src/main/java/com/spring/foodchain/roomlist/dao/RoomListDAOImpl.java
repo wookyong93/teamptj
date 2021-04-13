@@ -20,4 +20,11 @@ public class RoomListDAOImpl implements RoomListDAO {
 		roomsList = sqlsession.selectList("mapper.room.selectAllRoomsList");
 		return roomsList;
 	}
+	
+	@Override
+	public int insertRoom(RoomListVO roomlistVO) throws DataAccessException {
+		System.out.println(roomlistVO.getTitle());
+		int result = sqlsession.insert("mapper.room.addRoom",roomlistVO);
+		return result;
+	}
 }

@@ -34,7 +34,7 @@ body{
 	<h1 class="text_center">먹이사슬 게임</h1>
 	</div>
 	</header>
-<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="#CCFFCC">
       <td ><b>상태</b></td>
@@ -46,11 +46,11 @@ body{
    
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
-      <td>${room.state}</td>
-      <td>${room.num}</td>
+      <td>대기중</td>
+      <td>${room.roomNum}</td>
       <td>${room.title}</td>
-      <td>${room.rsize}</td>
-      <td>${room.master}</td>
+      <td>인원수</td>
+      <td>${room.chief_id}</td>
    </tr>
   </c:forEach>   
 </table>
