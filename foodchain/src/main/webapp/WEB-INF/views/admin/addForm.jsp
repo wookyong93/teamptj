@@ -36,11 +36,11 @@
 		var year = "";
 		var com_year = date.getFullYear();
 		
-		$("#year").append("<option value=''>년도</option>");
 		
 		// 올해 기준으로 -50년부터 +1년씩 보여줌
+		$("#year").append("<option value=''>년도</option>");
 		for(var y=(com_year - 50); y <= (com_year + 1); y++){
-			$("#year").append("<option value='"+y+" 년"+"</option>");
+			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
 		}
 		
 		// 1월 ~ 12월
