@@ -1,5 +1,5 @@
 package com.spring.foodchain.roomlist.service;
 
-public interface RoomListService {
+public class RoomListServiceImpl {
 
 }

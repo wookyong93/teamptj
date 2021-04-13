@@ -1,5 +1,5 @@
 package com.spring.foodchain.roomlist.dao;
 
-public class RoomListDAO {
+public class RoomListDAOImpl {
 
 }

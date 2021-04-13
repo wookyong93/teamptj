@@ -1,5 +1,5 @@
 package com.spring.foodchain.roomlist.vo;
 
-public class RoomListVO {
+public class RoomListVOImpl {
 
 }
