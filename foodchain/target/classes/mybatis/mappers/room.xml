@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 21/04/12 권우경 작성 -->
+
+<!-- namespace 지정 -->
+	<mapper namespace="mapper.room">
+<!--resultMap 설정-->
+
+	<resultMap id="roomResult" type="roomListVO">
+		<result property="state" column="state"/>
+		<result property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="rsize" column="rsize"/>
+		<result property="master" column="master"/>
+	</resultMap>
+	<!-- 21/04/13 이재헌 작성 -->
+	<!--  개설된 방 목록 sql 문 -->
+		<select id="selectAllRoomsList" resultMap="roomResult">
+		<![CDATA[
+			select * from f_room
+			order by num desc
+		]]>
+	</select>
+	</mapper>
