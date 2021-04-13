@@ -16,7 +16,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public boolean loginCheck(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
 		
-		boolean result = Boolean.parseBoolean((String) sqlSession.selectOne("mapper.member.loginCheck",memberVO));
+		boolean result = Boolean.parseBoolean((String)sqlSession.selectOne("mapper.member.loginCheck",memberVO));
 		System.out.println(result);
 		return result;
 	}
