@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.foodchain.member.VO.MemberVO;
 import com.spring.foodchain.roomlist.service.RoomListService;
 import com.spring.foodchain.roomlist.vo.RoomListVO;
 
@@ -35,6 +34,18 @@ public class RoomListControllerImpl implements RoomListController{
 		List roomList = roomlistSrv.roomsList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("roomList",roomList);
+		return mav;
+	}
+	
+	@Override
+	@Override
+	@RequestMapping(value="/room/addroom.do" ,method = RequestMethod.POST)
+	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = RoomListService.addroom(room);
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}
 	

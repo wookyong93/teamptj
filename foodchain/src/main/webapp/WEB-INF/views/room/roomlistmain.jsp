@@ -46,11 +46,11 @@ body{
    
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
-      <td>${room.state}</td>
-      <td>${room.num}</td>
+      <td>대기중</td>
+      <td>${room.roomNum}</td>
       <td>${room.title}</td>
-      <td>${room.rsize}</td>
-      <td>${room.master}</td>
+      <td>인원수</td>
+      <td>${room.chief_id}</td>
    </tr>
   </c:forEach>   
 </table>

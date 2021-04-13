@@ -4,38 +4,18 @@ import org.springframework.stereotype.Component;
 
 @Component("roomListVO")
 public class RoomListVO {
-	private String state;
-	private int num;
 	private String title;
-	private String rsize;
-	private String master;
+	private int roomNum;
+	private String chief_id;
 
 	public RoomListVO() {
 		
 	}
 
-	public RoomListVO(String state, int num, String title, String rsize, String master) {
-		this.state = state;
-		this.num = num;
+	public RoomListVO(String title, int roomNum, String chief_id) {
 		this.title = title;
-		this.rsize = rsize;
-		this.master = master;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
+		this.roomNum = roomNum;
+		this.chief_id = chief_id;
 	}
 
 	public String getTitle() {
@@ -46,22 +26,21 @@ public class RoomListVO {
 		this.title = title;
 	}
 
-	public String getRsize() {
-		return rsize;
+	public int getRoomNum() {
+		return roomNum;
 	}
 
-	public void setRsize(String rsize) {
-		this.rsize = rsize;
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
 	}
 
-	public String getMaster() {
-		return master;
+	public String getChief_id() {
+		return chief_id;
 	}
 
-	public void setMaster(String master) {
-		this.master = master;
+	public void setChief_id(String chief_id) {
+		this.chief_id = chief_id;
 	}
-
 
 	
 }
