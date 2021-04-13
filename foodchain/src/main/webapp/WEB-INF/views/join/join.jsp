@@ -89,6 +89,10 @@
 			alert('닉네임을 입력하세요');
 			pwdchk.focus();
 		}else{
+			var year=document.getElementById("year").value;
+			var month=document.getElementById("month").value;
+			var day=document.getElementById("day").value;
+			var birth=year+"/"+month+"/"+day; 
 			frm.method="post";
 			frm.action="${contextPath}/member/addMember.do";
 			frm.submit();
