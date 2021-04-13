@@ -42,9 +42,12 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		System.out.println("add ½ÇÇà");
+		System.out.println(room.getTitle());
 		int result = 0;
-		result = RoomListService.addroom(room);
-		ModelAndView mav = new ModelAndView("redirect:/room/room.do");
+		result = roomlistSrv.addRoom(room);
+		System.out.println(room.getChief_id()+room.getRoomNum()+room.getTitle());
+		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do");
 		return mav;
 	}
 	

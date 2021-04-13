@@ -16,6 +16,17 @@
    .text_center{
      text-align:center;
    }
+body{
+	width:80%;
+	margin:auto;
+	background-color: #d3d3d3;
+	}
+.logo{
+	float:left;
+	}
+.btn1{
+   background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
+   }
 </style>
 </head>
 <body>
@@ -25,15 +36,19 @@
 	
 	   <tr>
 	      <td width="200"><p align="right">아이디</td>
-	      <td width="400"><input type="text" name="id" disabled="disabled"></td>
+	      <td width="400"><input type="text" name="chief_id" disabled="disabled" value="${loginID}"></td>
+	   </tr>
+	   <tr>
+	      <td width="200"><p align="right">방 번호</td>
+	      <td width="400"><input type="text" value="2" name="roomNum" disabled="disabled"></td>
 	   </tr>
 	   <tr>
 	      <td width="200"><p align="right">방 제목</td>
-	      <td width="400"><input type="text" name="name"></td>
+	      <td width="400"><input type="text" name="title"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p>&nbsp;</p></td>
-	       <td width="400"><input type="submit" value="방 생성"><input type="button" value="돌아가기" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td></td>
+	       <td width="400"><input type="submit" value="방 생성"><input type="button" value="돌아가기" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
 	    </tr>
 
 	</table>

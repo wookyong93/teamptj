@@ -71,6 +71,7 @@
 		var pwd = frm.pwd;
 		var pwdchk = frm.pwdchk;
 		var nickname = frm.nickname;
+		
 		if(id.value == ""){
 			alert('아이디를 입력하세요');
 			id.focus();
@@ -89,10 +90,7 @@
 			alert('닉네임을 입력하세요');
 			pwdchk.focus();
 		}else{
-			var year=document.getElementById("year").value;
-			var month=document.getElementById("month").value;
-			var day=document.getElementById("day").value;
-			var birth=year+"/"+month+"/"+day; 
+			
 			frm.method="post";
 			frm.action="${contextPath}/member/addMember.do";
 			frm.submit();
@@ -162,6 +160,7 @@
 				<select name="year" id='year' title="년도" class="select"></select>
 				<select name="month" id='month' title="월" class="select"></select>
 				<select name="day" id='day' title="일" class="select"></select>
+				<input type="hidden" id="birth" value=""/>
 			</td>
 		</tr>
 	</table>

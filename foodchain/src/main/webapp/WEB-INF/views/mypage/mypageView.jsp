@@ -7,7 +7,6 @@
 
 <%
   	request.setCharacterEncoding("UTF-8");
-	String loginID = (String)session.getAttribute("loginID");
 %> 
 <!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
@@ -45,25 +44,26 @@
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
+<script>
 	function mod() {
 		var frm = document.view;
 		var pwd = frm.pwd;
 		var pwdchk = frm.pwdchk;
+		var nickname = frm.nickname;
 		
 		
 		if(nickname.value==""||nickname.length==0){
 			alert("닉네임을 입력해주세요.");
 			nickname.focus();
 		}else if(pwd.value==""||pwd.length==0){
-				alert("비밀번호를 입력해주세요.");
-				pwd.focus();
+			alert("비밀번호를 입력해주세요.");
+			pwd.focus();
 		}else if(pwdchk.value==""||pwdchk.length==0){
-				alert("비밀번호 확인을 입력해주세요.");
-				pwdchk.focus();
+			alert("비밀번호 확인을 입력해주세요.");
+			pwdchk.focus();
 		}else if(pwd.value!=pwdchk.value){
-				alert("비밀번호가 일치하지 않습니다.");
-				pwd.focus();
+			alert("비밀번호가 일치하지 않습니다.");
+			pwd.focus();
 		}else{
 			alert("수정되었습니다.");
 			frm.action="${contextPath}/mypage/modifyMypage.do";
@@ -106,7 +106,9 @@
 	   </tr>
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
-			<td width="300"><p><input type="text" name='nickname' value="${mypageView.nickname}"></td>
+			<td width="300">
+			<p><input type="text" name='nickname' value="${mypageView.nickname}">
+			</td>
 			<td><input class="btn1" type="button" value="중복확인" onclick="nicknameCheck()"></td>
 		</tr>
 		<tr>
@@ -130,7 +132,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/roomlist/roomlistmain.do'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
 	    </a>
 	
 	</form>

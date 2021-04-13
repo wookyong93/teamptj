@@ -50,7 +50,7 @@ public class MemberControllerImpl implements MemberController{
 		
 			boolean result = memberService.loginCheck(memberVO);
 			if(result) {
-				message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/room/roomlistmain.do';</script>";
+				message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+memberVO.getId()+"';</script>";
 				session.setAttribute("loginID", memberVO.getId());
 			}else {
 				message="<script>alert('로그인 실패');location.href='"+request.getContextPath()+"/login/login.do';</script>";

@@ -2,7 +2,7 @@ package com.spring.foodchain.roomlist.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component("roomListVO")
+@Component("roomlistVO")
 public class RoomListVO {
 	private String title;
 	private int roomNum;

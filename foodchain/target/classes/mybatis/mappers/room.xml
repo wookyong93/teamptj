@@ -7,14 +7,14 @@
 	<mapper namespace="mapper.room">
 <!--resultMap 설정-->
 
-	<resultMap id="roomResult" type="roomListVO">
+	<resultMap id="roomResult" type="roomlistVO">
 		<result property="title" column="title"/>
 		<result property="roomNum" column="roomNum"/>
 		<result property="chief_id" column="chief_id"/>
 	</resultMap>
 	<!-- 21/04/13 이재헌 작성 -->
 	<!--  개설된 방 목록 sql 문 -->
-		<select id="selectAllRoomsList" resultMap="roomResult">
+	<select id="selectAllRoomsList" resultMap="roomResult">
 		<![CDATA[
 			select * from f_room
 			order by roomNum desc
@@ -23,9 +23,10 @@
 	
 	<insert id="addRoom" parameterType="roomlistVO">
 		<![CDATA[
-			insert into f_room(title, roomNum, chief_id)
-			values(#{title}, #{roomNum}, #{chief_id}) 
+			insert into f_room (title, roomNum)
+			values(#{title}, #{roomNum}) 
 		]]>
 	</insert>
 
 	</mapper>
+	<!-- 아이디가 없어서 에러 안하려면 이렇게 -->

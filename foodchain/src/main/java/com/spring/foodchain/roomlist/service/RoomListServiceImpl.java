@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.foodchain.roomlist.dao.RoomListDAO;
+import com.spring.foodchain.roomlist.vo.RoomListVO;
 
 @Service("roomlistService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -21,5 +22,11 @@ public class RoomListServiceImpl implements RoomListService {
 		List roomsList = null;
 		roomsList = roomlistDAO.selectAllRoomsList();
 		return roomsList;
+	}
+	
+	@Override
+	public int addRoom(RoomListVO room) throws DataAccessException{
+		System.out.println(room.getTitle());
+		return roomlistDAO.insertRoom(room);
 	}
 }
