@@ -24,8 +24,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String idCheck(String id) throws DataAccessException {
-		String result =memberDAO.idCheck(id); 
+	public int idCheck(String id) throws DataAccessException {
+		int result =memberDAO.idCheck(id); 
 		return result;
 	}
 

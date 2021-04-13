@@ -21,8 +21,8 @@ public class MemberDAOImpl implements MemberDAO{
 		return result;
 	}
 	@Override
-	public String idCheck(String id) throws DataAccessException {
-		String result = sqlSession.selectOne("mapper.member.idCheck",id);
+	public int idCheck(String id) throws DataAccessException {
+		int result = sqlSession.selectOne("mapper.member.idCheck",id);
 		return result;
 	}
 	@Override

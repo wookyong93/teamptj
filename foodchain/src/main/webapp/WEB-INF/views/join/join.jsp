@@ -6,7 +6,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
    request.setCharacterEncoding("UTF-8");
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +36,20 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-<%--id 중복체크 확인중입니다. /권우경 작성--%>
-	function fn_idCheck(){
-		var frm = document.frm;
-		var id = document.getElementById("id");
-		if(id.value==""){
-			alert('아이디를 입력해주세요');
-			id.focus();
-		}else{
-			frm.method="post";
-			frm.action="${contextPath}/member/idCheck.do";
-			frm.submit();
+	<%-- id 값 처리 --%>
+	window.onload = function(){
+		var id = '<%=request.getParameter("id")%>';
+		if(id != 'null'){
+			document.getElementById("id").value = id;
+			document.getElementById('idck').disabled="disabled"
 		}
 	}
+	<%--id 중복체크 확인중입니다. /권우경 작성--%>
+	function fn_idCheck(){
+		var id = document.getElementById("id").value;
+		location.href="${contextPath}/member/idCheck.do?id="+id;
+	}
+	
 	<%--회원가입 진행 /권우경 작성--%>
 	function fn_insert(){
 		var frm = document.frm;
@@ -89,8 +90,8 @@
 	<table class="table" align="center" display="block">
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
-	      <td width="300"><input type="text" name="id" id="id" value="${okId}"></td>
-	      <td><input type="button" value="중복체크" onclick="fn_idCheck()" />
+	      <td width="300"><input type="text" name="id" id="id"/></td>
+	      <td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
 	   </tr>
 
 	   <tr>
@@ -104,7 +105,7 @@
 	</table>
 		
 		<a class="btn2" align="center">
-		<input type="submit" value="가입" class="btn1" onclick="fn_insert()">
+		<input type="submit" value="가입" class="btn1" id="joinbtn" onclick="fn_insert()">
 		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'">
 	    </a>
 	
