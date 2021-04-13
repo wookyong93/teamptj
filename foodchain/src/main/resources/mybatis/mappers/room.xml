@@ -23,7 +23,8 @@
 	
 	<insert id="addRoom" parameterType="roomlistVO">
 		<![CDATA[
-			insert into f_room
+			insert into f_room(title, roomNum, chief_id)
+			values(#{title}, #{roomNum}, #{chief_id}) 
 		]]>
 	</insert>
 
