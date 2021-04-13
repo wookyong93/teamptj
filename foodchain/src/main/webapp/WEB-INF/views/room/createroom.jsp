@@ -16,6 +16,17 @@
    .text_center{
      text-align:center;
    }
+body{
+	width:80%;
+	margin:auto;
+	background-color: #d3d3d3;
+	}
+.logo{
+	float:left;
+	}
+.btn1{
+   background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
+   }
 </style>
 </head>
 <body>
