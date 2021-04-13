@@ -46,6 +46,7 @@ table{
 
 	<form method="post"   action="${contextPath}/room/addroom.do">
 	<h1  class="text_center">방 설정</h1>
+<<<<<<< HEAD
 
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
@@ -53,6 +54,19 @@ table{
 	<table align="center">
 		
 		<tr>
+=======
+	<table  align="center">
+	
+	   <tr>
+	      <td width="200"><p align="right">아이디</td>
+	      <td width="400"><input type="text" name="chief_id" disabled="disabled" value="${loginID}"></td>
+	   </tr>
+	   <tr>
+	      <td width="200"><p align="right">방 번호</td>
+	      <td width="400"><input type="text" value="2" name="roomNum" disabled="disabled"></td>
+	   </tr>
+	   <tr>
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 	      <td width="200"><p align="right">방 제목</td>
 	      <td width="400"><input type="text" name="title"></td>
 	    </tr>

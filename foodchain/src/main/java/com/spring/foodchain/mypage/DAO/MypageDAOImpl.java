@@ -13,18 +13,24 @@ import com.spring.foodchain.member.VO.MemberVO;
 public class MypageDAOImpl implements MypageDAO {
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Override
 	public List<MemberVO> mypageView(String id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		List<MemberVO> mypageView = sqlSession.selectList("mapper.member.mypageView",id);
+		List<MemberVO> mypageView = sqlSession.selectList("mapper.member.viewMember",id);
 		return mypageView;
 	}
 
 	@Override
 	public int modifyMypage(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
-		int result = sqlSession.update("mapper.member.modifyMypage",memberVO);
+		int result = sqlSession.update("mapper.member.modMember",memberVO);
+		return result;
+	}
+
+	@Override
+	public int nicknameCheck(String nickName) throws DataAccessException {
+		// TODO Auto-generated method stub
+		int result = sqlSession.selectOne("mapper.member.nicknameCheck", nickName);
 		return result;
 	}
 	
