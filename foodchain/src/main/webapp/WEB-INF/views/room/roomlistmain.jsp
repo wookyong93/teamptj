@@ -52,18 +52,18 @@ body{
 
 <table border="1"  align="center" width="80%">
     <tr align="center"   bgcolor="#CCFFCC">
-      <td ><b>상태</b></td>
-      <td><b>방 번호</b></td>
+      <td style="width: 15%;"><b>상태</b></td>
+      <td style="width: 10%;"><b>방 번호</b></td>
       <td><b>방 제목</b></td>
-      <td><b>인원</b></td>
-      <td><b>방장</b></td>
+      <td style="width: 15%;"><b>인원</b></td>
+      <td style="width: 15%;"><b>방장</b></td>
    </tr>
 
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
       <td>대기중</td>
       <td>${room.roomNum}</td>
-      <td>${room.title}</td>
+      <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}">${room.title}</a></td>
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
