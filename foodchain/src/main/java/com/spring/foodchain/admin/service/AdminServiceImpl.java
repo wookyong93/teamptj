@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int addMembers(MemberVO memberVO) {
+	public boolean addMembers(MemberVO memberVO) {
 		return aDAO.addMembers(memberVO);
 	}
 

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>c
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,9 +25,10 @@
 	}
 	
 </style>
+
 </head>
 <body>
-<form method="post" action="${contextPath }/admin/modMember.do">
+<form method="post" name = "frm" action="${contextPath }/admin/modMember.do">
 	<table width="80%">
 		<tr>
 			<td>아이디</td>
@@ -36,7 +37,16 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="text" value="${member.pwd }"></td>
+			<td><input type="text" name ="pwd" value="${member.pwd }"></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" name ="nickname" value="${member.nickname }"></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td><input type="date" value="${member.birth }" disabled="disabled">
+			<input type="hidden" name="birth" value="${member.birth }"></td>
 		</tr>
 	</table>
 <input type="submit" value="수정">
