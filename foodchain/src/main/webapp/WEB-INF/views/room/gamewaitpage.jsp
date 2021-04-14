@@ -33,8 +33,9 @@ body{
 .tab1{
 	border:1px solid white;
 	position:absolute;
-	top:25%;
-	left:8%;	
+	top:28%;
+	left:8%;
+	display: block;
 }
 
 .tab2{
@@ -52,6 +53,7 @@ margin: -25px 35px 35px -195px;
 padding: 5px;
 background-color: white;
 text-align:center;
+display: block;
 }
 .ul2{
 position:absolute;
@@ -63,6 +65,7 @@ margin: 5px 35px 35px -195px;
 padding: 5px;
 background-color: white;
 text-align:center;
+display: block;
 }
 li{	
 	width:75px;
@@ -73,6 +76,11 @@ li{
 }
 li:last-child {
 	border-right: none;
+}
+form{
+position:absolute;
+left:27%;
+top:27%;
 }
 </style>
 </head>
@@ -123,6 +131,12 @@ li:last-child {
 		<tr class="tab2">
 			<td width="200"><p align="center">접속자name</td>
 		</tr> 
-		
 	</table>
+	
+	<form>
+	<input type="text" style="background-color: white; width: 750px; height: 550px; display: block;">
+	<input type="text" id="chat" style="background-color: white; width: 400px; height:30px; margin: 15px;">
+	<input type="submit" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
+	</form>
+	
 </body>

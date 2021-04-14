@@ -39,7 +39,7 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("add ����");
+		System.out.println("addroom");
 		System.out.println(room.getTitle());
 		int result = 0;
 		result = roomlistSrv.addRoom(room);
