@@ -26,9 +26,6 @@
 		border-radius: 0.5em;
 	}
 </style>
-<<<<<<< HEAD
-
-=======
 <script>
 <%-- id 값 처리 --%>
 window.onload = function(){
@@ -106,7 +103,6 @@ function fn_insert(){
 		}
 	}
 </script>
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 </head>
 <body>
 <form method="post" name="frm" action="${contextPath }/admin/addMember.do">
@@ -131,11 +127,7 @@ function fn_insert(){
 		</tr>
 		<tr>
 			<td>생년월일</td>
-<<<<<<< HEAD
-			<td><input type="date" name="birth" id="birth"></td>
-=======
 			<td><input type="date" name="birth" id='birth'></td>
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 		</tr>
 	</table>
 		<input type="hidden" value="0" id="hid"/>
