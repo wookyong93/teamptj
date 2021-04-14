@@ -38,7 +38,6 @@
 <script>
 	<%-- id 값 처리 --%>
 	window.onload = function(){
-	/* 	setDateBox(); */
 	var birth =document.getElementById('birth').value;
 	console.log(birth);
 		var id = '<%=request.getParameter("id")%>';
@@ -112,34 +111,7 @@
 			frm.submit();
 			}
 		}
-	
-	<%-- 소정님 작성물 copy / 21/04/13 권우경작성--%>
-	<%-- function setDateBox(){
-		var date = new Date();
-		var year = "";
-		var com_year = date.getFullYear();
-		
-		$("#year").append("<option value=''>년도</option>");
-		
-		// 올해 기준으로 -50년부터 +1년씩 보여줌
-		오타 수정완료 21/04/13권우경
-		for(var y=(com_year - 50); y <= (com_year + 1); y++){
-			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
-		}
-		
-		// 1월 ~ 12월
-		var month;
-		$("#month").append("<option value=''>월</option>");
-		for(var i=1;i<=12;i++){
-			$("#month").append("<option value='"+i+"'>"+i+" 월"+"</option>");
-		}
-		
-		var day;
-		$("#day").append("<option value=''>일</option>");
-		for(var i=1;i<=31;i++){
-			$("#day").append("<option value='"+i+"'>"+i+" 일"+"</option>");
-		} 
-	}--%>
+
 </script>
 </head>
 <body>
