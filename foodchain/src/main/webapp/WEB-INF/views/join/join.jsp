@@ -46,12 +46,14 @@
 		if(id != 'null' && nickname !='null'){
 			document.getElementById("id").value = id;
 			document.getElementById("nickname").value = nickname;
-
+			document.getElementById("hid").value="1";
+			document.getElementById("hname").value="1";
 		}else if(id != 'null'&& nickname=='null'){
 			document.getElementById("id").value = id;
+			document.getElementById("hid").value="1";
 		}else if(id == 'null' && nickname != 'null'){
 			document.getElementById("nickname").value = nickname;
-			
+			document.getElementById("hname").value="1";
 		}
 	}
 	<%--id 중복체크 /권우경 작성--%>
@@ -74,11 +76,23 @@
 		var pwdchk = document.getElementById("pwdchk");
 		var nickname = frm.nickname;
 		var birth =document.getElementById('birth').value;
-		
+		var hid = document.getElementById('hid').value;
+		var hname = document.getElementById('hname').value;
 		if(id.value == ""){
 			alert('아이디를 입력하세요');
 			id.focus();
-		}else if(pwd.value==""){
+		}
+		else if(id.value!="" && hid == "0"){
+			alert('id 중복체크를 해주세요');
+		}
+		else if(nickname.value==""){
+			alert('닉네임을 입력하세요');
+			pwdchk.focus();
+		}
+		else if(nickname.value != "" && hname=="0"){
+			alert('닉네임 중복체크를 해주세요');	
+		}
+		else if(pwd.value==""){
 			alert('비밀번호를 입력하세요');
 			pwd.focus();
 		}else if(pwdchk.value==""){
@@ -89,10 +103,8 @@
 			pwd.value="";
 			pwdchk.value="";
 			pwd.focus();
-		}else if(nickname.value==""){
-			alert('닉네임을 입력하세요');
-			pwdchk.focus();
-		}else if(birth==""){
+		}
+		else if(birth==""){
 			alert('생년월일을 입력해주세요');
 		}else{
 			frm.method="post";
@@ -166,7 +178,8 @@
 			</td>
 		</tr>
 	</table>
-		
+		<input type="hidden" value="0" id="hid"/>
+		<input type="hidden" value="0" id="hname"/>
 		<a class="btn2" align="center">
 		<input type="submit" value="가입" class="btn1" id="joinbtn" onclick="fn_insert()">
 		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'">
