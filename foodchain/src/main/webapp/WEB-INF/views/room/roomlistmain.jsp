@@ -42,12 +42,15 @@ body{
 			<img class="logo" src="${contextPath}/resources/image/logo.jpg" width="100" height="100" >
 			<h1 class="text_center">먹이사슬 게임</h1>
 		</div>
-	</header>	
+	</header>
+
 	<div>
 		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
 		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
+
+
 
 
 <table border="1"  align="center"  width="80%">
