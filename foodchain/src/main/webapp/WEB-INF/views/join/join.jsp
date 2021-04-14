@@ -38,18 +38,22 @@
 <script>
 	<%-- id 값 처리 --%>
 	window.onload = function(){
-		setDateBox();
+	/* 	setDateBox(); */
+	var birth =document.getElementById('birth').value;
+	console.log(birth);
 		var id = '<%=request.getParameter("id")%>';
 		var nickname='<%=request.getParameter("nickname")%>';
 		if(id != 'null' && nickname !='null'){
 			document.getElementById("id").value = id;
 			document.getElementById("nickname").value = nickname;
-
+			document.getElementById("hid").value="1";
+			document.getElementById("hname").value="1";
 		}else if(id != 'null'&& nickname=='null'){
 			document.getElementById("id").value = id;
+			document.getElementById("hid").value="1";
 		}else if(id == 'null' && nickname != 'null'){
 			document.getElementById("nickname").value = nickname;
-			
+			document.getElementById("hname").value="1";
 		}
 	}
 	<%--id 중복체크 /권우경 작성--%>
@@ -69,13 +73,26 @@
 		var frm = document.frm;
 		var id = frm.id;
 		var pwd = frm.pwd;
-		var pwdchk = frm.pwdchk;
+		var pwdchk = document.getElementById("pwdchk");
 		var nickname = frm.nickname;
-		
+		var birth =document.getElementById('birth').value;
+		var hid = document.getElementById('hid').value;
+		var hname = document.getElementById('hname').value;
 		if(id.value == ""){
 			alert('아이디를 입력하세요');
 			id.focus();
-		}else if(pwd.value==""){
+		}
+		else if(id.value!="" && hid == "0"){
+			alert('id 중복체크를 해주세요');
+		}
+		else if(nickname.value==""){
+			alert('닉네임을 입력하세요');
+			pwdchk.focus();
+		}
+		else if(nickname.value != "" && hname=="0"){
+			alert('닉네임 중복체크를 해주세요');	
+		}
+		else if(pwd.value==""){
 			alert('비밀번호를 입력하세요');
 			pwd.focus();
 		}else if(pwdchk.value==""){
@@ -86,18 +103,18 @@
 			pwd.value="";
 			pwdchk.value="";
 			pwd.focus();
-		}else if(nickname.value==""){
-			alert('닉네임을 입력하세요');
-			pwdchk.focus();
+		}
+		else if(birth==""){
+			alert('생년월일을 입력해주세요');
 		}else{
-			
 			frm.method="post";
 			frm.action="${contextPath}/member/addMember.do";
 			frm.submit();
+			}
 		}
-	}
+	
 	<%-- 소정님 작성물 copy / 21/04/13 권우경작성--%>
-	function setDateBox(){
+	<%-- function setDateBox(){
 		var date = new Date();
 		var year = "";
 		var com_year = date.getFullYear();
@@ -105,7 +122,7 @@
 		$("#year").append("<option value=''>년도</option>");
 		
 		// 올해 기준으로 -50년부터 +1년씩 보여줌
-		<%--오타 수정완료 21/04/13권우경--%>
+		오타 수정완료 21/04/13권우경
 		for(var y=(com_year - 50); y <= (com_year + 1); y++){
 			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
 		}
@@ -121,8 +138,8 @@
 		$("#day").append("<option value=''>일</option>");
 		for(var i=1;i<=31;i++){
 			$("#day").append("<option value='"+i+"'>"+i+" 일"+"</option>");
-		}
-	}
+		} 
+	}--%>
 </script>
 </head>
 <body>
@@ -140,31 +157,29 @@
 	      <td width="300"><input type="text" name="id" id="id"/></td>
 	      <td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
 	   </tr>
-
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" name='nickname' id="nickname"></td>
+			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
+		</tr>
 	   <tr>
 	      <td width="200"><p align="left">패스워드</td>
 	      <td width="300"><input type="password" name="pwd"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="left">패스워드확인</td>
-	       <td width="300"><p><input type="password" name="pwdchk"></td>
+	       <td width="300"><p><input type="password" id="pwdchk"></td>
 	    </tr>
-	    <tr>
-			<td>닉네임</td>
-			<td><input type="text" name='nickname' id="nickname"></td>
-			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
-		</tr>
+	    
 	    <tr>
 			<td>생년월일</td>
 			<td>
-				<select name="year" id='year' title="년도" class="select"></select>
-				<select name="month" id='month' title="월" class="select"></select>
-				<select name="day" id='day' title="일" class="select"></select>
-				<input type="hidden" id="birth" value=""/>
+				<input type="date" name="birth" id="birth"/>
 			</td>
 		</tr>
 	</table>
-		
+		<input type="hidden" value="0" id="hid"/>
+		<input type="hidden" value="0" id="hname"/>
 		<a class="btn2" align="center">
 		<input type="submit" value="가입" class="btn1" id="joinbtn" onclick="fn_insert()">
 		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/frontpage/main1.do'">

@@ -1,6 +1,7 @@
 package com.spring.foodchain.member.controller;
 
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,9 +97,11 @@ public class MemberControllerImpl implements MemberController{
 	@RequestMapping(value="/member/addMember.do" ,method= RequestMethod.POST)
 	public ResponseEntity addMember(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println(request.getParameter("birth"));
 		ResponseEntity resEnt=null; 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message;
+		System.out.println(memberVO.getBirth());
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		request.getSession();
 			boolean result = memberService.addMember(memberVO);

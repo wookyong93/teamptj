@@ -38,17 +38,9 @@
 	<insert id="addMember" parameterType="memberVO">
 		<![CDATA[
 			insert into f_member
-		]]>
-		<choose>
-			<when test="birth != 'null'">
 				(id,pwd,nickname,birth) values
 				(#{id}, #{pwd}, #{nickname}, #{birth})
-			</when>
-			<otherwise>
-				(id,pwd,nickname) values
-				(#{id}, #{pwd}, #{nickname})
-			</otherwise>
-		</choose>
+		]]>
 	</insert>
 	
 	<!-- 회원 삭제 sql문 -->

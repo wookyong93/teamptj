@@ -2,6 +2,9 @@ package com.spring.foodchain.member.VO;
 
 import java.sql.Date;
 
+
+import org.springframework.beans.factory.annotation.Value;
+
 public class MemberVO {
 	private String id;
 	private String pwd;

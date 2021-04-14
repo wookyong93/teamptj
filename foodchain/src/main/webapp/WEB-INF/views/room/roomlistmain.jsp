@@ -43,14 +43,21 @@ body{
 			<h1 class="text_center">먹이사슬 게임</h1>
 		</div>
 	</header>
-	
+
 	<div>
 		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do?id=${loginID}'">
 		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
 
+<<<<<<< HEAD
 <table border="1"  align="center" width="80%">
+=======
+
+
+
+<table border="1"  align="center"  width="80%">
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj
     <tr align="center"   bgcolor="#CCFFCC">
       <td ><b>상태</b></td>
       <td><b>방 번호</b></td>

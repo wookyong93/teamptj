@@ -101,7 +101,7 @@
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
-	      <input type="text" name="id" value="${mypageView.id}" disabled="disabled"/>
+	      <input type="text" name="id" value="${mypageView.id}" readonly="readonly"/>
 	      </td>
 	   </tr>
 	    <tr>
@@ -114,9 +114,7 @@
 		<tr>
 			<td>생년월일</td>
 			<td>
-				<select name="year" id='year' title="년도" class="select"></select>
-				<select name="month" id='month' title="월" class="select"></select>
-				<select name="day" id='day' title="일" class="select"></select>
+				<input type="date" value="${mypageView.birth}">
 			</td>
 		</tr>
 		 <tr>
@@ -132,7 +130,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=${loginID}'"></td>
 	    </a>
 	
 	</form>
