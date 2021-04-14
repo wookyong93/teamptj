@@ -59,6 +59,17 @@ public class RoomListControllerImpl implements RoomListController{
 		return mav;
 	}
 	
+	@RequestMapping(value = "/room/gamewaitpage.do", method =  RequestMethod.GET)
+	private ModelAndView form1(@RequestParam(value= "result", required=false) String result,
+						       HttpServletRequest request, 
+						       HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result",result);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	private String getViewName(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String contextPath = request.getContextPath();

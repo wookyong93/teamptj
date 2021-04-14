@@ -33,6 +33,26 @@ body{
 table{
 	margin-top: 120px;
 }
+ul{
+position:absolute;
+width:450px;
+font-size:18px;
+font:bold;
+left:50%;
+list-style-type: none;
+margin: 35px 35px 35px -75px;
+padding: 5px;
+background-color: white;
+text-align:center;
+}
+li{	
+	left:50%;
+	float:left;
+	border-right:1px solid black;
+}
+li:last-child {
+	border-right: none;
+}
 </style>
 </head>
 <body>
@@ -44,12 +64,20 @@ table{
 	</div>
 </header>
 
-	<form method="post"   action="${contextPath}/room/addroom.do">
-	<h1  class="text_center">방 설정1</h1>
+
 
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
+
+	<ul>
+	<li>번호</li>
+	<li>방제목</li>
+	<li>방장</li>
+	<li>인원수</li>
+	<li>게임상태</li>
+	</ul>
+	
 	<table align="center">
 		
 		<tr>
@@ -77,5 +105,4 @@ table{
 	    </tr>
 
 	</table>
-	</form>
 </body>

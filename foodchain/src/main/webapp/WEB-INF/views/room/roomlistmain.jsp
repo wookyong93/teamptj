@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>방 목록</title>
+<title>방 목록1</title>
 <style>
 body{
 	width:80%;
