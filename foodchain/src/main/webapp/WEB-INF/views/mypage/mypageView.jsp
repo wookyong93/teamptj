@@ -116,7 +116,7 @@
 		<tr>
 			<td>생년월일</td>
 			<td>
-				<input type="date" value="${mypageView.birth}" readonly="readonly">
+				<input type="date" name = "birth" value="${mypageView.birth}" readonly="readonly">
 			</td>
 		</tr>
 		 <tr>
