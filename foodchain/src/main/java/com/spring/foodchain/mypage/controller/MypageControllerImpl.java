@@ -49,7 +49,7 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
 	public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do");
+		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do?id=${loginID}");
 		int result = mypageService.modifyMypage(memberVO);
 		return mav;
 	}
