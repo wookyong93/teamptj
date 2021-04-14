@@ -11,7 +11,7 @@
 
 <html>
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>방 목록</title>
 <style>
 body{
@@ -43,7 +43,10 @@ body{
 			<h1 class="text_center">먹이사슬 게임</h1>
 		</div>
 	</header>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 	
 	<div>
 		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
@@ -51,8 +54,12 @@ body{
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
 
+<<<<<<< HEAD
 <table border="1"  align="center"  width="80%" class="table1">
+=======
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 <input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do?id=${loginID}'">
+
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="#CCFFCC">
       <td ><b>상태</b></td>
@@ -61,7 +68,7 @@ body{
       <td><b>인원</b></td>
       <td><b>방장</b></td>
    </tr>
-   
+
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
       <td>대기중</td>

@@ -1,8 +1,5 @@
 package com.spring.foodchain.roomlist.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +39,7 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("add ½ÇÇà");
+		System.out.println("add ï¿½ï¿½ï¿½ï¿½");
 		System.out.println(room.getTitle());
 		int result = 0;
 		result = roomlistSrv.addRoom(room);
@@ -53,6 +50,17 @@ public class RoomListControllerImpl implements RoomListController{
 	
 	@RequestMapping(value = "/room/createroom.do", method =  RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
+						       HttpServletRequest request, 
+						       HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result",result);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/room/gamewaitpage.do", method =  RequestMethod.GET)
+	private ModelAndView form1(@RequestParam(value= "result", required=false) String result,
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
