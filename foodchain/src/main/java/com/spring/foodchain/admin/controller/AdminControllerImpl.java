@@ -60,7 +60,7 @@ public class AdminControllerImpl implements AdminController {
 	public ModelAndView delMembers(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		int result = aservice.delMembers(id);
-		ModelAndView mav = new ModelAndView("redirect:/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/admin/listMember.do");
 		return mav;
 	}
 
@@ -68,8 +68,10 @@ public class AdminControllerImpl implements AdminController {
 	@RequestMapping(value="/modMember.do", method=RequestMethod.POST)
 	public ModelAndView modMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println(memberVO.getId());
+		System.out.println(memberVO.getBirth());
 		aservice.modMembers(memberVO);
-		ModelAndView mav = new ModelAndView("redirect:/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/admin/listMember.do");
 		return mav;
 	}
 

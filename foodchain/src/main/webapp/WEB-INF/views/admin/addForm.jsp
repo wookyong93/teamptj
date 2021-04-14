@@ -109,12 +109,12 @@ function fn_insert(){
 	<table width="80%">
 		<tr>
 			<td>아이디</td>
-			<td width="200"><input type="text" name='id' ></td>
+			<td width="200"><input type="text" name='id' id='id' ></td>
 			<td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
 		</tr>
 		 <tr>
 	      <td><p align="left">패스워드</td>
-	      <td><input type="password" name="pwd"></td>
+	      <td><input type="password" name="pwd" id='pwd'></td>
 	    </tr>
 	    <tr>
 	       <td><p align="left">패스워드확인</td>
@@ -122,12 +122,12 @@ function fn_insert(){
 	    </tr>
 		<tr>
 			<td>닉네임</td>
-			<td><input type="text" name='nickname'></td>
+			<td><input type="text" name='nickname' id='nickname'></td>
 			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td><input type="date" name="birth"></td>
+			<td><input type="date" name="birth" id='birth'></td>
 		</tr>
 	</table>
 		<input type="hidden" value="0" id="hid"/>

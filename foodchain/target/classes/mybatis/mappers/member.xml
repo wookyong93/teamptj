@@ -62,10 +62,10 @@
 	<!-- 21/04/12 강민경 작성 -->
 	<!-- 21/04/13 이소정 수정(생일추가) -->
 	<!-- 회원 수정 동적 sql문 -->
-	<update id="modMember" parameterType="memberVO">
+	<update id="modMember" parameterType="memberVO" >
 		<![CDATA[
 			update f_member set
-			pwd=#{pwd}, nickname=#{nickname}
+			pwd=#{pwd}, nickname=#{nickname}, birth=#{birth}
 			where id=#{id}
 		]]>
 	</update>
