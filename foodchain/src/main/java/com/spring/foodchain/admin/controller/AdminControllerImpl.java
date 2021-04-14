@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +38,21 @@ public class AdminControllerImpl implements AdminController {
 
 	@Override
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
-	public ModelAndView addMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity addMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		int result = aservice.addMembers(memberVO);
-		ModelAndView mav = new ModelAndView("redirect:/listMembers.do");
-		return mav;
+		ResponseEntity resEnt=null; 
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message;
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		request.getSession();
+			boolean result = aservice.addMembers(memberVO);
+			if(result) {
+				message="<script>alert('가입성공');location.href='"+request.getContextPath()+"/login/login.do';</script>";
+			}else {
+				message="<script>alert('가입실패');location.href='"+request.getContextPath()+"/login/login.do';</script>";
+			}
+			resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+			return resEnt;
 	}
 
 	@Override

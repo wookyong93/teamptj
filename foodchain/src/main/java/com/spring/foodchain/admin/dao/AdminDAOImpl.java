@@ -24,9 +24,16 @@ public class AdminDAOImpl implements AdminDAO {
 		int result = sqlSession.update("mapper.member.modMember",memberVO);
 		return result;
 	}
+	
+	// 권우경님 작성
 	@Override
-	public int addMembers(MemberVO memberVO) {
-		int result = sqlSession.insert("mapper.member.addMember",memberVO);
+	public boolean addMembers(MemberVO memberVO) {
+		boolean result = false;
+		int num = sqlSession.insert("mapper.member.addMember",memberVO);
+		if(num == 1) {
+			result = true;
+		}
+		
 		return result;
 	}
 

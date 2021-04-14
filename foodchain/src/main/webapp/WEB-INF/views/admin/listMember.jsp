@@ -38,7 +38,7 @@
 	</tr>
 	<c:forEach var="mem" items="${memList}">
 		<tr>
-			<td><a href="${contextPath}/admin/viewForm.do?id=${mem.id}">${mem.id }</a></td>
+			<td>${mem.id }</td>
 			<td>${mem.pwd }</td>
 			<td>${mem.nickname }</td>
 			<td>${mem.birth }</td>
