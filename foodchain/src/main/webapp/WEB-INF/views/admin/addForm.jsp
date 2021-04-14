@@ -26,41 +26,7 @@
 		border-radius: 0.5em;
 	}
 </style>
-<script>
-	$(document).ready(function(){
-		setDateBox();
-	});
-	
-	function setDateBox(){
-		var date = new Date();
-		var year = "";
-		var com_year = date.getFullYear();
-		
-		
-		// 올해 기준으로 -50년부터 +1년씩 보여줌
-<<<<<<< HEAD
-		<%--오타수정 21/04/13 권우경 작성--%>
-=======
-		$("#year").append("<option value=''>년도</option>");
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
-		for(var y=(com_year - 50); y <= (com_year + 1); y++){
-			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
-		}
-		
-		// 1월 ~ 12월
-		var month;
-		$("#month").append("<option value=''>월</option>");
-		for(var i=1;i<=12;i++){
-			$("#month").append("<option value='"+i+"'>"+i+" 월"+"</option>");
-		}
-		
-		var day;
-		$("#day").append("<option value=''>일</option>");
-		for(var i=1;i<=31;i++){
-			$("#day").append("<option value='"+i+"'>"+i+" 일"+"</option>");
-		}
-	}
-</script>
+
 </head>
 <body>
 <form method="post" action="${contextPath }/modMember.do">
@@ -81,11 +47,7 @@
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td>
-				<select name="year" id='year' title="년도" class="select"></select>
-				<select name="month" id='month' title="월" class="select"></select>
-				<select name="day" id='day' title="일" class="select"></select>
-			</td>
+			<td><input type="date" name="birth" id="birth"></td>
 		</tr>
 	</table>
 <input type="submit" value="가입완료">
