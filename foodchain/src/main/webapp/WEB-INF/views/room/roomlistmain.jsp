@@ -6,6 +6,12 @@
 
 <%
   request.setCharacterEncoding("UTF-8");
+
+	String loginID = (String)session.getAttribute("loginID");
+	if(loginID ==null){
+		loginID = request.getParameter("id");
+		session.setAttribute("loginID", loginID);
+	}
 %>    
 
 
@@ -45,8 +51,8 @@ body{
 	</header>
 	
 	<div>
-		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do?id=${loginID}'">
-		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
+		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
+		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
 

@@ -7,6 +7,8 @@
 
 <%
   	request.setCharacterEncoding("UTF-8");
+	String loginID = request.getParameter("id");
+	session.setAttribute("loginID", loginID);
 %> 
 <!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
@@ -101,7 +103,7 @@
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
-	      <input type="text" name="id" value="${mypageView.id}" readonly="readonly"/>
+	      <input type="text" name="id"  value="${mypageView.id}" readonly="readonly"/>
 	      </td>
 	   </tr>
 	    <tr>
@@ -114,23 +116,23 @@
 		<tr>
 			<td>생년월일</td>
 			<td>
-				<input type="date" value="${mypageView.birth}">
+				<input type="date" value="${mypageView.birth}" readonly="readonly">
 			</td>
 		</tr>
 		 <tr>
 	      <td width="200"><p align="left">비밀번호</td>
-	      <td width="300"><input type="password" name="pwd" value="${mypageView.pwd}"></td>
+	      <td width="300"><input type="password" name="pwd"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="left">비밀번호 확인</td>
-	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
+	       <td width="300"><p><input type="password" name="pwdchk"></td>
 	    </tr>
 	    </c:forEach>
 	</table>
 		
 		<a class="btn2" align="center">
 		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=${loginID}'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"></td>
 	    </a>
 	
 	</form>
