@@ -66,13 +66,8 @@
 		<![CDATA[
 			update f_member set
 			pwd=#{pwd}, nickname=#{nickname}
+			where id=#{id}
 		]]>
-		<where>
-			<if test="birth != '' and birth != null">
-				, birth=#{birth} 
-			</if>
-		</where>
-		where id=#{id}
 	</update>
 	
 	<!-- 지정ID 정보 불러오는 sql문 -->
