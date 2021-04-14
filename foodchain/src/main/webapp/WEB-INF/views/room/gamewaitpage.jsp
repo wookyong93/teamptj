@@ -25,30 +25,51 @@ body{
 	float:left;
 	}
 .btn1{
-	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; width:100px; height:40px;
+	border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; width:100px; height:40px;
    }
 .btn2{
-	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block; width:100px; height:40px;
+	border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block; width:100px; height:40px;
 	}
-table{
-	margin-top: 120px;
+.tab1{
+	border:1px solid white;
+	position:absolute;
+	top:25%;
+	left:8%;	
 }
-ul{
+
+.tab2{
+	border-bottom: 1px solid black;
+}
+
+.ul1{
 position:absolute;
-width:450px;
 font-size:18px;
-font:bold;
+font-weight:bold;
+top:20%;
 left:50%;
 list-style-type: none;
-margin: 35px 35px 35px -75px;
+margin: -25px 35px 35px -195px;
+padding: 5px;
+background-color: white;
+text-align:center;
+}
+.ul2{
+position:absolute;
+font-size:15px;
+top:20%;
+left:50%;
+list-style-type: none;
+margin: 5px 35px 35px -195px;
 padding: 5px;
 background-color: white;
 text-align:center;
 }
 li{	
+	width:75px;
 	left:50%;
 	float:left;
 	border-right:1px solid black;
+	padding: 0 10px 0 10px;
 }
 li:last-child {
 	border-right: none;
@@ -70,39 +91,38 @@ li:last-child {
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
 
-	<ul>
+	<ul class="ul1">
 	<li>번호</li>
 	<li>방제목</li>
 	<li>방장</li>
 	<li>인원수</li>
 	<li>게임상태</li>
 	</ul>
+	<ul class="ul2">
+	<li>1</li>
+	<li>title</li>
+	<li>hong</li>
+	<li>2/13</li>
+	<li>대기중</li>
+	</ul>
 	
-	<table align="center">
+	<table class="tab1">	
+		<tr style="background-color: white;">
+	      <td width="200"><p align="center">접속자</td>
+	    </tr>
+	    
+	    <tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr> 
 		
-		<tr>
-	      <td width="200"><p align="right">방 제목</td>
-	      <td width="400"><input type="text" name="title"></td>
-	    </tr>
-	    <tr>
-	      <td width="200"><p align="right">대기시간</td>
-	      <td width="400"><select name="timer">
-	      <option value="">시간 선택</option>
-	      <option value="15">15초</option>
-	      <option value="20">20초</option>
-	      <option value="25">25초</option>
-	      </select>
-	      </td>
-	    </tr>
-	   <tr>
-	      <td width="200"><p align="right">인원수</td>
-	      <td width="400"><input type="text" value="13" name="roomNum" disabled="disabled"></td>
-	   </tr>
-	   
-	    <tr>
-	       <td width="200"><p>&nbsp;</p></td>
-	       <td width="400"><input type="submit" value="방 생성" style="margin: 15px; background-color: #CCFFCC;"><input type="button" value="돌아가기" style="background-color: #CCFFCC;" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
-	    </tr>
-
 	</table>
 </body>

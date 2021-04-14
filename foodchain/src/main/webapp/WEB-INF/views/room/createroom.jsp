@@ -45,7 +45,7 @@ table{
 </header>
 
 	<form method="post"   action="${contextPath}/room/addroom.do">
-	<h1  class="text_center">방 설정1</h1>
+	<h1  class="text_center">방 설정</h1>
 
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
