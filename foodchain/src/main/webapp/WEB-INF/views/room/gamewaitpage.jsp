@@ -17,7 +17,7 @@
      text-align:center;
    }
 body{
-	width:80%;
+	width:1100px;
 	margin:auto;
 	background-color: #d3d3d3;
 	}

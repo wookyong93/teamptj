@@ -15,7 +15,7 @@
 <title>방 목록</title>
 <style>
 body{
-	width:80%;
+	width:1100px;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -67,7 +67,7 @@ body{
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
-  </c:forEach>   
+  </c:forEach>
 </table>
 </body>
 </html>
