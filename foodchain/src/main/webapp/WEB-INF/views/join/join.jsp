@@ -38,7 +38,9 @@
 <script>
 	<%-- id 값 처리 --%>
 	window.onload = function(){
-		setDateBox();
+	/* 	setDateBox(); */
+	var birth =document.getElementById('birth').value;
+	console.log(birth);
 		var id = '<%=request.getParameter("id")%>';
 		var nickname='<%=request.getParameter("nickname")%>';
 		if(id != 'null' && nickname !='null'){
@@ -69,8 +71,9 @@
 		var frm = document.frm;
 		var id = frm.id;
 		var pwd = frm.pwd;
-		var pwdchk = frm.pwdchk;
+		var pwdchk = document.getElementById("pwdchk");
 		var nickname = frm.nickname;
+		var birth =document.getElementById('birth').value;
 		
 		if(id.value == ""){
 			alert('아이디를 입력하세요');
@@ -89,15 +92,17 @@
 		}else if(nickname.value==""){
 			alert('닉네임을 입력하세요');
 			pwdchk.focus();
+		}else if(birth==""){
+			alert('생년월일을 입력해주세요');
 		}else{
-			
 			frm.method="post";
 			frm.action="${contextPath}/member/addMember.do";
 			frm.submit();
+			}
 		}
-	}
+	
 	<%-- 소정님 작성물 copy / 21/04/13 권우경작성--%>
-	function setDateBox(){
+	<%-- function setDateBox(){
 		var date = new Date();
 		var year = "";
 		var com_year = date.getFullYear();
@@ -105,7 +110,7 @@
 		$("#year").append("<option value=''>년도</option>");
 		
 		// 올해 기준으로 -50년부터 +1년씩 보여줌
-		<%--오타 수정완료 21/04/13권우경--%>
+		오타 수정완료 21/04/13권우경
 		for(var y=(com_year - 50); y <= (com_year + 1); y++){
 			$("#year").append("<option value='"+y+"'>"+y+" 년"+"</option>");
 		}
@@ -121,8 +126,8 @@
 		$("#day").append("<option value=''>일</option>");
 		for(var i=1;i<=31;i++){
 			$("#day").append("<option value='"+i+"'>"+i+" 일"+"</option>");
-		}
-	}
+		} 
+	}--%>
 </script>
 </head>
 <body>
@@ -140,27 +145,24 @@
 	      <td width="300"><input type="text" name="id" id="id"/></td>
 	      <td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
 	   </tr>
-
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" name='nickname' id="nickname"></td>
+			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
+		</tr>
 	   <tr>
 	      <td width="200"><p align="left">패스워드</td>
 	      <td width="300"><input type="password" name="pwd"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="left">패스워드확인</td>
-	       <td width="300"><p><input type="password" name="pwdchk"></td>
+	       <td width="300"><p><input type="password" id="pwdchk"></td>
 	    </tr>
-	    <tr>
-			<td>닉네임</td>
-			<td><input type="text" name='nickname' id="nickname"></td>
-			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
-		</tr>
+	    
 	    <tr>
 			<td>생년월일</td>
 			<td>
-				<select name="year" id='year' title="년도" class="select"></select>
-				<select name="month" id='month' title="월" class="select"></select>
-				<select name="day" id='day' title="일" class="select"></select>
-				<input type="hidden" id="birth" value=""/>
+				<input type="date" name="birth" id="birth"/>
 			</td>
 		</tr>
 	</table>
