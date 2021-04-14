@@ -73,11 +73,11 @@
 			frm.submit();
 		}
 	}
-	//우경님 작성 copy / 수정해야함
+	<%--우경님 작성 copy / 수정해야함--%>
 	function nicknameCheck() {
-		var nickname = document.getElementById("nickname").value;
-		var id = document.getElementById("id").value;
-		location.href="${contextPath}/mypage/nicknameCheck.do?nickname="+nickname+"&id="+id;
+		var nickname = document.getElementById("nickname");
+		var id = document.getElementById("id");
+		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
 	}
 	
 	function logout(){
@@ -131,7 +131,7 @@
 	</table>
 		
 		<a class="btn2" align="center">
-		<input type="submit" value="수정" class="btn1" onclick="mod()">
+		<input type="button" value="수정" class="btn1" onclick="mod()">
 		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"></td>
 	    </a>
 	
