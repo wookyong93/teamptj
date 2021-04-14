@@ -25,10 +25,10 @@ body{
 	float:left;
 	}
 .btn1{
-   background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
+	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; width:100px; height:40px;
    }
 .btn2{
-	background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block;
+	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block; width:100px; height:40px;
 	}
 table{
 	margin-top: 120px;

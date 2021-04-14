@@ -1,8 +1,5 @@
 package com.spring.foodchain.roomlist.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +39,7 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("add ½ÇÇà");
+		System.out.println("add ï¿½ï¿½ï¿½ï¿½");
 		System.out.println(room.getTitle());
 		int result = 0;
 		result = roomlistSrv.addRoom(room);
