@@ -17,7 +17,7 @@
      text-align:center;
    }
 body{
-	width:80%;
+	width:1100px;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -25,10 +25,10 @@ body{
 	float:left;
 	}
 .btn1{
-   background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
+	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; width:100px; height:40px;
    }
 .btn2{
-	background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block;
+	outline-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block; width:100px; height:40px;
 	}
 table{
 	margin-top: 120px;
@@ -49,9 +49,8 @@ table{
 
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
-
 	<table align="center">
-		
+
 		<tr>
 	      <td width="200"><p align="right">방 제목</td>
 	      <td width="400"><input type="text" name="title"></td>
@@ -68,7 +67,7 @@ table{
 	    </tr>
 	   <tr>
 	      <td width="200"><p align="right">인원수</td>
-	      <td width="400"><input type="text" value="13" name="roomNum" disabled="disabled"></td>
+	      <td width="400"><input type="text" value="13" disabled="disabled"></td>
 	   </tr>
 	   
 	    <tr>
@@ -77,5 +76,7 @@ table{
 	    </tr>
 
 	</table>
+	<input type="hidden" name="chief_id" value="${loginID }">
+	<input type="hidden" name="roomNum" value=4>
 	</form>
 </body>

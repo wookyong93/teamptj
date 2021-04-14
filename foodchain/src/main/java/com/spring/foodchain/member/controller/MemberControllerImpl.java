@@ -1,6 +1,7 @@
 package com.spring.foodchain.member.controller;
 
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +51,14 @@ public class MemberControllerImpl implements MemberController{
 		
 			boolean result = memberService.loginCheck(memberVO);
 			if(result) {
-				message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/room/roomlistmain.do';</script>";
-				session.setAttribute("loginID", memberVO.getId());
+				if(memberVO.getId()=="admin" || memberVO.getId().equals("admin")) {
+					message="<script>alert('관리자 로그인 성공');location.href='"+request.getContextPath()+"/admin/listMember.do';</script>";
+					session.setAttribute("loginID", memberVO.getId());
+				} else {
+					message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/room/roomlistmain.do';</script>";
+					session.setAttribute("loginID", memberVO.getId());
+				}
+				
 			}else {
 				message="<script>alert('로그인 실패');location.href='"+request.getContextPath()+"/login/login.do';</script>";
 			}
@@ -96,9 +103,11 @@ public class MemberControllerImpl implements MemberController{
 	@RequestMapping(value="/member/addMember.do" ,method= RequestMethod.POST)
 	public ResponseEntity addMember(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println(request.getParameter("birth"));
 		ResponseEntity resEnt=null; 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message;
+		System.out.println(memberVO.getBirth());
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		request.getSession();
 			boolean result = memberService.addMember(memberVO);

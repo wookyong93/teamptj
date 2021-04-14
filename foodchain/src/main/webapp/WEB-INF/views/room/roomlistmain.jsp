@@ -6,16 +6,22 @@
 
 <%
   request.setCharacterEncoding("UTF-8");
+
+	String loginID = (String)session.getAttribute("loginID");
+	if(loginID ==null){
+		loginID = request.getParameter("id");
+		session.setAttribute("loginID", loginID);
+	}
 %>    
 
 
 <html>
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>방 목록</title>
 <style>
 body{
-	width:80%;
+	width:1100px;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -26,10 +32,10 @@ body{
 	float:left;
 	}
 .btn1{
-	background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; margin: 5px; 
+	border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; margin: 5px; 
    }
 .btn2{
-	background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; 
+	border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; 
    }
 .table1{
 	margin-top: 25px; position: relative;
@@ -43,36 +49,31 @@ body{
 			<h1 class="text_center">먹이사슬 게임</h1>
 		</div>
 	</header>
-<<<<<<< HEAD
 	
 	<div>
 		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
-		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
+		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
 
-<table border="1"  align="center"  width="80%" class="table1">
-=======
-<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do?id=${loginID}'">
-<table border="1"  align="center"  width="80%">
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
+<table border="1"  align="center" width="80%">
     <tr align="center"   bgcolor="#CCFFCC">
-      <td ><b>상태</b></td>
-      <td><b>방 번호</b></td>
+      <td style="width: 15%;"><b>상태</b></td>
+      <td style="width: 10%;"><b>방 번호</b></td>
       <td><b>방 제목</b></td>
-      <td><b>인원</b></td>
-      <td><b>방장</b></td>
+      <td style="width: 15%;"><b>인원</b></td>
+      <td style="width: 15%;"><b>방장</b></td>
    </tr>
-   
+
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
       <td>대기중</td>
       <td>${room.roomNum}</td>
-      <td>${room.title}</td>
+      <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}">${room.title}</a></td>
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
-  </c:forEach>   
+  </c:forEach>
 </table>
 </body>
 </html>

@@ -38,17 +38,9 @@
 	<insert id="addMember" parameterType="memberVO">
 		<![CDATA[
 			insert into f_member
-		]]>
-		<choose>
-			<when test="birth != 'null'">
 				(id,pwd,nickname,birth) values
 				(#{id}, #{pwd}, #{nickname}, #{birth})
-			</when>
-			<otherwise>
-				(id,pwd,nickname) values
-				(#{id}, #{pwd}, #{nickname})
-			</otherwise>
-		</choose>
+		]]>
 	</insert>
 	
 	<!-- 회원 삭제 sql문 -->
@@ -70,17 +62,12 @@
 	<!-- 21/04/12 강민경 작성 -->
 	<!-- 21/04/13 이소정 수정(생일추가) -->
 	<!-- 회원 수정 동적 sql문 -->
-	<update id="modMember" parameterType="memberVO">
+	<update id="modMember" parameterType="memberVO" >
 		<![CDATA[
 			update f_member set
-			pwd=#{pwd}, nickname=#{nickname}
+			pwd=#{pwd}, nickname=#{nickname}, birth=#{birth}
+			where id=#{id}
 		]]>
-		<where>
-			<if test="birth != '' and birth != null">
-				, birth=#{birth} 
-			</if>
-		</where>
-		where id=#{id}
 	</update>
 	
 	<!-- 지정ID 정보 불러오는 sql문 -->

@@ -7,6 +7,8 @@
 
 <%
   	request.setCharacterEncoding("UTF-8");
+	String loginID = request.getParameter("id");
+	session.setAttribute("loginID", loginID);
 %> 
 <!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
@@ -71,11 +73,11 @@
 			frm.submit();
 		}
 	}
-	//우경님 작성 copy / 수정해야함
+	<%--우경님 작성 copy / 수정해야함--%>
 	function nicknameCheck() {
-		var nickname = document.getElementById("nickname").value;
-		var id = document.getElementById("id").value;
-		location.href="${contextPath}/mypage/nicknameCheck.do?nickname="+nickname+"&id="+id;
+		var nickname = document.getElementById("nickname");
+		var id = document.getElementById("id");
+		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
 	}
 	
 	function logout(){
@@ -101,7 +103,7 @@
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
-	      <input type="text" name="id" value="${mypageView.id}" disabled="disabled"/>
+	      <input type="text" name="id"  value="${mypageView.id}" readonly="readonly"/>
 	      </td>
 	   </tr>
 	    <tr>
@@ -114,25 +116,23 @@
 		<tr>
 			<td>생년월일</td>
 			<td>
-				<select name="year" id='year' title="년도" class="select"></select>
-				<select name="month" id='month' title="월" class="select"></select>
-				<select name="day" id='day' title="일" class="select"></select>
+				<input type="date" value="${mypageView.birth}" readonly="readonly">
 			</td>
 		</tr>
 		 <tr>
 	      <td width="200"><p align="left">비밀번호</td>
-	      <td width="300"><input type="password" name="pwd" value="${mypageView.pwd}"></td>
+	      <td width="300"><input type="password" name="pwd"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="left">비밀번호 확인</td>
-	       <td width="300"><p><input type="password" name="pwdchk" value="${mypageView.pwd}"></td>
+	       <td width="300"><p><input type="password" name="pwdchk"></td>
 	    </tr>
 	    </c:forEach>
 	</table>
 		
 		<a class="btn2" align="center">
-		<input type="submit" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
+		<input type="button" value="수정" class="btn1" onclick="mod()">
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"></td>
 	    </a>
 	
 	</form>

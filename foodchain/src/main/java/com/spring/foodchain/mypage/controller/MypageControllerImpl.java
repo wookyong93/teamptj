@@ -32,7 +32,7 @@ public class MypageControllerImpl implements MypageController{
 	public ModelAndView mypageView(@RequestParam("id")String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav =null;
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 	
 		if (session != null) {
 			String loginID = (String) session.getAttribute("loginID");
@@ -49,7 +49,13 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
 	public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do");
+		HttpSession session = request.getSession();
+		String loginID = (String) session.getAttribute("loginID");
+		if(loginID ==null){
+			loginID = request.getParameter("id");
+			session.setAttribute("loginID", loginID);
+		}
+		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do?id="+loginID);
 		int result = mypageService.modifyMypage(memberVO);
 		return mav;
 	}
@@ -65,6 +71,7 @@ public class MypageControllerImpl implements MypageController{
 		String message = null;
 		responseHeaders.add("Content-Type","text/html; charset=utf-8");
 		String id = request.getParameter("id");
+	
 		try {
 			int result = mypageService.nicknameCheck(nickName);
 			if(result==0) {
