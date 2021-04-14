@@ -28,9 +28,11 @@
 <body>
 <table width="80%">
 	<tr>
-		<td width="20%">아이디</td>
-		<td width="20%">비밀번호</td>
-		<td width="30%">가입일자</td>
+		<td width="13%">아이디</td>
+		<td width="13%">비밀번호</td>
+		<td width="13%">닉네임</td>
+		<td width="20%">생년월일</td>
+		<td width="20%">가입일자</td>
 		<td width="10%">수정</td>
 		<td width="10%">삭제</td>
 	</tr>
@@ -38,6 +40,8 @@
 		<tr>
 			<td><a href="${contextPath}/admin/viewForm.do?id=${mem.id}">${mem.id }</a></td>
 			<td>${mem.pwd }</td>
+			<td>${mem.nickname }</td>
+			<td>${mem.birth }</td>
 			<td>${mem.joinDate }</td>
 			<td><a href="${contextPath }/admin/modForm.do?id=${mem.id }">수정</a></td>
 			<td><a href="${contextPath }/admin/delMember.do?id=${mem.id }">삭제</a></td>

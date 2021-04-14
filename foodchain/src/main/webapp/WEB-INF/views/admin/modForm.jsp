@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>c
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -37,6 +37,14 @@
 		<tr>
 			<td>비밀번호</td>
 			<td><input type="text" value="${member.pwd }"></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" value="${member.nickname }"></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td><input type="date" value="${member.birth }" disabled="disabled"></td>
 		</tr>
 	</table>
 <input type="submit" value="수정">
