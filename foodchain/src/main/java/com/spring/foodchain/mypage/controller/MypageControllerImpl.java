@@ -79,8 +79,7 @@ public class MypageControllerImpl implements MypageController{
 			
 			session.setAttribute("loginID", loginID);
 		}
-		System.out.println(loginID);
-		System.out.println(nickname);
+		
 		try {
 			int result = mypageService.nicknameCheck(nickName);
 			if(result==0) {
