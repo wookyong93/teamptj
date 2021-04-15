@@ -30,8 +30,8 @@ public class RoomListServiceImpl implements RoomListService {
 		return roomlistDAO.insertRoom(room);
 	}
 
-	@Override
-	public int roominfo() throws DataAccessException {
-		return roomlistDAO.roominfo();
-	}
+//	@Override
+//	public int roominfo(RoomListVO room) throws DataAccessException {
+//		return roomlistDAO.roominfo(room);
+//	}
 }

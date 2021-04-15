@@ -33,6 +33,13 @@
 			values(#{title}, #{roomNum}, #{chief_id}) 
 		]]>
 	</insert>
+	
+<!--	<select id="roominfo" resultType="String">
+		<![CDATA[
+		select * from f_room
+		where roomNum=#{roomNum}
+		]]>
+	</select>  -->
 
 	</mapper>
 	<!-- 아이디가 없어서 에러 안하려면 이렇게 -->

@@ -29,9 +29,9 @@ public class RoomListDAOImpl implements RoomListDAO {
 		return result;
 	}
 
-	@Override
-	public int roominfo(RoomListVO roomlistVO) throws DataAccessException {
-		int result = sqlsession.selectOne("mapper.room.roominfo");
-		return result;
-	}
+//	@Override
+//		public int roominfo(RoomListVO roomlistVO) throws DataAccessException {
+//		int result = sqlsession.selectOne("mapper.room.roominfo");
+//		return result;
+//	}
 }

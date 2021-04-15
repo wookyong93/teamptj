@@ -65,7 +65,6 @@ public class RoomListControllerImpl implements RoomListController{
 		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
-		int roominfo = roomlistSrv.roominfo();
 		mav.addObject("result",result);
 		mav.setViewName(viewName);
 		return mav;
