@@ -84,9 +84,7 @@
 		}else if(pwd.value!=pwdchk.value){
 			alert("비밀번호가 일치하지 않습니다.");
 			pwd.focus();
-		}else if($("#TestBtn").is("disabled")=="undefined"){
-	         alert("닉네임 중복확인을 해주세요")
-	     }else{
+		}else{
 			alert("수정되었습니다.");
 			frm.action="${contextPath}/mypage/modifyMypage.do";
 			frm.method="POST";
@@ -108,8 +106,7 @@
 		location.href='${contextPath}/frontpage/main1.do';
 	}
 	
-	console.log($("#TestBtn").is("disabled"));
-	console.log($("#TestBtn").attr("disabled"));
+	
 </script>
 </head>
 <body>
