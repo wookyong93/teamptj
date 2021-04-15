@@ -106,7 +106,7 @@
 		location.href='${contextPath}/frontpage/main1.do';
 	}
 	console.log($("#TestBtn").is("disabled"));
-	  console.log($("#TestBtn").attr("disabled"));
+	console.log($("#TestBtn").attr("disabled"));
 	
 </script>
 </head>
