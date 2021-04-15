@@ -10,6 +10,7 @@
 	String loginID = request.getParameter("id");
 	session.setAttribute("loginID", loginID);
 %> 
+
 <!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
 <html>
@@ -75,8 +76,8 @@
 	}
 	<%--우경님 작성 copy / 수정해야함--%>
 	function nicknameCheck() {
-		var nickname = document.getElementById("nickname");
-		var id = document.getElementById("id");
+		var nickname = document.getElementById("nickname").value;
+		var id = document.getElementById("id").value;
 		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
 	}
 	
@@ -103,13 +104,16 @@
 	   <tr>
 	      <td width="200"><p align="left">아이디</td>
 	      <td width="300">
-	      <input type="text" name="id"  value="${mypageView.id}" readonly="readonly"/>
+	      <input type="text" name="id" id="id" value="${mypageView.id}" readonly="readonly"/>
 	      </td>
 	   </tr>
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
 			<td width="300">
-			<p><input type="text" name='nickname' value="${mypageView.nickname}">
+			
+			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
+			</p>
+			
 			</td>
 			<td><input class="btn1" type="button" value="중복확인" onclick="nicknameCheck()"></td>
 		</tr>
@@ -132,7 +136,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="button" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
 	    </a>
 	
 	</form>

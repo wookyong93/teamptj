@@ -75,7 +75,8 @@ public class MypageControllerImpl implements MypageController{
 		try {
 			int result = mypageService.nicknameCheck(nickName);
 			if(result==0) {
-				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?nickname="+nickName+"&id="+id+"';</script>";
+				request.setAttribute("_nickname", nickName);
+				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+id+"';</script>";
 			}else {
 				message = "<script>alert('중복된 닉네임이 있습니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+id+"';</script>";
 			}
