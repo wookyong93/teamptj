@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.foodchain.member.VO.MemberVO;
 
 
-
 public interface MypageController {
 	public ModelAndView mypageView(@RequestParam("id")String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView modifyMypage(@ModelAttribute("mypage") MemberVO memberVO,HttpServletRequest request,HttpServletResponse response) throws Exception;

@@ -32,16 +32,17 @@ public class MypageControllerImpl implements MypageController{
 	public ModelAndView mypageView(@RequestParam("id")String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav =null;
-		HttpSession session = request.getSession();
-	
+		HttpSession session = request.getSession(false);
+		String loginID = null;
 		if (session != null) {
-			String loginID = (String) session.getAttribute("loginID");
-			String viewName = (String)request.getAttribute("viewName");
-			mav = new ModelAndView(viewName);
-			List<MemberVO> mypageView = mypageService.mypageView(loginID);
-			
-			mav.addObject("mypageView",mypageView);
+			loginID = id;
+			session.setAttribute("loginID", loginID);
 		}
+		
+		String viewName = (String)request.getAttribute("viewName");
+		mav = new ModelAndView(viewName);
+		List<MemberVO> mypageView = mypageService.mypageView(loginID);
+		mav.addObject("mypageView",mypageView);
 		return mav;
 	}
 
@@ -69,15 +70,23 @@ public class MypageControllerImpl implements MypageController{
 		ResponseEntity resEnt;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message = null;
+		HttpSession session = request.getSession();
 		responseHeaders.add("Content-Type","text/html; charset=utf-8");
-		String id = request.getParameter("id");
-	
+		
+		String loginID = request.getParameter("id");
+		String nickname = request.getParameter("nickname");
+		if(session == null){
+			
+			session.setAttribute("loginID", loginID);
+		}
+		System.out.println(loginID);
+		System.out.println(nickname);
 		try {
 			int result = mypageService.nicknameCheck(nickName);
 			if(result==0) {
-				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?nickname="+nickName+"&id="+id+"';</script>";
+				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?nickname="+nickname+"&id="+loginID+"';</script>";
 			}else {
-				message = "<script>alert('중복된 닉네임이 있습니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+id+"';</script>";
+				message = "<script>alert('중복된 닉네임이 있습니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+loginID+"';</script>";
 			}
 			
 		}catch(Exception e) {
