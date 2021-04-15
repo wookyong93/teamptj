@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView roomlist(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName = getViewName(request);
+		HttpSession session = request.getSession();
 		List roomList = roomlistSrv.roomsList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("roomList",roomList);
@@ -39,16 +41,13 @@ public class RoomListControllerImpl implements RoomListController{
 	public ModelAndView addRoom(@ModelAttribute("room") RoomListVO room,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("addroom");
-		System.out.println(room.getTitle());
 		int result = 0;
 		result = roomlistSrv.addRoom(room);
-		System.out.println(room.getChief_id()+room.getRoomNum()+room.getTitle());
 		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/room/createroom.do", method =  RequestMethod.GET)
+	@RequestMapping(value = "/room/createroom.do", method =  {RequestMethod.GET,RequestMethod.POST})
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
@@ -64,6 +63,7 @@ public class RoomListControllerImpl implements RoomListController{
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result",result);
 		mav.setViewName(viewName);

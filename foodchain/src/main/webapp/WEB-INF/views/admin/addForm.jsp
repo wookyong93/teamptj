@@ -25,8 +25,12 @@
 	.select {
 		border-radius: 0.5em;
 	}
+<<<<<<< HEAD
 </style>
 
+=======
+</style>
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 <script>
 <%-- id 값 처리 --%>
 window.onload = function(){
@@ -103,7 +107,11 @@ function fn_insert(){
 		frm.submit();
 		}
 	}
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 </head>
 <body>
 <form method="post" name="frm" action="${contextPath }/admin/addMember.do">
@@ -127,12 +135,17 @@ function fn_insert(){
 			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
 		</tr>
 		<tr>
+<<<<<<< HEAD
 			<td>생년월일</td>
 
 			<td><input type="date" name="birth" id="birth"></td>
 
 			<td><input type="date" name="birth" id='birth'></td>
 
+=======
+			<td>생년월일</td>
+			<td><input type="date" name="birth" id='birth'></td>
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 		</tr>
 	</table>
 		<input type="hidden" value="0" id="hid"/>

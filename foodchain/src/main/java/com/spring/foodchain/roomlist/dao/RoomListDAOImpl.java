@@ -23,8 +23,15 @@ public class RoomListDAOImpl implements RoomListDAO {
 	
 	@Override
 	public int insertRoom(RoomListVO roomlistVO) throws DataAccessException {
-		System.out.println(roomlistVO.getTitle());
+		int max=Integer.parseInt((String)sqlsession.selectOne("mapper.room.countRoom"));
+		roomlistVO.setRoomNum(max+1);
 		int result = sqlsession.insert("mapper.room.addRoom",roomlistVO);
 		return result;
 	}
+
+//	@Override
+//		public int roominfo(RoomListVO roomlistVO) throws DataAccessException {
+//		int result = sqlsession.selectOne("mapper.room.roominfo");
+//		return result;
+//	}
 }

@@ -34,6 +34,7 @@
 			<td>아이디</td>
 			<td><input type="text" value="${member.id }" disabled="disabled">
 			<input type="hidden" name="id" value="${member.id }"></td>
+			<input type="button" value="중복확인">
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -42,6 +43,7 @@
 		<tr>
 			<td>닉네임</td>
 			<td><input type="text" name ="nickname" value="${member.nickname }"></td>
+			<input type="button" value="중복확인">
 		</tr>
 		<tr>
 			<td>생년월일</td>
