@@ -47,9 +47,9 @@ public class AdminControllerImpl implements AdminController {
 		request.getSession();
 			boolean result = aservice.addMembers(memberVO);
 			if(result) {
-				message="<script>alert('가입성공');location.href='"+request.getContextPath()+"/login/login.do';</script>";
+				message="<script>alert('가입성공');location.href='"+request.getContextPath()+"/admin/listMember.do';</script>";
 			}else {
-				message="<script>alert('가입실패');location.href='"+request.getContextPath()+"/login/login.do';</script>";
+				message="<script>alert('가입실패');location.href='"+request.getContextPath()+"/admin/listMember.do';</script>";
 			}
 			resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 			return resEnt;
@@ -69,25 +69,26 @@ public class AdminControllerImpl implements AdminController {
 	public ModelAndView modMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println(memberVO.getId());
+		System.out.println(memberVO.getPwd());
 		System.out.println(memberVO.getBirth());
 		aservice.modMembers(memberVO);
 		ModelAndView mav = new ModelAndView("redirect:/admin/listMember.do");
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value="/*Form.do", method=RequestMethod.GET)
-	public ModelAndView form(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		MemberVO member = aservice.viewMembers(id);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("member",member);
-		return mav;
-	}
+//	@Override
+//	@RequestMapping(value="/*Form.do", method=RequestMethod.GET)
+//	public ModelAndView form(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = (String) request.getAttribute("viewName");
+//		MemberVO member = aservice.viewMembers(id);
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("member",member);
+//		return mav;
+//	}
 
 	@Override
 	@RequestMapping(value="/addForm.do", method=RequestMethod.GET)
-	public ModelAndView addform(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addform(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;

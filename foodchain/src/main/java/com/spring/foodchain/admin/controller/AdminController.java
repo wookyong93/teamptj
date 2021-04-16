@@ -16,7 +16,7 @@ public interface AdminController {
 	public ResponseEntity addMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delMembers(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView modMembers(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView form(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addform(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	public ModelAndView form(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addform(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }
