@@ -6,7 +6,19 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
    request.setCharacterEncoding("UTF-8");
-%> 
+	String loginID = request.getParameter("id");
+	session.setAttribute("loginID", loginID);
+	
+	String title = request.getParameter("title");
+	session.setAttribute("title", title);
+	
+	String roomNum = request.getParameter("roomNum");
+	session.setAttribute("roomNum", roomNum);
+	
+	String chief_id = request.getParameter("chief_id");
+	session.setAttribute("chief_id", chief_id);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,9 +119,9 @@ top:27%;
 	<li>게임상태</li>
 	</ul>
 	<ul class="ul2">
-	<li>1</li>
-	<li>title</li>
-	<li>hong</li>
+	<li>${roomNum }</li>
+	<li>${title }</li>
+	<li>${chief_id }</li>
 	<li>2/13</li>
 	<li>대기중</li>
 	</ul>
@@ -135,8 +147,10 @@ top:27%;
 	
 	<form>
 	<input type="text" style="background-color: white; width: 750px; height: 550px; display: block;">
-	<input type="text" id="chat" style="background-color: white; width: 400px; height:30px; margin: 15px;">
+	<input type="text" id="chat" style="background-color: white; width: 380px; height:30px; margin: 0px;">
 	<input type="submit" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
-	</form>
 	
+	<input type="button" value="준비/시작" class="btn1" id="commitchk">
+	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+	</form>
 </body>
