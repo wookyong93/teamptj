@@ -35,9 +35,9 @@ public class AdminServiceImpl implements AdminService {
 		return aDAO.delMembers(id);
 	}
 
-	@Override
-	public MemberVO viewMembers(String id) {
-		return aDAO.viewMembers(id);
-	}
+//	@Override
+//	public MemberVO viewMembers(String id) {
+//		return aDAO.viewMembers(id);
+//	}
 
 }
