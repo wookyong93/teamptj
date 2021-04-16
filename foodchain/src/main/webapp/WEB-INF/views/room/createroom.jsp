@@ -6,6 +6,10 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
    request.setCharacterEncoding("UTF-8");
+	String loginID = request.getParameter("id");
+	session.setAttribute("loginID", loginID);
+	
+	
 %> 
 <!DOCTYPE html>
 <html>
@@ -67,15 +71,19 @@ table{
 	    </tr>
 	   <tr>
 	      <td width="200"><p align="right">인원수</td>
-	      <td width="400"><input type="text" value="13" name="roomNum" disabled="disabled"></td>
+	      <td width="400"><input type="text" value="13" disabled="disabled"></td>
 	   </tr>
 	   
 	    <tr>
 	       <td width="200"><p>&nbsp;</p></td>
-	       <td width="400"><input type="submit" value="방 생성" style="margin: 15px; background-color: #CCFFCC;"><input type="button" value="돌아가기" style="background-color: #CCFFCC;" onClick="location.href='${contextPath}/room/roomlistmain.do'"></td>
+	       <td width="400">
+	       <input type="submit" value="방 생성" style="margin: 15px; background-color: #CCFFCC;">
+	       <input type="button" value="돌아가기" style="background-color: #CCFFCC;" onClick="location.href='${contextPath}/room/roomlistmain.do'">
+	       </td>
 	    </tr>
 
 	</table>
+	<input type="hidden" name="chief_id" value="${loginID }">
 	</form>
 	<!-- 커밋용 -->
 </body>

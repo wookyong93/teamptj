@@ -40,7 +40,6 @@ public class RoomListControllerImpl implements RoomListController{
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("addroom");
-		System.out.println(room.getTitle());
 		int result = 0;
 		result = roomlistSrv.addRoom(room);
 		System.out.println(room.getChief_id()+room.getRoomNum()+room.getTitle());
