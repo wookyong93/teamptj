@@ -17,7 +17,7 @@
      text-align:center;
    }
 body{
-	width:1100px;
+	width:80%;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -50,7 +50,7 @@ table{
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	<table align="center">
-
+		
 		<tr>
 	      <td width="200"><p align="right">방 제목</td>
 	      <td width="400"><input type="text" name="title"></td>
@@ -67,7 +67,7 @@ table{
 	    </tr>
 	   <tr>
 	      <td width="200"><p align="right">인원수</td>
-	      <td width="400"><input type="text" value="13" disabled="disabled"></td>
+	      <td width="400"><input type="text" value="13" name="roomNum" disabled="disabled"></td>
 	   </tr>
 	   
 	    <tr>
@@ -76,7 +76,6 @@ table{
 	    </tr>
 
 	</table>
-	<input type="hidden" name="chief_id" value="${loginID }">
-	<input type="hidden" name="roomNum" value=4>
 	</form>
+	<!-- 커밋용 -->
 </body>

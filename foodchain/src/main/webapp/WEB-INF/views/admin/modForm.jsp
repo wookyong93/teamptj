@@ -109,7 +109,7 @@ function fn_insert(){
 	    </tr>
 		<tr>
 			<td>닉네임</td>
-			<td><input type="text" name ="nickname" value="${member.nickname }" disabled="disabled"></td>
+			<td><input type="text" name ="nickname" value="${member.nickname }"></td>
 			<td>
 				<input type="hidden" value="${member.nickname }">
 				<input type="button" name="modNick" onclick="fn_nameCheck()" value="닉네임수정">

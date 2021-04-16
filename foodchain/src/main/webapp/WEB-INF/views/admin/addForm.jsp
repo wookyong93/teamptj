@@ -138,6 +138,7 @@ function fn_insert(){
 		</tr>
 		<tr>
 			<td>생년월일</td>
+			<td><input type="date" name="birth" id="birth"></td>
 			<td><input type="date" name="birth" id='birth'></td>
 		</tr>
 	</table>

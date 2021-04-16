@@ -29,9 +29,4 @@ public class RoomListServiceImpl implements RoomListService {
 		System.out.println(room.getTitle());
 		return roomlistDAO.insertRoom(room);
 	}
-
-	@Override
-	public int roominfo() throws DataAccessException {
-		return roomlistDAO.roominfo();
-	}
 }
