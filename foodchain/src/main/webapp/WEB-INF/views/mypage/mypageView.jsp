@@ -10,6 +10,7 @@
 	String loginID = request.getParameter("id");
 	session.setAttribute("loginID", loginID);
 %> 
+
 <!-- 04/12 강민경 작성 중 -->
 <!DOCTYPE html>
 <html>
@@ -97,7 +98,11 @@
 	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
+<<<<<<< HEAD
+		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
+=======
 		location.href="${contextPath}/mypage/nicknameCheck.do?id=${loginID}&nickname="+nickname;
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 	}
 	
 	function logout(){
@@ -131,7 +136,14 @@
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
 			<td width="300">
+<<<<<<< HEAD
+			
 			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
+			</p>
+			
+=======
+			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 			</td>
 			<td><input id="TestBtn" name="nicknameBtn" class="btn1" type="button" value="중복확인" disabled="true" onclick="nicknameCheck()"></td>
 		</tr>
@@ -154,7 +166,7 @@
 		
 		<a class="btn2" align="center">
 		<input type="button" value="수정" class="btn1" onclick="mod()">
-		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"></td>
+		<input type="button" value="취소" class="btn1" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
 	    </a>
 	
 	</form>
