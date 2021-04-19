@@ -4,7 +4,9 @@ import java.sql.Date;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component("memberVO")
 public class MemberVO {
 	private String id;
 	private String pwd;

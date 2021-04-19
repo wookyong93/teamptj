@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 21/04/19 이소정 작성 -->
+
+<!-- namespace 지정 -->
+	<mapper namespace="mapper.role">
+<!--resultMap 설정-->
+
+	<resultMap id="roleResult" type="roleVO">
+		<result property="animal" column="animal"/>
+		<result property="rank" column="rank"/>
+		<result property="place" column="place"/>
+		<result property="sky_ok" column="sky_ok"/>
+	</resultMap>
+	
+	<!-- 하늘 진입 가능 여부  -->
+	<!-- 1 불가능, 2 가능 -->
+	<select id="sky_okCheck" parameterType="roleVO" resultType="Integer">
+		<![CDATA[
+			select sky_ok from role 
+			where animal=#{animal}
+		]]>
+	</select>
+
+	<select id="rank_comparison" parameterType="roleVO" resultType="Integer">
+	         <![CDATA[
+	            select rank from role
+	            where animal=#{animal}
+	         ]]>
+    </select>
+	
+</mapper>
