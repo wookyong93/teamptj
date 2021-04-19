@@ -95,6 +95,14 @@ left:27%;
 top:27%;
 }
 </style>
+<script type="text/javascript">
+	function popup(){
+		var url = "${contextPath}/room/popup.do";
+		var name = "popup pop";
+		var option = "width = 750, height = 450, left=1250, location = no"
+		window.open(url,name,option);	
+	}
+</script>
 </head>
 <body>
 
@@ -152,5 +160,7 @@ top:27%;
 	
 	<input type="button" value="준비/시작" class="btn1" id="commitchk">
 	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+	<input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
+	
 	</form>
 </body>
