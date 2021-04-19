@@ -71,12 +71,18 @@
 		var pwd = frm.pwd;
 		var pwdchk = frm.pwdchk;
 		var nickname = frm.nickname;
+		//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
+		var nicknameBtn = frm.nicknameBtn.disabled;
 		
 		
 		if(nickname.value==""||nickname.length==0){
 			alert("닉네임을 입력해주세요.");
 			nickname.focus();
-		}else if(pwd.value==""||pwd.length==0){
+		}else if(nicknameBtn == false){
+			//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
+			alert('중복체크 해주세요');	
+		}
+		else if(pwd.value==""||pwd.length==0){
 			alert("비밀번호를 입력해주세요.");
 			pwd.focus();
 		}else if(pwdchk.value==""||pwdchk.length==0){
@@ -98,11 +104,11 @@
 	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
-<<<<<<< HEAD
+
 		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
-=======
+
 		location.href="${contextPath}/mypage/nicknameCheck.do?id=${loginID}&nickname="+nickname;
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
+
 	}
 	
 	function logout(){
@@ -136,14 +142,10 @@
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
 			<td width="300">
-<<<<<<< HEAD
-			
+	
 			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
 			</p>
-			
-=======
-			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
+
 			</td>
 			<td><input id="TestBtn" name="nicknameBtn" class="btn1" type="button" value="중복확인" disabled="true" onclick="nicknameCheck()"></td>
 		</tr>
