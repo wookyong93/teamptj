@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.foodchain.admin.service.AdminServiceImpl;
+import com.spring.foodchain.admin.service.AdminService;
 import com.spring.foodchain.member.VO.MemberVO;
 
 @Controller("adminController")
 @RequestMapping("/admin")
 public class AdminControllerImpl implements AdminController {
 	@Autowired
-	private AdminServiceImpl aservice;
+	private AdminService aservice;
 	
 	@Override
 	@RequestMapping(value="/listMember.do", method=RequestMethod.GET)
