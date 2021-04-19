@@ -13,7 +13,7 @@ import com.spring.foodchain.animal.service.AnimalService;
 @Controller("animalController")
 public class AnimalControllerImpl implements AnimalController {
 	@Autowired
-	private AnimalService animalS;
+	private AnimalService animalS; 
 	
 	@Override
 	public ResponseEntity rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response)
