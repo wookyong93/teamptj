@@ -4,6 +4,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%
 request.setCharacterEncoding("utf-8");
+String loginID = request.getParameter("id");
+session.setAttribute("loginID", loginID);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,46 +37,43 @@ request.setCharacterEncoding("utf-8");
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-<%-- 닉네임수정 버튼 비활성화 -> 닉네임 중복확인 버튼 활성화
-	 이소정 작성 --%>
-function modNick(){
-	var modNick = document.getElementById("modNick");
-	modNick.removeAttribute("disabled");
-	document.getElementById("modNick").setAttribute("type","hidden");
-	document.getElementById("modName").setAttribute("type","button");
-}
-
-
-<%-- 권우경님 작성 복사 --%>
-window.onload = function(){
-	var id = '<%=request.getParameter("id")%>';
-	var nickname='<%=request.getParameter("nickname")%>';
-	if(nickname!='null'){
-		document.getElementById("hname").value="1";
+	window.onload = function(){
+		var nick = '<%=request.getParameter("nickname") %>';
+		if(nick != 'null' && nick.length != 0){
+			document.getElementById("nickname").value = nick;
+		} 
 	}
-}
-<%--닉네임 중복체크 /권우경 작성--%>
-function fn_nameCheck(){
-	var nickname = document.getElementById("nickname").value;
-	var id = document.getElementById("id").value;
-	location.href="${contextPath}/admin/nameCheck.do?nickname="+nickname+"&id="+id;
-}
+	<%-- 닉네임 변경시 중복확인 버튼 활성화--%>
+	<%-- 강민경님 작성 복사 --%>
+	$(document).ready(function () {
+		var nickname = document.getElementById("nickname").value;
+		$("#nickname").on('input change', function(){
+			if($(this).val()==nickname)
+				$("#TestBtn").attr("disabled",true);
+			else
+				$("#TestBtn").attr("disabled",false);
+		});
+	})
+
 
 <%--회원수정 진행 /권우경 작성 , 이소정 수정--%>
 function fn_insert(){
 	var frm = document.frm;
 	var pwd = frm.pwd;
 	var pwdchk = document.getElementById("pwdchk").value;
-	
 	var nickname = frm.nickname;
-	var birth =document.getElementById('birth').value;
-	var hname = document.getElementById('hname').value;
-	if(nickname.value==""){
+	//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
+	var nicknameBtn = frm.nicknameBtn.disabled;
+	
+	
+	if(nickname.value==""||nickname.length==0){
 		alert('닉네임을 입력하세요');
 		pwdchk.focus();
-	} else if(nickname.value != "" && hname=="0"){
-		alert('닉네임 중복체크를 해주세요');	
+	} else if(nicknameBtn == false){
+		//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
+		alert('중복체크 해주세요');	
 	} else if(pwd.value=="" || pwd.length==0){
 		alert('비밀번호를 입력하세요');
 		pwd.focus();
@@ -82,16 +81,29 @@ function fn_insert(){
 		alert('비밀번호 확인을 입력하세요');
 		pwdchk.focus();
 	} else if(pwdchk.value != pwd.value){
-		alert('비밀번호가 서로 다릅니다.');
+		alert('비밀번호가 일치하지 않습니다.');
 		pwd.value="";
 		pwdchk.value="";
 		pwd.focus();
 	} else {
+		alert('수정되었습니다.');
 		frm.method="post";
 		frm.action="${contextPath }/admin/modMember.do?id="+id;
 		frm.submit();
 		}
+	
+	<%--닉네임 중복체크 /권우경 작성--%>
+	function fn_nameCheck(){
+		var nickname = document.getElementById("nickname").value;
+		var id = document.getElementById("id").value;
+
+		location.href='${contextPath}/admin/nicknameCheck.do?nickname='+nickname+'&id='+id;
+
+		location.href="${contextPath}/admin/nicknameCheck.do?id=${loginID}&nickname="+nickname;
+
 	}
+	
+}
 </script>
 </head>
 <body>
@@ -117,8 +129,7 @@ function fn_insert(){
 			<td><input type="text" name ="nickname" value="${member.nickname }"></td>
 			<td>
 				<input type="hidden" value="${member.nickname }">
-				<input type="button" name="modNick" onclick="fn_nameCheck()" value="닉네임수정">
-				<input type="hidden" name="modName" value="중복확인">
+				<input id="TestBtn" type="button" name="nicknameBtn" disabled="true" onclick="fn_nameCheck()" value="중복확인">
 			</td>
 		</tr>
 		<tr>
@@ -137,7 +148,6 @@ function fn_insert(){
 			</td>
 		</tr>
 	</table>
-		<input type="hidden" value="0" id="hname"/>
 </form>
 </body>
 </html>
