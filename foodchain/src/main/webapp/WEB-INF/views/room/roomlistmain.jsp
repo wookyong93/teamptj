@@ -21,7 +21,7 @@
 <title>방 목록</title>
 <style>
 body{
-	width:1100px;
+	width:80%;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -51,7 +51,7 @@ body{
 	</header>
 	
 	<div>
-		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do'">
+		<input type="button" value="방 만들기" class="btn1" onclick="location.href='${contextPath}/room/createroom.do?id=<%=loginID%>'">
 		<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
 		<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 	</div>
@@ -73,7 +73,7 @@ body{
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
-  </c:forEach>
+  </c:forEach>   
 </table>
 </body>
 </html>

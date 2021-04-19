@@ -33,20 +33,19 @@ public class AdminDAOImpl implements AdminDAO {
 		if(num == 1) {
 			result = true;
 		}
-		
 		return result;
 	}
 
 	@Override
 	public int delMembers(String id) {
-		int result = sqlSession.delete("mapper.member.delMember");
+		int result = sqlSession.delete("mapper.member.delMember",id);
 		return result;
 	}
 
-	@Override
-	public MemberVO viewMembers(String id) {
-		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMember",id);
-		return memberVO;
-	}
+//	@Override
+//	public MemberVO viewMembers(String id) {
+//		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMember",id);
+//		return memberVO;
+//	}
 
 }

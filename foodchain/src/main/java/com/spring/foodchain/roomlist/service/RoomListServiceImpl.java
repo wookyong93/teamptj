@@ -26,12 +26,9 @@ public class RoomListServiceImpl implements RoomListService {
 	
 	@Override
 	public int addRoom(RoomListVO room) throws DataAccessException{
-		System.out.println(room.getTitle());
+		System.out.println(room.getRoomNum());
 		return roomlistDAO.insertRoom(room);
 	}
-
-//	@Override
-//	public int roominfo(RoomListVO room) throws DataAccessException {
-//		return roomlistDAO.roominfo(room);
-//	}
+	
+	
 }

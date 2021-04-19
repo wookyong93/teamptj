@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,14 @@
 <title>(관리자)회원추가</title>
 <!-- 21/04/12 이소정 작성 -->
 <style>
+   body{
+      background-color:#d3d3d3;
+   }
+   input[type=button]{
+   	background-color:#CCFFCC;
+   	width:100px;
+   	height:40px;
+   }
    a{ color:black; }
    a:link { color:black; text-decoration:none; }
    a:visited { color:black; text-decoration:none; }
@@ -114,7 +125,7 @@ function fn_insert(){
 >>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 </head>
 <body>
-<form method="post" name="frm" action="${contextPath }/admin/addMember.do">
+<form method="post" name="frm">
 	<table width="80%">
 		<tr>
 			<td>아이디</td>
@@ -122,12 +133,12 @@ function fn_insert(){
 			<td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
 		</tr>
 		 <tr>
-	      <td><p align="left">패스워드</td>
+	      <td>패스워드</td>
 	      <td><input type="password" name="pwd" id='pwd'></td>
 	    </tr>
 	    <tr>
-	       <td><p align="left">패스워드확인</td>
-	       <td><p><input type="password" id="pwdchk"></td>
+	       <td>패스워드확인</td>
+	       <td><input type="password" id="pwdchk"></td>
 	    </tr>
 		<tr>
 			<td>닉네임</td>
@@ -135,6 +146,7 @@ function fn_insert(){
 			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
 		</tr>
 		<tr>
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<td>생년월일</td>
 
@@ -144,6 +156,11 @@ function fn_insert(){
 
 =======
 			<td>생년월일</td>
+			<td><input type="date" name="birth" id='birth'></td>
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
+=======
+			<td>생년월일</td>
+			<td><input type="date" name="birth" id="birth"></td>
 			<td><input type="date" name="birth" id='birth'></td>
 >>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 		</tr>

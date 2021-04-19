@@ -9,10 +9,18 @@
 <title>(관리자)회원목록</title>
 <!-- 21/04/12 이소정 작성 -->
 <style>
+   body{
+      background-color:#d3d3d3;
+   }
+   input[type=button]{
+   	background-color:#CCFFCC;
+   	width:100px;
+   	height:40px;
+   }
    a{ color:black; }
    a:link { color:black; text-decoration:none; }
    a:visited { color:black; text-decoration:none; }
-   a:hover{ color:blue; text-decoration:underline; }
+   a:hover{ color:blue; text- decoration:underline; }
    
    	table {
    		text-align:center;
@@ -22,7 +30,6 @@
 	td,tr {
 		border:1px solid;
 	}
-	
 </style>
 </head>
 <body>

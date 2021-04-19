@@ -6,28 +6,20 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
    request.setCharacterEncoding("UTF-8");
-
-	String loginID = (String)session.getAttribute("loginID");
-	if(loginID ==null){
-	loginID = request.getParameter("id");
+	String loginID = request.getParameter("id");
 	session.setAttribute("loginID", loginID);
-}
 	
-	String title = (String)session.getAttribute("title");
-	title = request.getParameter("title");
+	String title = request.getParameter("title");
 	session.setAttribute("title", title);
 	
-	
-	String roomNum = (String)session.getAttribute("roomNum");
-	roomNum = request.getParameter("roomNum");
+	String roomNum = request.getParameter("roomNum");
 	session.setAttribute("roomNum", roomNum);
 	
-	String chief_id = (String)session.getAttribute("chief_id");
-	chief_id = request.getParameter("chief_id");
+	String chief_id = request.getParameter("chief_id");
 	session.setAttribute("chief_id", chief_id);
-	
-%> 
+%>
 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -37,7 +29,7 @@
      text-align:center;
    }
 body{
-	width:1100px;
+	width:80%;
 	margin:auto;
 	background-color: #d3d3d3;
 	}
@@ -86,7 +78,6 @@ padding: 5px;
 background-color: white;
 text-align:center;
 display: block;
-
 }
 li{	
 	width:75px;
@@ -118,7 +109,8 @@ top:27%;
 
 	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
-	
+
+
 	<ul class="ul1">
 	<li>번호</li>
 	<li>방제목</li>
@@ -133,7 +125,6 @@ top:27%;
 	<li>2/13</li>
 	<li>대기중</li>
 	</ul>
-
 	
 	<table class="tab1">	
 		<tr style="background-color: white;">
@@ -156,8 +147,10 @@ top:27%;
 	
 	<form>
 	<input type="text" style="background-color: white; width: 750px; height: 550px; display: block;">
-	<input type="text" id="chat" style="background-color: white; width: 400px; height:30px; margin: 15px;">
+	<input type="text" id="chat" style="background-color: white; width: 380px; height:30px; margin: 0px;">
 	<input type="submit" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
-	</form>
 	
+	<input type="button" value="준비/시작" class="btn1" id="commitchk">
+	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+	</form>
 </body>

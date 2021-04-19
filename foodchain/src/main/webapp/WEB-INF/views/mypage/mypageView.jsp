@@ -46,8 +46,26 @@
 		background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder;
 	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+	window.onload = function(){
+		var nick = '<%=request.getParameter("nickname") %>';
+		if(nick != 'null' && nick.length != 0){
+			document.getElementById("nickname").value = nick;
+		} 
+	}
+	<%-- 닉네임 변경시 중복확인 버튼 활성화--%>
+	$(document).ready(function () {
+		var nickname = document.getElementById("nickname").value;
+		$("#nickname").on('input change', function(){
+			if($(this).val()==nickname)
+				$("#TestBtn").attr("disabled",true);
+			else
+				$("#TestBtn").attr("disabled",false);
+		});
+	})
 	function mod() {
 		var frm = document.view;
 		var pwd = frm.pwd;
@@ -73,12 +91,18 @@
 			frm.method="POST";
 			frm.submit();
 		}
+		
 	}
-	<%--우경님 작성 copy / 수정해야함--%>
+	
+	<%--우경님 작성 copy / 수정--%>
 	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
+<<<<<<< HEAD
 		location.href='${contextPath}/mypage/nicknameCheck.do?nickname='+nickname+'&id='+id;
+=======
+		location.href="${contextPath}/mypage/nicknameCheck.do?id=${loginID}&nickname="+nickname;
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 	}
 	
 	function logout(){
@@ -86,6 +110,8 @@
 		<% session.invalidate(); %>
 		location.href='${contextPath}/frontpage/main1.do';
 	}
+	console.log($("#TestBtn").is("disabled"));
+	console.log($("#TestBtn").attr("disabled"));
 	
 </script>
 </head>
@@ -110,17 +136,21 @@
 	    <tr>
 			<td width="200"><p align="left">닉네임</td>
 			<td width="300">
+<<<<<<< HEAD
 			
 			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
 			</p>
 			
+=======
+			<p><input type="text" name='nickname' id="nickname" value="${mypageView.nickname}">
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
 			</td>
-			<td><input class="btn1" type="button" value="중복확인" onclick="nicknameCheck()"></td>
+			<td><input id="TestBtn" name="nicknameBtn" class="btn1" type="button" value="중복확인" disabled="true" onclick="nicknameCheck()"></td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
 			<td>
-				<input type="date" value="${mypageView.birth}" readonly="readonly">
+				<input type="date" name = "birth" value="${mypageView.birth}" readonly="readonly">
 			</td>
 		</tr>
 		 <tr>
