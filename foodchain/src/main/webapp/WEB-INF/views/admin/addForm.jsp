@@ -151,11 +151,8 @@ function fn_insert(){
 			</td>
 		</tr>
 	</table>
-		
 		<input type="hidden" value="0" id="hid"/>
 		<input type="hidden" value="0" id="hname"/>
-		
-		
 </form>
 </body>
 </html>

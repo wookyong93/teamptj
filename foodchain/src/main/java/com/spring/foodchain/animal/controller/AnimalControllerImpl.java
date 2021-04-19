@@ -19,7 +19,7 @@ public class AnimalControllerImpl implements AnimalController {
 	public ResponseEntity rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return null; 
 	}
 
 	@Override

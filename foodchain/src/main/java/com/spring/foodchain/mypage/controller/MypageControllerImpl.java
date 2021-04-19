@@ -46,20 +46,21 @@ public class MypageControllerImpl implements MypageController{
       return mav;
    }
 
-   @Override
-   @RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
-   public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
-         throws Exception {
-      HttpSession session = request.getSession();
-      String loginID = (String) session.getAttribute("loginID");
-      if(loginID ==null){
-         loginID = request.getParameter("id");
-         session.setAttribute("loginID", loginID);
-      }
-      ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do?id="+loginID);
-      int result = mypageService.modifyMypage(memberVO);
-      return mav;
-   }
+	@Override
+	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
+	public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		String loginID = (String) session.getAttribute("loginID");
+		if(loginID ==null){
+			loginID = request.getParameter("id");
+			session.setAttribute("loginID", loginID);
+		}
+		ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do?id="+loginID);
+		int result = mypageService.modifyMypage(memberVO);
+		return mav;
+	}
+
    
    //우경님 작성 카피
    @Override
@@ -94,5 +95,6 @@ public class MypageControllerImpl implements MypageController{
       resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
       return resEnt;
    }
+
 
 }
