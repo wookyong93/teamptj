@@ -46,7 +46,6 @@ public class MypageControllerImpl implements MypageController{
       return mav;
    }
 
-<<<<<<< HEAD
 	@Override
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
 	public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
@@ -61,49 +60,7 @@ public class MypageControllerImpl implements MypageController{
 		int result = mypageService.modifyMypage(memberVO);
 		return mav;
 	}
-	
-	//우경님 작성 카피
-	@Override
-	@RequestMapping(value="/mypage/nicknameCheck.do" ,method= {RequestMethod.GET,RequestMethod.POST})
-	public ResponseEntity nameCheck(@RequestParam("nickname")String nickName, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		ResponseEntity resEnt;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		String message = null;
-		responseHeaders.add("Content-Type","text/html; charset=utf-8");
-		String id = request.getParameter("id");
-	
-		try {
-			int result = mypageService.nicknameCheck(nickName);
-			if(result==0) {
-				request.setAttribute("_nickname", nickName);
-				message = "<script>alert('사용가능한 닉네임 입니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+id+"';</script>";
-			}else {
-				message = "<script>alert('중복된 닉네임이 있습니다');location.href='"+request.getContextPath()+"/mypage/mypageView.do?id="+id+"';</script>";
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEnt;
-	}
-=======
-   @Override
-   @RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)
-   public ModelAndView modifyMypage(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
-         throws Exception {
-      HttpSession session = request.getSession();
-      String loginID = (String) session.getAttribute("loginID");
-      if(loginID ==null){
-         loginID = request.getParameter("id");
-         session.setAttribute("loginID", loginID);
-      }
-      ModelAndView mav = new ModelAndView("redirect:/room/roomlistmain.do?id="+loginID);
-      int result = mypageService.modifyMypage(memberVO);
-      return mav;
-   }
+
    
    //우경님 작성 카피
    @Override
@@ -138,6 +95,6 @@ public class MypageControllerImpl implements MypageController{
       resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
       return resEnt;
    }
->>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
+
 
 }
