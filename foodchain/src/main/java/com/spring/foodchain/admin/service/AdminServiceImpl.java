@@ -35,9 +35,19 @@ public class AdminServiceImpl implements AdminService {
 		return aDAO.delMembers(id);
 	}
 
-//	@Override
-//	public MemberVO viewMembers(String id) {
-//		return aDAO.viewMembers(id);
-//	}
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return aDAO.idCheck(id);
+	}
+
+	public int nicknameCheck(String nickName) {
+		// TODO Auto-generated method stub
+		return aDAO.nicknameCheck(nickName);
+	}
+
+	@Override
+	public MemberVO viewMembers(String id) {
+		return aDAO.viewMembers(id);
+	}
 
 }

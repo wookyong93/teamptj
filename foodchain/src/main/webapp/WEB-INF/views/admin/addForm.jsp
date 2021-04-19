@@ -15,10 +15,11 @@ request.setCharacterEncoding("utf-8");
    body{
       background-color:#d3d3d3;
    }
-   input[type=button]{
+   input[type=button],input[type=reset],input[type=submit]{
    	background-color:#CCFFCC;
    	width:100px;
    	height:40px;
+   	text-align:center;
    }
    a{ color:black; }
    a:link { color:black; text-decoration:none; }
@@ -31,7 +32,7 @@ request.setCharacterEncoding("utf-8");
    		border-collapse:collapse;
 	}
 	td,tr {
-		border:1px solid;
+		border:1px none;
 	}
 	.select {
 		border-radius: 0.5em;
@@ -60,13 +61,13 @@ console.log(birth);
 <%--id 중복체크 /권우경 작성--%>
 function fn_idCheck(){
 	var id = document.getElementById("id").value;
-	location.href="${contextPath}/member/idCheck.do?id="+id;
+	location.href="${contextPath}/admin/idCheck.do?id="+id;
 }
 <%--닉네임 중복체크 /권우경 작성--%>
 function fn_nameCheck(){
 	var nickname = document.getElementById("nickname").value;
 	var id = document.getElementById("id").value;
-	location.href="${contextPath}/member/nameCheck.do?nickname="+nickname+"&id="+id;
+	location.href="${contextPath}/admin/nameCheck.do?nickname="+nickname+"&id="+id;
 }
 
 <%--회원가입 진행 /권우경 작성--%>
@@ -116,37 +117,45 @@ function fn_insert(){
 </script>
 </head>
 <body>
-<form method="post" name="frm">
-	<table width="80%">
+<form method="post" name="frm" action="${contextPath}/admin/addMember.do">
+	<br><h3 align="center">(관리자) 회원 추가</h3>
+	<table width="30%">
 		<tr>
-			<td>아이디</td>
-			<td width="200"><input type="text" name='id' id='id' ></td>
-			<td><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
+			<td align="right">아이디</td>
+			<td><input type="text" name='id' id='id' ></td>
+			<td align="left"><input class="btn1" type="button" value="중복체크" id="idck" onclick="fn_idCheck()" />
+		</tr>
+		<tr>
+			<td align="right">닉네임</td>
+			<td><input type="text" name='nickname' id='nickname'></td>
+			<td align="left"><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
 		</tr>
 		 <tr>
-	      <td>패스워드</td>
+	      <td align="right">패스워드</td>
 	      <td><input type="password" name="pwd" id='pwd'></td>
 	    </tr>
 	    <tr>
-	       <td>패스워드확인</td>
+	       <td align="right">패스워드확인</td>
 	       <td><input type="password" id="pwdchk"></td>
 	    </tr>
 		<tr>
-			<td>닉네임</td>
-			<td><input type="text" name='nickname' id='nickname'></td>
-			<td><input type="button" class="btn1" value="중복확인" id="nnck" onclick="fn_nameCheck()"></td>
+			<td align="right">생년월일</td>
+			<td><input type="date" name="birth" id="birth"></td>
 		</tr>
 		<tr>
-			<td>생년월일</td>
-			<td><input type="date" name="birth" id="birth"></td>
-			<td><input type="date" name="birth" id='birth'></td>
+			<td colspan="3">
+			<br><br>
+				<input type="submit" value="가입완료">
+				<input type="reset" value="다시입력">
+				<a href="${contextPath }/admin/listMember.do"><input type="button" value="회원목록"></a>
+			</td>
 		</tr>
 	</table>
+		
 		<input type="hidden" value="0" id="hid"/>
 		<input type="hidden" value="0" id="hname"/>
-<input type="submit" value="가입완료">
-<input type="reset" value="다시입력">
-<a href="${contextPath }/admin/listMember.do"><input type="button" value="회원목록"></a>
+		
+		
 </form>
 </body>
 </html>

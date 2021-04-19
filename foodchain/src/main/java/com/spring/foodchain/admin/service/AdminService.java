@@ -9,5 +9,5 @@ public interface AdminService {
 	public boolean addMembers(MemberVO memberVO);
 	public int modMembers(MemberVO memberVO);
 	public int delMembers(String id);
-//	public MemberVO viewMembers(String id);
+	public MemberVO viewMembers(String id);
 }

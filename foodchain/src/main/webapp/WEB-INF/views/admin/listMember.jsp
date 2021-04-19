@@ -28,20 +28,20 @@
    		border-collapse:collapse;
 	}
 	td,tr {
-		border:1px solid;
+		border:1px solid white;
 	}
 </style>
 </head>
 <body>
-<table width="80%">
+<table width="50%">
 	<tr>
 		<td width="13%">아이디</td>
 		<td width="13%">비밀번호</td>
 		<td width="13%">닉네임</td>
 		<td width="20%">생년월일</td>
 		<td width="20%">가입일자</td>
-		<td width="10%">수정</td>
-		<td width="10%">삭제</td>
+		<td width="10%"></td>
+		<td width="10%"></td>
 	</tr>
 	<c:forEach var="mem" items="${memList}">
 		<tr>
@@ -55,7 +55,6 @@
 		</tr>
 	</c:forEach>
 </table>
-
-<a href="${contextPath }/admin/addForm.do"><input type="button" value="회원추가"></a>
+	<p align="middle"><a href="${contextPath }/admin/addForm.do"><input type="button" value="회원추가"></a></p>
 </body>
 </html>

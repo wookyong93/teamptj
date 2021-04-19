@@ -42,10 +42,23 @@ public class AdminDAOImpl implements AdminDAO {
 		return result;
 	}
 
-//	@Override
-//	public MemberVO viewMembers(String id) {
-//		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMember",id);
-//		return memberVO;
-//	}
+	@Override
+	public int idCheck(String id) {
+		int result = sqlSession.selectOne("mapper.member.idCheck",id);
+		return result;
+	}
+
+	@Override
+	public int nicknameCheck(String nickName) {
+		// TODO Auto-generated method stub
+		int result = sqlSession.selectOne("mapper.member.nicknameCheck",nickName);
+		return result;
+	}
+
+	@Override
+	public MemberVO viewMembers(String id) {
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMember",id);
+		return memberVO;
+	}
 
 }

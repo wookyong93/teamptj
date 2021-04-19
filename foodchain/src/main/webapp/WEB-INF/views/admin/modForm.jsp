@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +34,7 @@
 		border:1px solid white;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 <%-- 닉네임수정 버튼 비활성화 -> 닉네임 중복확인 버튼 활성화
 	 이소정 작성 --%>
@@ -54,36 +58,35 @@ window.onload = function(){
 function fn_nameCheck(){
 	var nickname = document.getElementById("nickname").value;
 	var id = document.getElementById("id").value;
-	location.href="${contextPath}/member/nameCheck.do?nickname="+nickname+"&id="+id;
+	location.href="${contextPath}/admin/nameCheck.do?nickname="+nickname+"&id="+id;
 }
 
-<%--회원수정 진행 /권우경 작성--%>
+<%--회원수정 진행 /권우경 작성 , 이소정 수정--%>
 function fn_insert(){
 	var frm = document.frm;
 	var pwd = frm.pwd;
-	var pwdchk = document.getElementById("pwdchk");
+	var pwdchk = document.getElementById("pwdchk").value;
+	
 	var nickname = frm.nickname;
 	var birth =document.getElementById('birth').value;
 	var hname = document.getElementById('hname').value;
 	if(nickname.value==""){
 		alert('닉네임을 입력하세요');
 		pwdchk.focus();
-	}
-	else if(nickname.value != "" && hname=="0"){
+	} else if(nickname.value != "" && hname=="0"){
 		alert('닉네임 중복체크를 해주세요');	
-	}
-	else if(pwd.value==""){
+	} else if(pwd.value=="" || pwd.length==0){
 		alert('비밀번호를 입력하세요');
 		pwd.focus();
-	}else if(pwdchk.value==""){
+	} else if(pwdchk.value=="" || pwdchk.length==0){
 		alert('비밀번호 확인을 입력하세요');
 		pwdchk.focus();
-	}else if(pwdchk.value != pwd.value){
+	} else if(pwdchk.value != pwd.value){
 		alert('비밀번호가 서로 다릅니다.');
 		pwd.value="";
 		pwdchk.value="";
 		pwd.focus();
-	}else{
+	} else {
 		frm.method="post";
 		frm.action="${contextPath }/admin/modMember.do?id="+id;
 		frm.submit();
@@ -92,12 +95,14 @@ function fn_insert(){
 </script>
 </head>
 <body>
-<form method="post" name = "frm" action="${contextPath }/admin/modMember.do">
+<form method="post" name = "frm">
 	<table width="60%">
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" value="${member.id }" disabled="disabled">
-			<input type="hidden" name="id" value="${member.id }"></td>
+			<td>
+				<input type="text" value="${member.id }" disabled="disabled">
+				<input type="hidden" name="id" value="${member.id }">
+			</td>
 		</tr>
 		<tr>
 			<td>패스워드</td>
@@ -118,12 +123,14 @@ function fn_insert(){
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td><input type="date" value="${member.birth }" disabled="disabled">
-			<input type="hidden" name="birth" value="${member.birth }"></td>
+			<td>
+				<input type="date" value="${member.birth }" disabled="disabled">
+				<input type="hidden" name="birth" value="${member.birth }">
+			</td>
 		</tr>
 		<tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="수정완료">
+			<td colspan="2"><input type="submit" value="수정완료" onclick="fn_insert()">
 				<a href="${contextPath }/admin/listMember.do">
 					<input type="button" value="회원목록">
 				</a>
