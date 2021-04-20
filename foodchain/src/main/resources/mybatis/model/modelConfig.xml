@@ -7,6 +7,6 @@
 			<typeAlias type="com.spring.foodchain.member.VO.MemberVO" alias="memberVO"/>
 			<typeAlias type="com.spring.foodchain.roomlist.vo.RoomListVO" alias="roomlistVO"/>
 			<!-- 04/19 권우경 작성  roleVO 추가  -->
-			<typeAlias type="com.spring.foodchain.animal.vo.roleVO" alias="roleVO"/>
+			<typeAlias type="com.spring.foodchain.animal.vo.RoleVO" alias="roleVO"/>
 		</typeAliases>
 	</configuration>

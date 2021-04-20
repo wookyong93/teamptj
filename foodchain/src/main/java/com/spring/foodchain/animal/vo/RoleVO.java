@@ -3,7 +3,7 @@ package com.spring.foodchain.animal.vo;
 import org.springframework.stereotype.Component;
 
 @Component("roleVO")
-public class roleVO {
+public class RoleVO {
 	private String animal;
 	private int rank;
 	private String place;
