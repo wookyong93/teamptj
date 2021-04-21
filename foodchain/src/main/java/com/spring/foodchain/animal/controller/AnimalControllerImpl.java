@@ -30,7 +30,8 @@ public class AnimalControllerImpl implements AnimalController {
 		mav.addObject("animal",animal);
 		return mav;
 	}
-
+	
+	// 하늘 진입 가능 여부 
 	@Override
 	public ResponseEntity skyOk(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

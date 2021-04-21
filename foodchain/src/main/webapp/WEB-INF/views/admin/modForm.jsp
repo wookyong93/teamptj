@@ -57,7 +57,6 @@ session.setAttribute("loginID", loginID);
 		});
 	})
 
-
 <%--회원수정 진행 /권우경 작성 , 이소정 수정--%>
 function fn_insert(){
 	var frm = document.frm;
@@ -96,6 +95,7 @@ function fn_insert(){
 	function fn_nameCheck(){
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
+
 
 		location.href='${contextPath}/admin/nicknameCheck.do?nickname='+nickname+'&id='+id;
 
