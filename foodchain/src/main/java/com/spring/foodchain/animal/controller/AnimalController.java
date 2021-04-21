@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface AnimalController {
-	public ModelAndView rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity skyOk(@RequestParam ("animal") String animal, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 

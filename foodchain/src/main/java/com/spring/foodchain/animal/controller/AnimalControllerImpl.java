@@ -22,13 +22,28 @@ public class AnimalControllerImpl implements AnimalController {
 	
 	// 동물끼리 rank 비교
 	@Override
-	public ModelAndView rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity rankComparison(@RequestParam("animal") String animal, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		int role = animalService.rankComparison(animal);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("animal",animal);
-		return mav;
+		ResponseEntity resEnt;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;
+		responseHeaders.add("Content-Type","text/html; charset=utf-8");
+		String id = request.getParameter("id");
+		try {
+			int result = animalService.rankComparison(animal);
+			if(result==0) {
+				message = "<script>alert('공격 성공 !!');location.href='"+request.getContextPath()+"/room/gameroompage';</script>";
+			} else if(result==1){
+				message = "<script>alert('공격 실패T^T');location.href='"+request.getContextPath()+"/room/gameroompage';</script>";
+			} else if(result==2){
+				message = "<script>alert('공격 실패 .. 뱀에게 죽임을 당했습니다');location.href='"+request.getContextPath()+"/room/gameroompage';</script>";
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEnt;
 	}
 	
 	// 하늘 진입 가능 여부 
