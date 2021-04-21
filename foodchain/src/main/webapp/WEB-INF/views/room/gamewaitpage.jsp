@@ -158,7 +158,7 @@ top:27%;
 	<input type="text" id="chat" style="background-color: white; width: 380px; height:30px; margin: 0px;">
 	<input type="submit" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
 	
-	<input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do'">
+	<input type="button" value="준비/시작" class="btn1" id="commitchk">
 	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
 	<input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
 	
