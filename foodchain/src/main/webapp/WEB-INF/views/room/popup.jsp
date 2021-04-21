@@ -12,7 +12,7 @@
  <table id="main" align="center" width="100%">
          <tr align="center">
             <td>
-                <img src="${contextPath}/resources/image/rule.png" width="700" height="400">
+                <img src="${contextPath}/resources/image/rule.png" width="700" height="401">
              </td>
           </tr>
 </table>
