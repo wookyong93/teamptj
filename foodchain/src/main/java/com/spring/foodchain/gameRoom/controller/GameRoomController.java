@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface GameRoomController {
 
-	public ModelAndView placeRule(@RequestParam("place") String place, HttpServletRequest request, HttpServletResponse response) throws Exception;
+   public ModelAndView placeRule(@RequestParam("place") String place, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+   public ModelAndView gameplaypage(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
