@@ -80,7 +80,7 @@
 			nickname.focus();
 		}else if(nicknameBtn == false){
 			//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
-			alert('중복체크 해주세요');	
+			alert('중복확인을 해주세요');	
 		}
 		else if(pwd.value==""||pwd.length==0){
 			alert("비밀번호를 입력해주세요.");
@@ -116,8 +116,7 @@
 		<% session.invalidate(); %>
 		location.href='${contextPath}/frontpage/main1.do';
 	}
-	console.log($("#TestBtn").is("disabled"));
-	console.log($("#TestBtn").attr("disabled"));
+	
 	
 </script>
 </head>

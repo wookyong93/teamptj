@@ -124,7 +124,7 @@
 	         	<br>
 	            <input type="button" value="로그인" onclick="fn_login()" >  
 	            <input type="button"  value="회원가입" onclick="location.href='${contextPath}/join/join.do'" > 
-	            <input type="button" value="나가기" onclick="${contextPath}/frontpage/main1.do">  
+	            <input type="button" value="나가기" onclick="location.href='${contextPath}/frontpage/main1.do'">  
 	         </td>
 	      </tr>
 	   	</table>

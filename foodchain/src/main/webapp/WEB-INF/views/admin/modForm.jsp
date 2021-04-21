@@ -33,12 +33,13 @@ session.setAttribute("loginID", loginID);
    		border-collapse:collapse;
 	}
 	td,tr {
-		border:1px solid white;
+		border:1px solid white; 
 	}
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+ // 수정중 ㅠㅠ
 	window.onload = function(){
 		var nick = '<%=request.getParameter("nickname") %>';
 		if(nick != 'null' && nick.length != 0){
@@ -46,7 +47,7 @@ session.setAttribute("loginID", loginID);
 		} 
 	}
 	<%-- 닉네임 변경시 중복확인 버튼 활성화--%>
-	<%-- 강민경님 작성 복사 --%>
+	<!-- 강민경님 작성 복사 -->
 	$(document).ready(function () {
 		var nickname = document.getElementById("nickname").value;
 		$("#nickname").on('input change', function(){
@@ -56,54 +57,51 @@ session.setAttribute("loginID", loginID);
 				$("#TestBtn").attr("disabled",false);
 		});
 	})
-
-
-<%--회원수정 진행 /권우경 작성 , 이소정 수정--%>
-function fn_insert(){
-	var frm = document.frm;
-	var pwd = frm.pwd;
-	var pwdchk = document.getElementById("pwdchk").value;
-	var nickname = frm.nickname;
-	//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
-	var nicknameBtn = frm.nicknameBtn.disabled;
-	
-	
-	if(nickname.value==""||nickname.length==0){
-		alert('닉네임을 입력하세요');
-		pwdchk.focus();
-	} else if(nicknameBtn == false){
+	function mod() {
+		var frm = document.view;
+		var pwd = frm.pwd;
+		var pwdchk = frm.pwdchk;
+		var nickname = frm.nickname;
 		//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
-		alert('중복체크 해주세요');	
-	} else if(pwd.value=="" || pwd.length==0){
-		alert('비밀번호를 입력하세요');
-		pwd.focus();
-	} else if(pwdchk.value=="" || pwdchk.length==0){
-		alert('비밀번호 확인을 입력하세요');
-		pwdchk.focus();
-	} else if(pwdchk.value != pwd.value){
-		alert('비밀번호가 일치하지 않습니다.');
-		pwd.value="";
-		pwdchk.value="";
-		pwd.focus();
-	} else {
-		alert('수정되었습니다.');
-		frm.method="post";
-		frm.action="${contextPath }/admin/modMember.do?id="+id;
-		frm.submit();
+		var nicknameBtn = frm.nicknameBtn.disabled;
+		
+		
+		if(nickname.value==""||nickname.length==0){
+			alert("닉네임을 입력해주세요.");
+			nickname.focus();
+		}else if(nicknameBtn == false){
+			//4/19 권우경 작성 닉네임 중복체크 안되있을시 수정 불가 
+			alert('중복확인을 해주세요');	
 		}
+		else if(pwd.value==""||pwd.length==0){
+			alert("비밀번호를 입력해주세요.");
+			pwd.focus();
+		}else if(pwdchk.value==""||pwdchk.length==0){
+			alert("비밀번호 확인을 입력해주세요.");
+			pwdchk.focus();
+		}else if(pwd.value!=pwdchk.value){
+			alert("비밀번호가 일치하지 않습니다.");
+			pwd.focus();
+		}else{
+			alert("수정되었습니다.");
+			frm.action="${contextPath}/admin/modMember.do?id="+id;
+			frm.method="POST";
+			frm.submit();
+		}
+		
+	}
 	
-	<%--닉네임 중복체크 /권우경 작성--%>
-	function fn_nameCheck(){
+	<%--우경님 작성 copy / 수정--%>
+	function nicknameCheck() {
 		var nickname = document.getElementById("nickname").value;
 		var id = document.getElementById("id").value;
 
-		location.href='${contextPath}/admin/nicknameCheck.do?nickname='+nickname+'&id='+id;
+		location.href='${contextPath}/admin/nameCheck.do?nickname='+nickname+'&id='+id;
 
-		location.href="${contextPath}/admin/nicknameCheck.do?id=${loginID}&nickname="+nickname;
+		location.href="${contextPath}/admin/nameCheck.do?id=${loginID}&nickname="+nickname;
 
 	}
 	
-}
 </script>
 </head>
 <body>
@@ -122,14 +120,14 @@ function fn_insert(){
 		</tr>
 		<tr>
 	       <td>패스워드확인</td>
-	       <td><input type="password" id="pwdchk"></td>
+	       <td><input type="password" name="pwdchk"></td>
 	    </tr>
 		<tr>
 			<td>닉네임</td>
 			<td><input type="text" name ="nickname" value="${member.nickname }"></td>
 			<td>
 				<input type="hidden" value="${member.nickname }">
-				<input id="TestBtn" type="button" name="nicknameBtn" disabled="true" onclick="fn_nameCheck()" value="중복확인">
+				<input id="TestBtn" type="button" name="nicknameBtn" disabled="true" onclick="nicknameCheck()" value="중복확인">
 			</td>
 		</tr>
 		<tr>
@@ -141,7 +139,7 @@ function fn_insert(){
 		</tr>
 		<tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="수정완료" onclick="fn_insert()">
+			<td colspan="2"><input type="button" value="수정완료" onclick="mod()">
 				<a href="${contextPath }/admin/listMember.do">
 					<input type="button" value="회원목록">
 				</a>
