@@ -1,5 +1,5 @@
 package com.spring.foodchain;
 
 public class GitTest {
-test
+test 1
 }
