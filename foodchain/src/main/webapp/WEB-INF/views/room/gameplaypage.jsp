@@ -18,7 +18,7 @@
    String chief_id = request.getParameter("chief_id");
    session.setAttribute("chief_id", chief_id);
 %>
-<!-- 재헌님 작성copy/ 210421 강민경 수정 중 -->
+<!-- 재헌님 작성(gamewaitpage)copy/ 210421 강민경 수정 중 -->
 <!DOCTYPE html>
 <html>
 <head>
