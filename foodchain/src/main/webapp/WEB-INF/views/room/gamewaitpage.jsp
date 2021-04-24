@@ -5,6 +5,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="loginId" value="${loginId}"/>
+<%
+   request.setCharacterEncoding("UTF-8");
+   String loginID = request.getParameter("id");
+   session.setAttribute("loginID", loginID);
+   
+   String title = request.getParameter("title");
+   session.setAttribute("title", title);
+   
+   String roomNum = request.getParameter("roomNum");
+   session.setAttribute("roomNum", roomNum);
+   
+   String chief_id = request.getParameter("chief_id");
+   session.setAttribute("chief_id", chief_id);
+%>
 	
 <!DOCTYPE html>
 <html>
