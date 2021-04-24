@@ -45,6 +45,8 @@ public class MypageControllerImpl implements MypageController{
       mav.addObject("mypageView",mypageView);
       return mav;
    }
+   
+   
 
 	@Override
 	@RequestMapping(value="/mypage/modifyMypage.do", method=RequestMethod.POST)

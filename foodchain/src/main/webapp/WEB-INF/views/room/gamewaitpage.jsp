@@ -24,6 +24,9 @@
 <head>
 <meta charset="UTF-8">
 <title>방 생성</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
    .text_center{
      text-align:center;
@@ -95,6 +98,7 @@ left:27%;
 top:27%;
 }
 </style>
+
 <script type="text/javascript">
 	function popup(){
 		var url = "${contextPath}/room/popup.do";
@@ -154,13 +158,64 @@ top:27%;
 	</table>
 	
 	<form>
-	<input type="text" style="background-color: white; width: 750px; height: 550px; display: block;">
-	<input type="text" id="chat" style="background-color: white; width: 380px; height:30px; margin: 0px;">
-	<input type="submit" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
-	
+	<textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
+	<input type="text" id="message" style="background-color: white; width: 380px; height:30px; margin: 0px;">
+	<input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
+	<br>
 	<input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do'">
 	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
 	<input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
 	
 	</form>
 </body>
+<script type="text/javascript">
+   var select = 'all`';
+   $("#sendBtn").click(function() {
+      allSendMessage();
+      $('#message').val('')
+   });
+
+   let sock = new SockJS("http://localhost:8090/foodchain/echo");
+   //서버에 연결할 자신의 url 주소 작성 
+   sock.onmessage = onMessage;
+   sock.onclose = onClose;
+   // 메시지 전송
+   function allSendMessage() {
+      
+      sock.send(select + $("#message").val());
+   }
+   // 서버로부터 메시지를 받았을 때
+   function onMessage(msg) {
+      var data = msg.data;
+      $("#messageArea").append(data + "\r\n");
+   }
+   // 서버와 연결을 끊었을 때
+   function onClose(evt) {
+      $("#messageArea").append("연결 끊김\r\n");
+
+   }
+   
+   $("#late").click(function(){
+      select = 'late`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+   })
+   
+   $("#sky").click(function(){
+      $("#messageArea").append("하늘로 이동\r\n");
+      select = 'sky`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+   })
+   
+   $("#field").click(function(){
+      $("#messageArea").append("들로 이동\r\n");
+      select = 'field`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+   }) 
+   $("#forest").click(function(){
+	      $("#messageArea").append("숲으로 이동\r\n");
+	      select = 'forest`';
+	 sock.send(select + "aaa님이 강에 입장하셨습니다.");
+	})
+   
+</script>
+</html>
