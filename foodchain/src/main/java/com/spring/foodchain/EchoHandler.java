@@ -42,8 +42,8 @@ public class EchoHandler extends TextWebSocketHandler{
 	   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 	      // TODO Auto-generated method stub
 		  
-	      logger.info("{}로 부터 {}받음",nick, message.getPayload());
-	      //모든 유저에게 메세지 출력
+	      logger.info("{}로 부터 {}받음",session.getId(), message.getPayload());
+	      //모든 유저에게 메세지 출력 session.getId 자리에 닉네임 입력 예정
 	      
 	      
 	      
@@ -56,42 +56,40 @@ public class EchoHandler extends TextWebSocketHandler{
 	      if(chatSelect[0].equals("all")) {
 	         
 	         sessionList1.add(session);
-	         for(WebSocketSession test: sessionList1) {
-	               if(!sessionList1.contains(test)) {
-	                   sessionList1.add(test);
-	               }
-	           
-	         }
 	         for(WebSocketSession sess : sessionList1) {   
-	            sess.sendMessage(new TextMessage(nick+ " : " + chatSelect[1]));
+	            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
 
 	         }
 	      } else if (chatSelect[0].equals("late")) {
 	         sessionList1.remove(session);
 	         sessionList2.add(session);
 	         for(WebSocketSession sess : sessionList2) {
-	            sess.sendMessage(new TextMessage(nick+ " : " + chatSelect[1]));
+	            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
 
 	         }
-	      }else if (chatSelect[0].equals("late")) {
+	      }else if (chatSelect[0].equals("sky")) {
+	    	  	 sessionList1.remove(session);
 		         sessionList2.remove(session);
 		         sessionList3.add(session);
-		         for(WebSocketSession sess : sessionList2) {
-		            sess.sendMessage(new TextMessage(nick+ " : " + chatSelect[1]));
+		         for(WebSocketSession sess : sessionList3) {
+		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
 
 		         }
-		  }else if (chatSelect[0].equals("late")) {
+		  }else if (chatSelect[0].equals("field")) {
+			     sessionList2.remove(session);
 		         sessionList3.remove(session);
 		         sessionList4.add(session);
-		         for(WebSocketSession sess : sessionList2) {
-		            sess.sendMessage(new TextMessage(nick+ " : " + chatSelect[1]));
+		         for(WebSocketSession sess : sessionList4) {
+		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
 
 		         }
-		  }else if (chatSelect[0].equals("late")) {
+		  }else if (chatSelect[0].equals("forest")) {
+			  	 sessionList2.remove(session);
 		         sessionList3.remove(session);
-		         sessionList4.add(session);
-		         for(WebSocketSession sess : sessionList2) {
-		            sess.sendMessage(new TextMessage(nick+ " : " + chatSelect[1]));
+		         sessionList4.remove(session);
+		         sessionList5.add(session);
+		         for(WebSocketSession sess : sessionList5) {
+		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
 
 		         }
 		  }

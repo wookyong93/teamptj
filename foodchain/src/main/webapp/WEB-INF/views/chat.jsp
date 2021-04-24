@@ -15,6 +15,9 @@
 	<input type="text" id="message" />
 	<input type="button" id="sendBtn" value="submit"/>
 	<input type="button" id="late" value="강"/>
+	<input type="button" id="sky" value="하늘"/>
+	<input type="button" id="field" value="들"/>
+	<input type="button" id="forest" value="숲"/>
 	<textarea id="messageArea"></textarea>
 </body>
 <script type="text/javascript">
@@ -24,7 +27,7 @@
       $('#message').val('')
    });
 
-   let sock = new SockJS("http://localhost:8090/chat/echo");
+   let sock = new SockJS("http://localhost:8090/foodchain/echo");
    //서버에 연결할 자신의 url 주소 작성 
    sock.onmessage = onMessage;
    sock.onclose = onClose;
@@ -45,9 +48,26 @@
    }
    
    $("#late").click(function(){
-      $("#messageArea").append("강으로 이동\r\n");
       select = 'late`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
    })
+   
+   $("#sky").click(function(){
+      $("#messageArea").append("하늘로 이동\r\n");
+      select = 'sky`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+   })
+   
+   $("#field").click(function(){
+      $("#messageArea").append("들로 이동\r\n");
+      select = 'field`';
+      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+   }) 
+   $("#forest").click(function(){
+	      $("#messageArea").append("숲으로 이동\r\n");
+	      select = 'forest`';
+	 sock.send(select + "aaa님이 강에 입장하셨습니다.");
+	})
    
 </script>
 </html>
