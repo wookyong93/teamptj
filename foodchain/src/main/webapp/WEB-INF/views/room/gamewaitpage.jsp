@@ -4,21 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<%
-   request.setCharacterEncoding("UTF-8");
-	String loginID = request.getParameter("id");
-	session.setAttribute("loginID", loginID);
+<c:set var="loginId" value="${loginId}"/>
 	
-	String title = request.getParameter("title");
-	session.setAttribute("title", title);
-	
-	String roomNum = request.getParameter("roomNum");
-	session.setAttribute("roomNum", roomNum);
-	
-	String chief_id = request.getParameter("chief_id");
-	session.setAttribute("chief_id", chief_id);
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -170,6 +157,7 @@ top:27%;
 </body>
 <script type="text/javascript">
    var select = 'all`';
+   var nick = "${nickName}";
    $("#sendBtn").click(function() {
       allSendMessage();
       $('#message').val('')
@@ -181,40 +169,40 @@ top:27%;
    sock.onclose = onClose;
    // 메시지 전송
    function allSendMessage() {
-      
+       
       sock.send(select + $("#message").val());
    }
-   // 서버로부터 메시지를 받았을 때
+   // 서버로부터 메시지를 받았을 때 
    function onMessage(msg) {
       var data = msg.data;
-      $("#messageArea").append(data + "\r\n");
+      $("#messageArea").append(nick+" : "+data + "\r\n");
    }
    // 서버와 연결을 끊었을 때
    function onClose(evt) {
       $("#messageArea").append("연결 끊김\r\n");
 
-   }
+   } 
    
    $("#late").click(function(){
       select = 'late`';
-      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+      sock.send(select +  nick + "님이 강에 입장하셨습니다.");
    })
    
    $("#sky").click(function(){
       $("#messageArea").append("하늘로 이동\r\n");
       select = 'sky`';
-      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+      sock.send(select + nick +"님이 강에 입장하셨습니다.");
    })
    
    $("#field").click(function(){
       $("#messageArea").append("들로 이동\r\n");
       select = 'field`';
-      sock.send(select + "aaa님이 강에 입장하셨습니다.");
+      sock.send(select +  nick +"님이 강에 입장하셨습니다.");
    }) 
    $("#forest").click(function(){
 	      $("#messageArea").append("숲으로 이동\r\n");
 	      select = 'forest`';
-	 sock.send(select + "aaa님이 강에 입장하셨습니다.");
+	 sock.send(select + nick +"님이 강에 입장하셨습니다.");
 	})
    
 </script>

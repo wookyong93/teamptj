@@ -49,12 +49,15 @@ public class MemberControllerImpl implements MemberController{
 		String message;
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		HttpSession session = request.getSession();
-		
 			boolean result = memberService.loginCheck(memberVO);
+			String nick = memberService.memberVO(memberVO.getId());
+			System.out.println(nick);
+			session.setAttribute("nickName", nick);
 			if(result) {
 				if(memberVO.getId()=="admin" || memberVO.getId().equals("admin")) {
 					message="<script>alert('관리자 로그인 성공');location.href='"+request.getContextPath()+"/admin/listMember.do';</script>";
 					session.setAttribute("loginID", memberVO.getId());
+					
 				} else {
 					message="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/room/roomlistmain.do';</script>";
 					session.setAttribute("loginID", memberVO.getId());
@@ -145,4 +148,6 @@ public class MemberControllerImpl implements MemberController{
 		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEnt;
 	}
+	
+	
 }

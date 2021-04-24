@@ -42,4 +42,12 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public String memberVO(String id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = memberDAO.membervo(id);
+		String nick = memberVO.getNickname();
+		return nick;
+	}
+
 }
