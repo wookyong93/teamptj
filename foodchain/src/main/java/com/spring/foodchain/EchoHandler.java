@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.spring.foodchain.member.VO.MemberVO;
+import com.spring.foodchain.member.controller.MemberController;
+import com.spring.foodchain.member.service.MemberService;
 
 @RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler{
@@ -25,8 +31,8 @@ public class EchoHandler extends TextWebSocketHandler{
 	private HashSet<WebSocketSession> sessionList4 = new HashSet<WebSocketSession>();
 	private HashSet<WebSocketSession> sessionList5 = new HashSet<WebSocketSession>();
 	
+	
 	//닉네임받아올 클레스 (수정필요)
-
 	private Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 	
 	//닉네임 설정(수정필요)
@@ -57,14 +63,14 @@ public class EchoHandler extends TextWebSocketHandler{
 	         
 	         sessionList1.add(session);
 	         for(WebSocketSession sess : sessionList1) {   
-	            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
+	            sess.sendMessage(new TextMessage(chatSelect[1]));
 
 	         }
 	      } else if (chatSelect[0].equals("late")) {
 	         sessionList1.remove(session);
 	         sessionList2.add(session);
 	         for(WebSocketSession sess : sessionList2) {
-	            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
+	            sess.sendMessage(new TextMessage(chatSelect[1]));
 
 	         }
 	      }else if (chatSelect[0].equals("sky")) {
@@ -72,7 +78,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		         sessionList2.remove(session);
 		         sessionList3.add(session);
 		         for(WebSocketSession sess : sessionList3) {
-		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
+		            sess.sendMessage(new TextMessage(chatSelect[1]));
 
 		         }
 		  }else if (chatSelect[0].equals("field")) {
@@ -80,7 +86,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		         sessionList3.remove(session);
 		         sessionList4.add(session);
 		         for(WebSocketSession sess : sessionList4) {
-		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
+		            sess.sendMessage(new TextMessage(chatSelect[1]));
 
 		         }
 		  }else if (chatSelect[0].equals("forest")) {
@@ -89,7 +95,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		         sessionList4.remove(session);
 		         sessionList5.add(session);
 		         for(WebSocketSession sess : sessionList5) {
-		            sess.sendMessage(new TextMessage(session.getId()+ " : " + chatSelect[1]));
+		            sess.sendMessage(new TextMessage(chatSelect[1]));
 
 		         }
 		  }
@@ -102,5 +108,6 @@ public class EchoHandler extends TextWebSocketHandler{
 		logger.info("{}연결 끊김",session_.getAttribute("id"));
 		session_.removeAttribute("id");
 	}
+	
 	
 }

@@ -41,5 +41,11 @@ public class MemberDAOImpl implements MemberDAO{
 		int result = sqlSession.selectOne("mapper.member.nicknameCheck", nickName);
 		return result;
 	}
+	@Override
+	public MemberVO membervo(String id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMember",id);
+		return memberVO;
+	}
 
 }
