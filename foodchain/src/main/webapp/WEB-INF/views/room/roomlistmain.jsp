@@ -70,7 +70,6 @@ body{
       <td>대기중</td>
       <td>${room.roomNum}</td>
       <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}&&id=${loginID}">${room.title}</a></td>
-      <td><a href="${contextPath}/room/gamewaitpage.do?id=<%=loginID%>&&roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}">${room.title}</a></td>
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
