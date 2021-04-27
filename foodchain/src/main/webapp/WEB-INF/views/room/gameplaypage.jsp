@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false" %>
+    isELIgnored="false" import="java.util.*"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="loginId" value="${loginId}"/>
+
 <%
    request.setCharacterEncoding("UTF-8");
    String loginID = request.getParameter("id");
@@ -17,6 +19,12 @@
    
    String chief_id = request.getParameter("chief_id");
    session.setAttribute("chief_id", chief_id);
+   
+	String nickName = (String)session.getAttribute("nickName");
+	HashSet<String> joinMember = new HashSet<String>();
+	joinMember.add(nickName);
+	session.setAttribute("joinMember", joinMember);
+
 %>
 <!-- 재헌님 작성/ 210421 강민경 수정 중 -->
 <!DOCTYPE html>
@@ -124,7 +132,7 @@ top:27%;
 
 
 
-   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
+   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
    <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
 
@@ -143,23 +151,15 @@ top:27%;
    <li>대기중</li>
    </ul>
    
-   <table class="tab1">   
+    <table class="tab1">   
       <tr style="background-color: white;">
          <td width="200"><p align="center">접속자</td>
        </tr>
-       
-       <tr class="tab2">
-         <td width="200"><p align="center">접속자name</td>
-      </tr>
-      <tr class="tab2">
-         <td width="200"><p align="center">접속자name</td>
-      </tr>
-      <tr class="tab2">
-         <td width="200"><p align="center">접속자name</td>
-      </tr>
-      <tr class="tab2">
-         <td width="200"><p align="center">접속자name</td>
-      </tr> 
+       <c:forEach var="chief_id" items="${joinMember}">
+          <tr class="tab2">
+            <td width="200"><p align="center"><c:out value="${chief_id }"></c:out></td>
+         </tr>
+      </c:forEach>
    </table>
    
    <form>
@@ -175,7 +175,7 @@ top:27%;
    <div class="place">
    <input type="button" value=" 강 " class="btn1" id="late" name="river">&nbsp;&nbsp;
    <input type="button" value=" 들 " class="btn1" id="field" name="field"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'"><br><br>
+   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"><br><br>
    <input type="button" value="하늘" class="btn1" id="sky" name="sky">&nbsp;&nbsp;
    <input type="button" value=" 숲 " class="btn1" id="forest" name="forest">
    
@@ -211,25 +211,26 @@ top:27%;
    } 
    
    $("#late").click(function(){
-      select = 'late`';
+	   $("#messageArea").append("강으로 이동\r\n");
+	   select = 'late`';
       sock.send(select +  nick + "님이 강에 입장하셨습니다.");
    })
    
    $("#sky").click(function(){
       $("#messageArea").append("하늘로 이동\r\n");
       select = 'sky`';
-      sock.send(select + nick +"님이 강에 입장하셨습니다.");
+      sock.send(select + nick +"님이 하늘에 입장하셨습니다.");
    })
    
    $("#field").click(function(){
       $("#messageArea").append("들로 이동\r\n");
       select = 'field`';
-      sock.send(select +  nick +"님이 강에 입장하셨습니다.");
+      sock.send(select +  nick +"님이 들에 입장하셨습니다.");
    }) 
    $("#forest").click(function(){
 	      $("#messageArea").append("숲으로 이동\r\n");
 	      select = 'forest`';
-	 sock.send(select + nick +"님이 강에 입장하셨습니다.");
+	 sock.send(select + nick +"님이 숲에 입장하셨습니다.");
 	})
    
 </script>

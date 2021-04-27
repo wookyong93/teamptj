@@ -78,7 +78,7 @@ table{
 	       <td width="200"><p>&nbsp;</p></td>
 	       <td width="400">
 	       <input type="submit" value="방 생성" style="margin: 15px; background-color: #CCFFCC;">
-	       <input type="button" value="돌아가기" style="background-color: #CCFFCC;" onClick="location.href='${contextPath}/room/roomlistmain.do'">
+	       <input type="button" value="돌아가기" style="background-color: #CCFFCC;" onClick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
 	       </td>
 	    </tr>
 
