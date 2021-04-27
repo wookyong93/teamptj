@@ -125,9 +125,8 @@ top:27%;
 
 
 
-   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
-   <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
-
+	<!-- <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'"> -->
+	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
    <ul class="ul1">
    <li>번호</li>
