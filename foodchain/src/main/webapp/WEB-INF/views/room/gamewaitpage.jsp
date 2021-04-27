@@ -107,7 +107,7 @@ top:27%;
 <script type="text/javascript">
    setInterval(function(){
       $("#reload").load(window.location.href + " #reload");
-   },3000);
+   },1000);
   function popup(){
       var url = "${contextPath}/room/popup.do";
       var name = "popup pop";
