@@ -9,4 +9,5 @@ import com.spring.foodchain.roomlist.vo.RoomListVO;
 public interface RoomListDAO {
 	public List selectAllRoomsList() throws DataAccessException;
 	public int insertRoom(RoomListVO roomlistVO) throws DataAccessException;
+	public int delRoom(Integer room) throws DataAccessException;
 }

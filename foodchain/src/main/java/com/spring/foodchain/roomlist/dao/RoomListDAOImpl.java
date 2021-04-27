@@ -28,22 +28,15 @@ public class RoomListDAOImpl implements RoomListDAO {
 		roomlistVO.setRoomNum(roomno);
 		int	result = sqlsession.insert("mapper.room.addRoom",roomlistVO);
 
-		System.out.println("·ë³Ñ¹ö"+roomlistVO.getRoomNum());
 		System.out.println(roomlistVO.getRoomNum());
+		return result;
+	}
+
+	@Override
+	public int delRoom(Integer room) throws DataAccessException{
+		System.out.println("ë°©ì‚­ì œ");
+		int result = sqlsession.delete("mapper.room.delRoom",room);
 		return result;
 	}	
 	
-//	<¹æ ¾È¿¡ ³²Àº ÀÎ¿øÀÌ 0¸íÀÏ°æ¿ì ÀÚµ¿À¸·Î »èÁ¦>
-//	@Override
-//	public int deleteRoom()throws DataAccessException{
-//		
-//	}
-	
-	
-//	@Override
-//		public int roominfo(RoomListVO roomlistVO) throws DataAccessException {
-//		int result = sqlsession.selectOne("mapper.room.roominfo");
-//		return result;
-//	}
-
 }

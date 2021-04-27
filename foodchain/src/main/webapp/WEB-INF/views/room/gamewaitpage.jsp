@@ -139,20 +139,22 @@ top:27%;
    <li>${roomNum }</li>
    <li>${title }</li>
    <li>${chief_id }</li>
-   <li>2/13</li>
+   <li>${joinCount }/13</li>
    <li>대기중</li>
    </ul>
    
-   <table class="tab1">   
+      <table class="tab1">   
       <tr style="background-color: white;">
          <td width="200"><p align="center">접속자</td>
        </tr>
-       <c:forEach var="chief_id" items="${joinMember}">
+       <c:forEach var="join_id" items="${joinId}">
           <tr class="tab2">
-            <td width="200"><p align="center"><c:out value="${chief_id }"></c:out></td>
+            <td width="200"><p align="center"><c:out value="${join_id }"></c:out></td>
          </tr>
       </c:forEach>
    </table>
+
+
    
    
    <form>
