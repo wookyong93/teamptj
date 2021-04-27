@@ -19,6 +19,7 @@
    session.setAttribute("chief_id", chief_id);
 %>
 <!-- 재헌님 작성/ 210421 강민경 수정 중 -->
+<!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +125,7 @@ top:27%;
 
 
 
-   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
+   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
    <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
 
@@ -175,7 +176,7 @@ top:27%;
    <div class="place">
    <input type="button" value=" 강 " class="btn1" id="late" name="river">&nbsp;&nbsp;
    <input type="button" value=" 들 " class="btn1" id="field" name="field"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'"><br><br>
+   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"><br><br>
    <input type="button" value="하늘" class="btn1" id="sky" name="sky">&nbsp;&nbsp;
    <input type="button" value=" 숲 " class="btn1" id="forest" name="forest">
    

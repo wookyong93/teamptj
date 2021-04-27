@@ -5,7 +5,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="loginId" value="${loginId}"/>
+<%
+   request.setCharacterEncoding("UTF-8");
+   String loginID = request.getParameter("id");
+   session.setAttribute("loginID", loginID);
+   
+   String title = request.getParameter("title");
+   session.setAttribute("title", title);
+   
+   String roomNum = request.getParameter("roomNum");
+   session.setAttribute("roomNum", roomNum);
+   
+   String chief_id = request.getParameter("chief_id");
+   session.setAttribute("chief_id", chief_id);
+%>
 	
+<!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +121,7 @@ top:27%;
 
 
 
-	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
+	<input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
 
@@ -150,7 +165,7 @@ top:27%;
 	<input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
 	<br>
 	<input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do'">
-	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do'">
+	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
 	<input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
 	
 	</form>

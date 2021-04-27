@@ -14,7 +14,7 @@
 	}
 %>    
 
-
+<!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
 <html>
 <head>
 <meta charset="UTF-8">
@@ -69,7 +69,7 @@ body{
    <tr align="center">
       <td>대기중</td>
       <td>${room.roomNum}</td>
-      <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}">${room.title}</a></td>
+      <td><a href="${contextPath}/room/gamewaitpage.do?id=<%=loginID%>&&roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}">${room.title}</a></td>
       <td>인원수</td>
       <td>${room.chief_id}</td>
    </tr>
