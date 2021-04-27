@@ -24,7 +24,12 @@
    joinMember.add(nickName);
    session.setAttribute("joinMember", joinMember);
 %>
+<<<<<<< HEAD
 
+=======
+	
+<!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,9 +130,9 @@ top:27%;
 
 
 
+
    <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'">
    <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
-
 
    <ul class="ul1">
    <li>번호</li>
@@ -166,6 +171,51 @@ top:27%;
    <input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
    
    </form>
+	<ul class="ul1">
+	<li>번호</li>
+	<li>방제목</li>
+	<li>방장</li>
+	<li>인원수</li>
+	<li>게임상태</li>
+	</ul>
+	<ul class="ul2">
+	<li>${roomNum }</li>
+	<li>${title }</li>
+	<li>${chief_id }</li>
+	<li>2/13</li>
+	<li>대기중</li>
+	</ul>
+	
+	<table class="tab1">	
+		<tr style="background-color: white;">
+	      <td width="200"><p align="center">접속자</td>
+	    </tr>
+	    
+	    <tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr>
+		<tr class="tab2">
+			<td width="200"><p align="center">접속자name</td>
+		</tr> 
+	</table>
+	
+	<form>
+	<textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
+	<input type="text" id="message" style="background-color: white; width: 380px; height:30px; margin: 0px;">
+	<input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
+	<br>
+	<input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do'">
+	<input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
+	<input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
+	
+	</form>
+	
 </body>
 <script type="text/javascript">
    var select = 'all`';
