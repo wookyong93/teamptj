@@ -163,6 +163,7 @@ top:27%;
       </c:forEach>
    </table>
 
+${roleChar }
    
    <form>
    <textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>

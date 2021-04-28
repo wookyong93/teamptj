@@ -31,10 +31,13 @@
 <meta charset="UTF-8">
 <title>방 생성</title>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
    .text_center{
-     text-align:center;
+     position: absolute;
+     top:25px;
+     left:650px;
    }
 body{
    width:80%;
@@ -48,13 +51,13 @@ body{
    border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; width:100px; height:40px;
    }
 .btn2{
-   border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; float: right; margin: 5px; display: block; width:100px; height:40px;
+   border-color:#CCFFCC; background-color: #CCFFCC; width: 100px; height: 30px; font-size: 15px; font-weight: bolder; margin-top:80px; margin-left:950px; display: block; width:100px; height:40px;
    }
 .tab1{
    border:1px solid white;
    position:absolute;
-   top:28%;
-   left:8%;
+   top:250px;
+   left:150px;
    display: block;
 }
 
@@ -66,8 +69,8 @@ body{
 position:absolute;
 font-size:18px;
 font-weight:bold;
-top:20%;
-left:50%;
+top:200px;
+left:700px;
 list-style-type: none;
 margin: -25px 35px 35px -195px;
 padding: 5px;
@@ -78,8 +81,8 @@ display: block;
 .ul2{
 position:absolute;
 font-size:15px;
-top:20%;
-left:50%;
+top:200px;
+left:700px;
 list-style-type: none;
 margin: 5px 35px 35px -195px;
 padding: 5px;
@@ -99,8 +102,8 @@ li:last-child {
 }
 form{
 position:absolute;
-left:27%;
-top:27%;
+left:450px;
+top:250px;
 }
 </style>
 
@@ -108,12 +111,33 @@ top:27%;
    setInterval(function(){
       $("#reload").load(window.location.href + " #reload");
    },1000);
+   $(function(){
+	      if('${readyCount }' == 13){
+	         alert("게임을 시작합니다.");
+	         location.href='${contextPath}/room/gameplaypage.do?roomNum=${roomNum}&&title=${title}&&chief_id=${chief_id}&&id=${loginID}';
+	      }
+	   });
   function popup(){
       var url = "${contextPath}/room/popup.do";
       var name = "popup pop";
       var option = "width = 750, height = 450, left=1250, location = no"
       window.open(url,name,option);   
    }
+
+  function readyButton(){
+      var loginID = '<%=loginID %>';
+      var nickName = '<%=nickName%>';
+      var roomNum = '<%=roomNum%>';
+     $.ajax ({
+        url:'${contextPath}/room/readyButton.do',
+        data:{ loginID : loginID , nickName : nickName, roomNum : roomNum },
+        type:'post',
+        success:function(result,status){
+           alert("게임 준비 완료");
+           readyMessage(nickName+"님이 준비 완료 했습니다.");
+        }
+     });
+  }
 </script>
 </head>
 <body>
@@ -134,6 +158,7 @@ top:27%;
    <li>방장</li>
    <li>인원수</li>
    <li>게임상태</li>
+   <li>준비인원</li>
    </ul>
    <ul class="ul2">
    <li>${roomNum }</li>
@@ -141,6 +166,12 @@ top:27%;
    <li>${chief_id }</li>
    <li>${joinCount }/13</li>
    <li>대기중</li>
+   <c:if test="${readyCount == null }">
+   	<li>0/13</li>
+   </c:if>
+   <c:if test="${readyCount != null }">
+   	<li>${readyCount }/13</li>
+   	</c:if>
    </ul>
    
       <table class="tab1">   
@@ -151,18 +182,21 @@ top:27%;
           <tr class="tab2">
             <td width="200"><p align="center"><c:out value="${join_id }"></c:out></td>
          </tr>
+         <tr><td>
+         <input type="button" value="게임시작" onclick="location.href='${contextPath}/room/gameplaypage.do?roomNum=${roomNum}&&title=${title}&&chief_id=${chief_id}&&id=${loginID}'">
+         </td></tr>
       </c:forEach>
    </table>
    </div>
    
    <form>
-   <textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
-   <input type="text" id="message" style="background-color: white; width: 380px; height:30px; margin: 0px;">
-   <input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
+   <textarea id="messageArea" style="width:650px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
+   <input type="text" id="message" style="background-color: white; width: 500px; height:30px; margin-top: 5px; margin-right: 5px;">
+   <input type="button" id="sendBtn" class="btn1" value="채팅" style="margin: 5px">
    <br>
-   <input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do?roomNum=${roomNum}&&title=${title}&&chief_id=${chief_id}&&id=${loginID}'">
-   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?nickName=${nickName }'">
-   <input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
+   <input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="readyButton()" style="margin: 5px">
+   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?nickName=${nickName }'" style="margin: 5px">
+   <input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'" style="margin: 5px">
    
    </form>
   
@@ -189,6 +223,9 @@ top:27%;
    // 메시지 전송
    function allSendMessage() {
       sock.send(select + "" + nick + " : " +$("#message").val());
+   }
+   function readyMessage(str){
+	   sock.send(select + "" + str);
    }
    // 서버로부터 메시지를 받았을 때 
    function onMessage(msg) {
