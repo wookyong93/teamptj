@@ -53,7 +53,11 @@ public class RoomListControllerImpl implements RoomListController{
       HttpSession session = request.getSession(false);
       
       // 거기에 readyButton 누른 사람의 수를 넘겨 주는 거
-      session.setAttribute("readyCount", readyId.size());
+      session.setAttribute("readyCount", readyId.size()); // 이거 다음에 
+      if(readyId.size() == 13) {
+    	  session.setAttribute("gameMember", readyId);
+    	  readyMember.remove(roomNum); //이렇게 하면 13명이 시작하면 roomNum의 데이터 삭제 순서 중요, 이게 와야 해요 
+      }
   
    }
 	@Override
