@@ -147,7 +147,6 @@ public class RoomListControllerImpl implements RoomListController{
 	    sessoin.setAttribute("joinCount", joinId.size());
 	    
 	    HashSet<String> readyId = readyMember.get(roomNum);
-	    sessoin.setAttribute("readyCount", readyId.size());
 	    
 	    if(readyId != null) {
 	         sessoin.setAttribute("readyCount", readyId.size());   
