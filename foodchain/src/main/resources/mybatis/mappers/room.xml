@@ -33,6 +33,13 @@
 			select nvl(max(roomNum), 0) + 1 from f_room
 		]]>
 	</select>
+	
+	<delete id="delRoom" parameterType="String">
+	<![CDATA[
+	   delete from f_room
+	   where roomNum=#{room}
+	]]>     
+	</delete>
 
 	</mapper>
 	<!-- 아이디가 없어서 에러 안하려면 이렇게 -->

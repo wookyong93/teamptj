@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
-    isELIgnored="false"  %>
+    isELIgnored="false" import="java.util.*"   %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
@@ -12,6 +12,11 @@
 		loginID = request.getParameter("id");
 		session.setAttribute("loginID", loginID);
 	}
+	
+    String nickName = (String)session.getAttribute("nickName");
+ 	HashSet<String> joinMember = new HashSet<String>();
+	joinMember.add(nickName);
+ 	session.setAttribute("joinMember", joinMember);
 %>    
 
 <!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
@@ -68,9 +73,14 @@ body{
  <c:forEach var="room" items="${roomList}" >     
    <tr align="center">
       <td>대기중</td>
+
       <td>${room.roomNum}</td>
       <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}&&id=${loginID}">${room.title}</a></td>
       <td>인원수</td>
+
+      <td>${room.roomNum}</td>
+      <td><a href="${contextPath}/room/gamewaitpage.do?roomNum=${room.roomNum}&&title=${room.title}&&chief_id=${room.chief_id}&&id=${loginID}">${room.title}</a></td>
+      <td>${joinCount}/13</td>
       <td>${room.chief_id}</td>
    </tr>
   </c:forEach>   

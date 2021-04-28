@@ -19,7 +19,7 @@
    String chief_id = request.getParameter("chief_id");
    session.setAttribute("chief_id", chief_id);
    
-      String nickName = (String)session.getAttribute("nickName");
+   String nickName = (String)session.getAttribute("nickName");
    HashSet<String> joinMember = new HashSet<String>();
    joinMember.add(nickName);
    session.setAttribute("joinMember", joinMember);
@@ -31,8 +31,7 @@
 <meta charset="UTF-8">
 <title>방 생성</title>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+
 <style>
    .text_center{
      text-align:center;
@@ -106,7 +105,10 @@ top:27%;
 </style>
 
 <script type="text/javascript">
-   function popup(){
+   setInterval(function(){
+      $("#reload").load(window.location.href + " #reload");
+   },1000);
+  function popup(){
       var url = "${contextPath}/room/popup.do";
       var name = "popup pop";
       var option = "width = 750, height = 450, left=1250, location = no"
@@ -117,17 +119,24 @@ top:27%;
 <body>
 
 <header>
-   <div>
+   <div id="head">
    <img class="logo" src="${contextPath}/resources/image/logo.jpg" width="100" height="100" >
    <h1 class="text_center">먹이사슬 게임</h1>
    </div>
 </header>
+<<<<<<< HEAD
 
 
 
 	<!-- <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'"> -->
 	<input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
+=======
+   <!-- <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'"> -->
+   <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
+   
+   <div id="reload">
+>>>>>>> branch 'master' of https://github.com/wookyong93/teamptj.git
    <ul class="ul1">
    <li>번호</li>
    <li>방제목</li>
@@ -139,21 +148,21 @@ top:27%;
    <li>${roomNum }</li>
    <li>${title }</li>
    <li>${chief_id }</li>
-   <li>2/13</li>
+   <li>${joinCount }/13</li>
    <li>대기중</li>
    </ul>
    
-   <table class="tab1">   
+      <table class="tab1">   
       <tr style="background-color: white;">
          <td width="200"><p align="center">접속자</td>
        </tr>
-       <c:forEach var="chief_id" items="${joinMember}">
+       <c:forEach var="join_id" items="${joinId}">
           <tr class="tab2">
-            <td width="200"><p align="center"><c:out value="${chief_id }"></c:out></td>
+            <td width="200"><p align="center"><c:out value="${join_id }"></c:out></td>
          </tr>
       </c:forEach>
    </table>
-   
+   </div>
    
    <form>
    <textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
@@ -161,50 +170,57 @@ top:27%;
    <input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
    <br>
    <input type="button" value="준비/시작" class="btn1" id="commitchk" onclick="location.href='${contextPath}/room/gameplaypage.do?roomNum=${roomNum}&&title=${title}&&chief_id=${chief_id}&&id=${loginID}'">
-   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'">
+   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?nickName=${nickName }'">
    <input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'">
    
    </form>
+  
 </body>
-<script type="text/javascript">
-   var select = 'all`';
-   var nick = "${nickName}";
-   $("#sendBtn").click(function() {
-      allSendMessage();
-      $('#message').val('')
-   });
+<script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script>
 
-   let sock = new SockJS("http://localhost:8090/foodchain/echo");
-   //서버에 연결할 자신의 url 주소 작성 
+      var select = 'all`';
+      var nick = "${nickName}";
+      
+   let sock  = new SockJS("http://localhost:8090/foodchain/echo");
    sock.onmessage = onMessage;
    sock.onclose = onClose;
+   
+   $("#sendBtn").click(function() {
+         allSendMessage();
+       $('#message').val('')
+    });
+    
+ 
+   //서버에 연결할 자신의 url 주소 작성 
+
    // 메시지 전송
    function allSendMessage() {
-       
-      sock.send(select + $("#message").val());
+      sock.send(select + "" + nick + " : " +$("#message").val());
    }
    // 서버로부터 메시지를 받았을 때 
    function onMessage(msg) {
       var data = msg.data;
-      $("#messageArea").append(nick+" : "+data + "\r\n");
+      $("#messageArea").append(data + "\r\n");
    }
    // 서버와 연결을 끊었을 때
    function onClose(evt) {
       $("#messageArea").append("연결 끊김\r\n");
 
    } 
-   
+
    $("#late").click(function(){
       select = 'late`';
       sock.send(select +  nick + "님이 강에 입장하셨습니다.");
    })
-   
+
    $("#sky").click(function(){
       $("#messageArea").append("하늘로 이동\r\n");
       select = 'sky`';
       sock.send(select + nick +"님이 강에 입장하셨습니다.");
    })
-   
+
    $("#field").click(function(){
       $("#messageArea").append("들로 이동\r\n");
       select = 'field`';
@@ -215,6 +231,5 @@ top:27%;
          select = 'forest`';
     sock.send(select + nick +"님이 강에 입장하셨습니다.");
    })
-   
-</script>
+   </script>
 </html>
