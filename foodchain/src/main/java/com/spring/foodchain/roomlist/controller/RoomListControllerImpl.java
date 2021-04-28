@@ -27,8 +27,35 @@ public class RoomListControllerImpl implements RoomListController{
    @Autowired
    private RoomListVO roomlistVO;
    private Map<Integer, HashSet> joinMember = new HashMap<Integer, HashSet>();
+   private Map<Integer, HashSet> readyMember = new HashMap<Integer, HashSet>();
 
 
+   // readyButton 을 누르면 여기로 와서
+   @RequestMapping(value="/room/readyButton.do", method= RequestMethod.POST)
+   public void readyButton(HttpServletRequest request, HttpServletResponse response) {
+      String nickName = request.getParameter("nickName");
+      int roomNum = Integer.parseInt(request.getParameter("roomNum"));
+      
+      // readyMember에 저장되어 있는 roomNum 에 값을 호출 해서
+      HashSet<String> readyId = readyMember.get(roomNum);
+      
+      // 그안에 들어 있는 hashset에 readyId 가 있는 지 확인 하고 
+      if(readyId == null) {
+    	  // 비어 있으면 새로 만들어서 
+         readyId = new HashSet<String>();
+      }
+      // 없으면 그냥 저장 
+      readyId.add(nickName);
+      // 다시 그 값을 hashmap 에 저장 
+      readyMember.put(roomNum, readyId);
+      
+      // 세션을 확인하고 
+      HttpSession session = request.getSession(false);
+      
+      // 거기에 readyButton 누른 사람의 수를 넘겨 주는 거
+      session.setAttribute("readyCount", readyId.size());
+  
+   }
 	@Override
 	@RequestMapping(value="/room/roomlistmain.do",method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView roomlist(HttpServletRequest request, HttpServletResponse response)
