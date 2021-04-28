@@ -145,6 +145,16 @@ public class RoomListControllerImpl implements RoomListController{
 	      
 	    sessoin.setAttribute("joinId", joinId);
 	    sessoin.setAttribute("joinCount", joinId.size());
+	    
+	    HashSet<String> readyId = readyMember.get(roomNum);
+	    sessoin.setAttribute("readyCount", readyId.size());
+	    
+	    if(readyId != null) {
+	         sessoin.setAttribute("readyCount", readyId.size());   
+	      } else {
+	         sessoin.setAttribute("readyCount", 0);
+	      }
+	      
 	    mav.setViewName(viewName);
 	    return mav;
 	   }
