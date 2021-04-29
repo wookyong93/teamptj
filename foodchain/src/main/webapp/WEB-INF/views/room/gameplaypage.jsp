@@ -1,33 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false" import="java.util.*"  %>
+    isELIgnored="false" import="java.util.*" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="loginId" value="${loginId}"/>
-
 <%
    request.setCharacterEncoding("UTF-8");
    String loginID = request.getParameter("id");
    session.setAttribute("loginID", loginID);
-   
-   String title = request.getParameter("title");
-   session.setAttribute("title", title);
-   
+   String roleChar = request.getParameter("roleChar");
+   session.setAttribute("roleChar", roleChar);
    String roomNum = request.getParameter("roomNum");
    session.setAttribute("roomNum", roomNum);
-   
-   String chief_id = request.getParameter("chief_id");
-   session.setAttribute("chief_id", chief_id);
-   
-	String nickName = (String)session.getAttribute("nickName");
-	HashSet<String> joinMember = new HashSet<String>();
-	joinMember.add(nickName);
-	session.setAttribute("joinMember", joinMember);
-
 %>
 <!-- 재헌님 작성/ 210421 강민경 수정 중 -->
-<!-- 방 이동시 마이페이지 id 안보내지는 오류 수정 - 이소정 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,13 +98,66 @@ top:27%;
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-
 <script type="text/javascript">
+    var roleAttack = null;
+    var gameDate = new Date('${time}');
+    var gameSec = gameDate.getSeconds();
+    var nowDate = new Date();
+    var nowSec = nowDate.getSeconds();
+    var startSec = nowSec < gameSec ? 60 - ((nowSec+60)-gameSec) : 60 - (nowSec - gameSec);
+    	
+	setInterval(function(){
+		$("#reload").load(window.location.href + " #reload");
+ 		
+ 		if(startSec%10 == 0){
+ 			readySendMessage("SYSTEM`SYSTEM : 이동까지 " + startSec + " 초 남았습니다.");
+		}
+		startSec = startSec - 1;
+		if(startSec== -10){
+			var roleChar = '${roleChar}';
+			startSec = 30;
+			$("#late").removeAttr("disabled");
+			if(roleChar == '독수리' || roleChar == '청둥오리' || roleChar == '까마귀' || roleChar == '악어새'){
+				$("#sky").removeAttr("disabled");
+			}
+			$("#forest").removeAttr("disabled");
+			$("#field").removeAttr("disabled");
+		} 
+	},1000);
+	$(function(){
+		var roleChar = '${roleChar}';
+		
+		if(roleChar == '독수리' || roleChar == '청둥오리' || roleChar == '까마귀' || roleChar == '악어새'){
+			$("#sky").removeAttr("disabled");
+		}
+	});
    function popup(){
       var url = "${contextPath}/room/popup.do";
       var name = "popup pop";
       var option = "width = 750, height = 450, left=1250, location = no"
       window.open(url,name,option);   
+   }
+   function selectChar(roleAtt){
+	   roleAttack = roleAtt;
+   }
+   function attack(){
+	   var roomNum =  '${roomNum}';
+	   var roleChar = '${roleChar}';
+	   var title = '${title }';
+		$.ajax ({
+			url:'${contextPath}/animal/attack.do',
+			data:{ roomNum : roomNum, roleChar: roleChar ,  title : title, roleAttack:roleAttack },
+			type:'post',
+			success:function(result,status){
+ 				if(result==0) {
+					alert('공격 성공 !!');
+				} else if(result==1){
+					alert('공격 실패T^T');
+				} else if(result==2){
+					alert('공격 실패 .. 뱀에게 죽임을 당했습니다');
+				} 
+			}
+		});
    }
 </script>
 </head>
@@ -133,10 +172,10 @@ top:27%;
 
 
 
-   <!-- <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=<%=loginID%>'"> -->
+   <input type="button" value="마이페이지" class="btn2" onclick="location.href='${contextPath}/mypage/mypageView.do?id=${loginID}'">
    <input type="button" value="로그아웃" class="btn2" onclick="location.href='${contextPath}/login/login.do'">
 
-
+   <div id="reload">
    <ul class="ul1">
    <li>번호</li>
    <li>방제목</li>
@@ -149,37 +188,47 @@ top:27%;
    <li>${title }</li>
    <li>${chief_id }</li>
    <li>${joinCount }/13</li>
-   <li>대기중</li>
+   <li>게임시작</li>
    </ul>
    
-    <table class="tab1">   
+   <table class="tab1">   
       <tr style="background-color: white;">
          <td width="200"><p align="center">접속자</td>
        </tr>
-       <c:forEach var="join_id" items="${joinId}">
-          <tr class="tab2">
-            <td width="200"><p align="center"><c:out value="${join_id }"></c:out></td>
-         </tr>
+       <c:forEach var="join_Id" items="${joinId }">
+       	<tr class="tab2">
+        	 <td width="200"><p align="center">${join_Id }</p></td>
+      	</tr>
       </c:forEach>
    </table>
-
-${roleChar }
+   <table>
+   	<tr>
+   		<th>
+   			${location }
+   		</th>
+   		<c:forEach var = "member" items="${list }">
+   			<td  onclick="selectChar('${member}')">${member }</td>
+   		</c:forEach>
+   	</tr>
+   </table>
+   </div>
+   ${roleChar }
    
    <form>
-   <textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
+    <textarea id="messageArea" style="width:500px; resize: none; height: 380px; display: block;"readonly="readonly"></textarea>
 	<input type="text" id="message" style="background-color: white; width: 380px; height:30px; margin: 0px;">
 	<input type="button" id="sendBtn" value="채팅" style="border-color:#CCFFCC; background-color: #CCFFCC; width: 120px; height: 40px;">
 	<br>
    
    
    <input type="button" value="설명" class="btn1" onclick="location.href='javascript:popup()'"> <br><br>
-   <input type="button" value="공격" class="btn1">&nbsp;&nbsp;
+   <input type="button" value="공격" class="btn1" onclick="attack()">&nbsp;&nbsp;
    <input type="button" value="엿보기" class="btn1">
    <div class="place">
    <input type="button" value=" 강 " class="btn1" id="late" name="river">&nbsp;&nbsp;
    <input type="button" value=" 들 " class="btn1" id="field" name="field"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?id=<%=loginID%>'"><br><br>
-   <input type="button" value="하늘" class="btn1" id="sky" name="sky">&nbsp;&nbsp;
+   <input type="button" value="나가기" class="btn1" onclick="location.href='${contextPath}/room/roomlistmain.do?roomNum=${roomNum }'"><br><br>
+   <input type="button" value="하늘" class="btn1" id="sky" name="sky" disabled="disabled">&nbsp;&nbsp;
    <input type="button" value=" 숲 " class="btn1" id="forest" name="forest">
    
    </div>
@@ -188,6 +237,7 @@ ${roleChar }
 <script type="text/javascript">
    var select = 'all`';
    var nick = "${nickName}";
+   
    $("#sendBtn").click(function() {
       allSendMessage();
       $('#message').val('')
@@ -200,12 +250,17 @@ ${roleChar }
    // 메시지 전송
    function allSendMessage() {
        
-      sock.send(select + $("#message").val());
+      sock.send(select + nick + " : " + $("#message").val());
    }
+   
+   function readySendMessage(str) {
+       
+	   sock.send(str);
+	}
    // 서버로부터 메시지를 받았을 때 
    function onMessage(msg) {
       var data = msg.data;
-      $("#messageArea").append(nick+" : "+data + "\r\n");
+      $("#messageArea").append(data + "\r\n");
    }
    // 서버와 연결을 끊었을 때
    function onClose(evt) {
@@ -215,26 +270,44 @@ ${roleChar }
    
    $("#late").click(function(){
 	   $("#messageArea").append("강으로 이동\r\n");
-	   select = 'late`';
+      select = 'late`';
       sock.send(select +  nick + "님이 강에 입장하셨습니다.");
+      moveField("late");
    })
-   
    $("#sky").click(function(){
       $("#messageArea").append("하늘로 이동\r\n");
       select = 'sky`';
-      sock.send(select + nick +"님이 하늘에 입장하셨습니다.");
+      sock.send(select + nick +"님이 강에 입장하셨습니다.");
+      moveField("sky");
    })
-   
    $("#field").click(function(){
       $("#messageArea").append("들로 이동\r\n");
       select = 'field`';
-      sock.send(select +  nick +"님이 들에 입장하셨습니다.");
+      sock.send(select +  nick +"님이 강에 입장하셨습니다.");
+      moveField("field");
    }) 
    $("#forest").click(function(){
-	      $("#messageArea").append("숲으로 이동\r\n");
-	      select = 'forest`';
-	 sock.send(select + nick +"님이 숲에 입장하셨습니다.");
-	})
+	  $("#messageArea").append("숲으로 이동\r\n");
+	  select = 'forest`';
+	  sock.send(select + nick +"님이 강에 입장하셨습니다.");
+	  moveField("forest");
+   })
    
+   function moveField(moveF){
+	   
+	   var roomNum = '${roomNum }';
+	   var roleChar = '${roleChar }';
+	 $.ajax ({
+	   url:'${contextPath}/room/gameplaypage.do',
+		data:{ roomNum : roomNum, roleChar: roleChar , nickName : nick, field : moveF },
+		type:'post',
+		success:function(result,status){
+			$("#late").attr("disabled", true);
+			$("#sky").attr("disabled", true);
+			$("#forest").attr("disabled", true);
+			$("#field").attr("disabled", true);
+		}
+	 });
+   }
 </script>
 </html>
